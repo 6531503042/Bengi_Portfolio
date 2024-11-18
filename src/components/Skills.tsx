@@ -1,63 +1,84 @@
 import { motion } from "framer-motion";
-import { Code2, Server, Layout, Smartphone, Wrench, Network } from "lucide-react";
+import { Code2, Server, Layout, Smartphone, Database, Cloud, Brain } from "lucide-react";
 
 const skillCategories = [
   {
-    category: "Languages",
+    category: "Programming Languages",
     icon: <Code2 className="w-4 h-4" />,
     items: [
-      { name: "Java", icon: "java" },
-      { name: "Go", icon: "go" },
-      { name: "Python", icon: "python" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Dart", icon: "dart" }
+      { name: "Java", icon: "/icons/java.svg" },
+      { name: "Go", icon: "/icons/go.svg" },
+      { name: "Python", icon: "/icons/python.svg" },
+      { name: "C#", icon: "/icons/csharp.svg" },
+      { name: "JavaScript", icon: "/icons/javascript.svg" },
+      { name: "TypeScript", icon: "/icons/typescript.svg" },
+      { name: "Dart", icon: "/icons/dart.svg" }
     ]
   },
   {
-    category: "Backend",
-    icon: <Server className="w-4 h-4" />,
-    items: [
-      { name: "Spring Boot", icon: "spring" },
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Echo", icon: "go" }
-    ]
-  },
-  {
-    category: "Frontend",
+    category: "Frontend Development",
     icon: <Layout className="w-4 h-4" />,
     items: [
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs" },
-      { name: "Angular", icon: "angular" }
+      { name: "Next.js", icon: "/icons/nextjs.svg" },
+      { name: "React.js", icon: "/icons/react.svg" },
+      { name: "HTML", icon: "/icons/html.svg" },
+      { name: "CSS", icon: "/icons/css.svg" },
+      { name: "SASS", icon: "/icons/sass.svg" }
     ]
   },
   {
-    category: "Mobile",
+    category: "Backend Development",
+    icon: <Server className="w-4 h-4" />,
+    items: [
+      { name: "Node.js", icon: "/icons/nodejs.svg" },
+      { name: "Express.js", icon: "/icons/express.svg" },
+      { name: "Socket.io", icon: "/icons/socketio.svg" },
+      { name: "Spring Boot", icon: "/icons/spring.svg" },
+      { name: "Fiber", icon: "/icons/fiber.svg" }
+    ]
+  },
+  {
+    category: "Mobile App Development",
     icon: <Smartphone className="w-4 h-4" />,
     items: [
-      { name: "Flutter", icon: "flutter" },
-      { name: "React Native", icon: "react-native" }
+      { name: "Flutter", icon: "/icons/flutter.svg" }
     ]
   },
   {
-    category: "DevOps & Tools",
-    icon: <Wrench className="w-4 h-4" />,
+    category: "Database Management",
+    icon: <Database className="w-4 h-4" />,
     items: [
-      { name: "Kafka", icon: "kafka" },
-      { name: "Prometheus", icon: "prometheus" },
-      { name: "Grafana", icon: "grafana" },
-      { name: "Docker", icon: "docker" },
-      { name: "GitHub", icon: "github" }
+      { name: "MongoDB", icon: "/icons/mongodb.svg" },
+      { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
+      { name: "MySQL", icon: "/icons/mysql.svg" },
+      { name: "Firebase", icon: "/icons/firebase.svg" }
     ]
   },
   {
-    category: "API",
-    icon: <Network className="w-4 h-4" />,
+    category: "DevOps/VCS",
+    icon: <Cloud className="w-4 h-4" />,
     items: [
-      { name: "gRPC", icon: "grpc" },
-      { name: "RESTful API", icon: "api" },
-      { name: "Polyglot API", icon: "api" }
+      { name: "Docker", icon: "/icons/docker.svg" },
+      { name: "AWS", icon: "/icons/aws.svg" },
+      { name: "Git", icon: "/icons/git.svg" },
+      { name: "GitHub", icon: "/icons/github.svg" }
+    ]
+  },
+  {
+    category: "Miscellaneous",
+    icon: <Code2 className="w-4 h-4" />,
+    items: [
+      { name: "Firebase", icon: "/icons/firebase.svg" },
+      { name: "Ubuntu", icon: "/icons/ubuntu.svg" }
+    ]
+  },
+  {
+    category: "Nontechnical Skills",
+    icon: <Brain className="w-4 h-4" />,
+    items: [
+      { name: "Problem Solving", icon: "/icons/problem-solving.svg" },
+      { name: "Collaboration", icon: "/icons/collaboration.svg" },
+      { name: "Analytical Skills", icon: "/icons/analytical.svg" }
     ]
   }
 ];
@@ -86,6 +107,7 @@ const Skills = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <img src={skill.icon} alt={skill.name} className="w-4 h-4" />
                 {skill.name}
               </motion.div>
             ))}
