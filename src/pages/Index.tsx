@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { Github, Mail, Linkedin, ShoppingBag, Moon } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { useState } from "react";
-import WorkExperience from "../components/WorkExperience";
+import TimelineItem from "../components/Timeline";
+import Skills from "../components/Skills";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState<"work" | "education">("work");
+  const [activeTab, setActiveTab] = useState<"work" | "education" | "skills">("work");
 
   const workExperiences = [
     {
@@ -26,7 +27,8 @@ const Index = () => {
       description: [
         "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs",
         "Worked on DemoConstruct, a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images"
-      ]
+      ],
+      link: { url: "https://nftvue.com", text: "NFTVue" }
     }
   ];
 
@@ -48,7 +50,7 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex justify-between items-start"
+          className="flex justify-between items-start gap-12"
         >
           <div>
             <h1 className="text-6xl font-bold mb-6">
@@ -65,13 +67,13 @@ const Index = () => {
             </Button>
             <div className="flex gap-6">
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-6 h-6 text-gray-600 hover:text-black" />
+                <Linkedin className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
               </a>
               <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <Github className="w-6 h-6 text-gray-600 hover:text-black" />
+                <Github className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
               </a>
               <a href="mailto:email@example.com">
-                <Mail className="w-6 h-6 text-gray-600 hover:text-black" />
+                <Mail className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
               </a>
             </div>
           </div>
@@ -86,41 +88,44 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* Work & Education Section */}
+      {/* Work, Education & Skills Section */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="flex gap-4 mb-8">
-          <button
-            className={`px-6 py-2 rounded-full ${
-              activeTab === "work" ? "bg-black text-white" : "text-gray-600 hover:bg-gray-100"
-            }`}
-            onClick={() => setActiveTab("work")}
-          >
-            Work
-          </button>
-          <button
-            className={`px-6 py-2 rounded-full ${
-              activeTab === "education" ? "bg-black text-white" : "text-gray-600 hover:bg-gray-100"
-            }`}
-            onClick={() => setActiveTab("education")}
-          >
-            Education
-          </button>
+        <div className="flex gap-4 mb-12">
+          {["work", "education", "skills"].map((tab) => (
+            <button
+              key={tab}
+              className={`px-6 py-2 rounded-full capitalize ${
+                activeTab === tab ? "bg-black text-white" : "text-gray-600 hover:bg-gray-100"
+              } transition-colors`}
+              onClick={() => setActiveTab(tab as typeof activeTab)}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
         <div className="space-y-12">
-          {activeTab === "work"
-            ? workExperiences.map((exp, index) => (
-                <WorkExperience key={index} {...exp} />
-              ))
-            : education.map((edu, index) => (
-                <WorkExperience
-                  key={index}
-                  company={edu.institution}
-                  role={edu.degree}
-                  period={edu.period}
-                  description={edu.description}
-                  logo={edu.logo}
-                />
-              ))}
+          {activeTab === "work" && workExperiences.map((exp, index) => (
+            <TimelineItem
+              key={index}
+              logo={exp.logo}
+              title={exp.company}
+              subtitle={exp.role}
+              period={exp.period}
+              description={exp.description}
+              link={exp.link}
+            />
+          ))}
+          {activeTab === "education" && education.map((edu, index) => (
+            <TimelineItem
+              key={index}
+              logo={edu.logo}
+              title={edu.institution}
+              subtitle={edu.degree}
+              period={edu.period}
+              description={edu.description}
+            />
+          ))}
+          {activeTab === "skills" && <Skills />}
         </div>
       </section>
 
