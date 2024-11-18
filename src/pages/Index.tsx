@@ -122,7 +122,7 @@ const Index = () => {
 const workExperiences = [
   {
     title: "DBS Bank",
-    subtitle: "Graduate Associate (SEED Programme)",
+    subtitle: "Software Engineer",
     period: "Jul 2023 - Present",
     logo: "/dbs-logo.png",
     description: [
@@ -132,7 +132,7 @@ const workExperiences = [
   },
   {
     title: "Singapore Institute of Technology",
-    role: "Software Developer (Contract)",
+    subtitle: "Software Developer",
     period: "Apr 2023 - Jun 2023",
     logo: "/sit-logo.png",
     description: [

@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Java, Github, Docker } from "lucide-react";
+import { Code2, Server, Layout, Smartphone, Tool, Network } from "lucide-react";
 
 const skillCategories = [
   {
     category: "Languages",
+    icon: <Code2 className="w-4 h-4" />,
     items: [
       { name: "Java", icon: "java" },
       { name: "Go", icon: "go" },
@@ -15,6 +16,7 @@ const skillCategories = [
   },
   {
     category: "Backend",
+    icon: <Server className="w-4 h-4" />,
     items: [
       { name: "Spring Boot", icon: "spring" },
       { name: "Node.js", icon: "nodejs" },
@@ -23,6 +25,7 @@ const skillCategories = [
   },
   {
     category: "Frontend",
+    icon: <Layout className="w-4 h-4" />,
     items: [
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },
@@ -31,6 +34,7 @@ const skillCategories = [
   },
   {
     category: "Mobile",
+    icon: <Smartphone className="w-4 h-4" />,
     items: [
       { name: "Flutter", icon: "flutter" },
       { name: "React Native", icon: "react-native" }
@@ -38,6 +42,7 @@ const skillCategories = [
   },
   {
     category: "DevOps & Tools",
+    icon: <Tool className="w-4 h-4" />,
     items: [
       { name: "Kafka", icon: "kafka" },
       { name: "Prometheus", icon: "prometheus" },
@@ -48,6 +53,7 @@ const skillCategories = [
   },
   {
     category: "API",
+    icon: <Network className="w-4 h-4" />,
     items: [
       { name: "gRPC", icon: "grpc" },
       { name: "RESTful API", icon: "api" },
