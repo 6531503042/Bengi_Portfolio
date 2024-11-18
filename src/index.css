@@ -7,29 +7,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
   }
   
   body {
-    @apply bg-white text-primary font-sans;
+    @apply bg-white text-black;
   }
 }
 
-.section-padding {
-  @apply py-20 px-6 md:px-12 lg:px-24;
-}
-
-.heading {
-  @apply text-4xl md:text-5xl font-bold mb-6;
-}
-
-.subheading {
-  @apply text-xl text-secondary mb-12 max-w-2xl;
-}
-
-.skill-item {
-  @apply bg-gray-50 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors;
-}
-
 .project-card {
-  @apply border border-gray-100 rounded-lg p-6 hover:border-accent transition-colors;
+  @apply bg-white rounded-2xl border border-gray-200 p-6 hover:border-gray-300 transition-all;
 }
