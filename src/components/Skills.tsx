@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Server, Layout, Smartphone, Tool, Network } from "lucide-react";
+import { Code2, Server, Layout, Smartphone, Wrench, Network } from "lucide-react";
 
 const skillCategories = [
   {
@@ -42,7 +42,7 @@ const skillCategories = [
   },
   {
     category: "DevOps & Tools",
-    icon: <Tool className="w-4 h-4" />,
+    icon: <Wrench className="w-4 h-4" />,
     items: [
       { name: "Kafka", icon: "kafka" },
       { name: "Prometheus", icon: "prometheus" },
@@ -74,7 +74,10 @@ const Skills = () => {
           transition={{ delay: index * 0.1 }}
           className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
         >
-          <h3 className="text-xl font-semibold mb-6">{category.category}</h3>
+          <div className="flex items-center gap-2 mb-6">
+            {category.icon}
+            <h3 className="text-xl font-semibold">{category.category}</h3>
+          </div>
           <div className="flex flex-wrap gap-4">
             {category.items.map((skill) => (
               <motion.div
