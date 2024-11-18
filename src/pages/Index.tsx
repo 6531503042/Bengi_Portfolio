@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
-import { Github, Mail, Linkedin } from "lucide-react";
-import Navigation from "../components/Navigation";
+import { Github, Mail, Linkedin, ShoppingBag, Moon } from "lucide-react";
+import { useState } from "react";
 import WorkExperience from "../components/WorkExperience";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState<"work" | "education">("work");
+
   const workExperiences = [
     {
       company: "DBS Bank",
@@ -27,55 +30,97 @@ const Index = () => {
     }
   ];
 
+  const education = [
+    {
+      institution: "Singapore Institute of Technology",
+      degree: "Bachelor of Engineering in Software Engineering",
+      period: "2020 - 2024",
+      logo: "/sit-logo.png",
+      description: ["First Class Honours", "GPA: 4.0/4.0"]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      
       {/* Hero Section */}
       <section className="max-w-5xl mx-auto px-6 pt-32 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="flex justify-between items-start"
         >
-          <h1 className="text-6xl font-bold mb-6">
-            hi nimit here 👋
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            21-year-old software engineering student from Thailand 🇹🇭
-          </p>
-          <p className="text-xl text-gray-600 mb-8">
-            I like to develop full-stack applications and learn new technologies.
-          </p>
-          <div className="flex gap-4">
-            <button className="flex items-center gap-2 px-4 py-2 border rounded-md hover:bg-gray-50">
-              Resume <span>↓</span>
-            </button>
+          <div>
+            <h1 className="text-6xl font-bold mb-6">
+              hi nimit here 👋
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              21-year-old software engineering student from Thailand 🇹🇭
+            </p>
+            <p className="text-xl text-gray-600 mb-8">
+              I like to develop full-stack applications and learn new technologies.
+            </p>
+            <Button variant="outline" className="mb-8">
+              Resume ↓
+            </Button>
+            <div className="flex gap-6">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-6 h-6 text-gray-600 hover:text-black" />
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <Github className="w-6 h-6 text-gray-600 hover:text-black" />
+              </a>
+              <a href="mailto:email@example.com">
+                <Mail className="w-6 h-6 text-gray-600 hover:text-black" />
+              </a>
+            </div>
           </div>
-          <div className="flex gap-6 mt-8">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Linkedin className="w-6 h-6 text-gray-600 hover:text-black" />
-            </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-              <Github className="w-6 h-6 text-gray-600 hover:text-black" />
-            </a>
-            <a href="mailto:email@example.com">
-              <Mail className="w-6 h-6 text-gray-600 hover:text-black" />
-            </a>
-          </div>
+          <motion.img
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            src="/your-photo.jpg"
+            alt="Profile"
+            className="w-64 h-64 rounded-2xl object-cover"
+          />
         </motion.div>
       </section>
 
-      {/* Work Experience Section */}
+      {/* Work & Education Section */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <div className="flex gap-4 mb-8">
-          <button className="px-6 py-2 bg-black text-white rounded-full">Work</button>
-          <button className="px-6 py-2 text-gray-600 hover:bg-gray-100 rounded-full">Education</button>
+          <button
+            className={`px-6 py-2 rounded-full ${
+              activeTab === "work" ? "bg-black text-white" : "text-gray-600 hover:bg-gray-100"
+            }`}
+            onClick={() => setActiveTab("work")}
+          >
+            Work
+          </button>
+          <button
+            className={`px-6 py-2 rounded-full ${
+              activeTab === "education" ? "bg-black text-white" : "text-gray-600 hover:bg-gray-100"
+            }`}
+            onClick={() => setActiveTab("education")}
+          >
+            Education
+          </button>
         </div>
         <div className="space-y-12">
-          {workExperiences.map((exp, index) => (
-            <WorkExperience key={index} {...exp} />
-          ))}
+          {activeTab === "work"
+            ? workExperiences.map((exp, index) => (
+                <WorkExperience key={index} {...exp} />
+              ))
+            : education.map((edu, index) => (
+                <WorkExperience
+                  key={index}
+                  company={edu.institution}
+                  role={edu.degree}
+                  period={edu.period}
+                  description={edu.description}
+                  logo={edu.logo}
+                />
+              ))}
         </div>
       </section>
 
@@ -87,7 +132,28 @@ const Index = () => {
             view more →
           </a>
         </div>
-        {/* Add your featured projects here */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[1, 2, 3, 4].map((project) => (
+            <motion.div
+              key={project}
+              className="project-card"
+              whileHover={{ y: -5 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <img
+                src={`https://source.unsplash.com/random/800x600?programming&${project}`}
+                alt={`Project ${project}`}
+                className="w-full h-48 object-cover rounded-xl mb-4"
+              />
+              <h3 className="text-xl font-semibold mb-2">Project Title {project}</h3>
+              <p className="text-gray-600">
+                A brief description of the project and the technologies used.
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </section>
     </div>
   );
