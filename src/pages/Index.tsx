@@ -1,94 +1,24 @@
 import { motion } from "framer-motion";
 import { Github, Mail, Linkedin } from "lucide-react";
-import TimelineItem from "../components/Timeline";
-import Skills from "../components/Skills";
-import ProjectsGrid from "../components/ProjectsGrid";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TimelineSection from "../components/sections/TimelineSection";
+import SkillsSection from "../components/sections/SkillsSection";
+import ProjectsSection from "../components/sections/ProjectsSection";
+import ContactSection from "../components/sections/ContactSection";
+import HeroSection from "../components/sections/HeroSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      {/* Hero Section */}
-      <section id="home" className="min-h-[90vh] flex items-center">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-12 items-center"
-          >
-            <div>
-              <h1 className="text-6xl font-bold mb-6">
-                hi BenGi here 👋
-              </h1>
-              <p className="text-xl text-gray-600 mb-4">
-                21-year-old backend software developer from Thailand 🇹🇭
-              </p>
-              <p className="text-xl text-gray-600 mb-8">
-                I like to develop backend, drink instant coffee and get coding advice from my cat, Luffy.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button variant="outline">
-                  Download Resume ↓
-                </Button>
-              </div>
-              <div className="flex gap-6">
-                <motion.a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-gray-50 p-3 rounded-full"
-                >
-                  <Linkedin className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
-                </motion.a>
-                <motion.a 
-                  href="https://github.com/6531503042" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-gray-50 p-3 rounded-full"
-                >
-                  <Github className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
-                </motion.a>
-                <motion.a 
-                  href="mailto:nimittanbooutor@gmail.com"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-gray-50 p-3 rounded-full"
-                >
-                  <Mail className="w-6 h-6 text-gray-600 hover:text-black transition-colors" />
-                </motion.a>
-              </div>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative aspect-square"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl -rotate-6"></div>
-              <img
-                src="/your-photo.jpg"
-                alt="Profile"
-                className="relative w-full h-full rounded-2xl object-cover shadow-lg"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Experience & Skills Section */}
+    <div className="min-h-screen bg-white">
+      <HeroSection />
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-black/90 rounded-3xl shadow-xl border border-gray-800 overflow-hidden"
+            className="section-card"
           >
             <Tabs defaultValue="education" className="w-full">
               <div className="px-6 pt-6">
@@ -100,20 +30,16 @@ const Index = () => {
               </div>
               
               <div className="p-6">
-                <TabsContent value="education" className="space-y-8 mt-0">
-                  {education.map((edu, index) => (
-                    <TimelineItem key={index} {...edu} />
-                  ))}
+                <TabsContent value="education" className="mt-0">
+                  <TimelineSection items={education} />
                 </TabsContent>
                 
                 <TabsContent value="skills" className="mt-0">
-                  <Skills />
+                  <SkillsSection />
                 </TabsContent>
                 
-                <TabsContent value="work" className="space-y-8 mt-0">
-                  {workExperiences.map((exp, index) => (
-                    <TimelineItem key={index} {...exp} />
-                  ))}
+                <TabsContent value="work" className="mt-0">
+                  <TimelineSection items={workExperiences} />
                 </TabsContent>
               </div>
             </Tabs>
@@ -121,55 +47,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold">My Projects</h2>
-              <p className="text-gray-400">
-                Here you can find a collection of my public open-source projects.
-                Feel free to explore and check them out!
-              </p>
-              <Button variant="outline" size="lg" asChild>
-                <a href="/">← Back to Home</a>
-              </Button>
-            </div>
-            <ProjectsGrid />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl p-12 shadow-xl border border-gray-100"
-          >
-            <h2 className="text-4xl font-bold mb-6">let's work together</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-              I'm always open to new opportunities and interesting projects. 
-              Feel free to reach out if you'd like to collaborate or just chat!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg">
-                Send me an email →
-              </Button>
-              <Button variant="outline" size="lg">
-                Schedule a call
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ProjectsSection />
+      <ContactSection />
     </div>
   );
 };
