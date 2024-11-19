@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { Github, Mail, Linkedin } from "lucide-react";
 import TimelineItem from "../components/Timeline";
 import Skills from "../components/Skills";
+import ProjectsGrid from "../components/ProjectsGrid";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
       <section id="home" className="min-h-[90vh] flex items-center">
         <div className="max-w-5xl mx-auto px-6">
@@ -81,13 +82,13 @@ const Index = () => {
       </section>
 
       {/* Experience & Skills Section */}
-      <section id="experience" className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+      <section id="experience" className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
+            className="bg-black/90 rounded-3xl shadow-xl border border-gray-800 overflow-hidden"
           >
             <Tabs defaultValue="education" className="w-full">
               <div className="px-6 pt-6">
@@ -122,45 +123,25 @@ const Index = () => {
 
       {/* Projects Section */}
       <section id="projects" className="py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.h2 
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold mb-12"
+            className="space-y-8"
           >
-            featured projects
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg border border-gray-100"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600">{project.description}</p>
-                  <motion.button
-                    whileHover={{ x: 5 }}
-                    className="mt-4 text-sm font-medium text-gray-600 hover:text-black"
-                  >
-                    View Project →
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl font-bold">My Projects</h2>
+              <p className="text-gray-400">
+                Here you can find a collection of my public open-source projects.
+                Feel free to explore and check them out!
+              </p>
+              <Button variant="outline" size="lg" asChild>
+                <a href="/">← Back to Home</a>
+              </Button>
+            </div>
+            <ProjectsGrid />
+          </motion.div>
         </div>
       </section>
 
@@ -228,33 +209,6 @@ const workExperiences = [
       "Worked on DemoConstruct, a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images"
     ],
     link: { url: "https://nftvue.com", text: "NFTVue" }
-  }
-];
-
-const projects = [
-  {
-    id: 1,
-    title: "NFTVue",
-    description: "A NFT gallery website for viewing and verifying school event-issued NFTs",
-    image: "/project1.jpg"
-  },
-  {
-    id: 2,
-    title: "DemoConstruct",
-    description: "Full-stack web application for 3D model reconstruction from images",
-    image: "/project2.jpg"
-  },
-  {
-    id: 3,
-    title: "Banking Service Platform",
-    description: "Microservices-based banking platform with workflow automation",
-    image: "/project3.jpg"
-  },
-  {
-    id: 4,
-    title: "Data Migration Tool",
-    description: "Custom tool for large-scale database migrations with validation",
-    image: "/project4.jpg"
   }
 ];
 
