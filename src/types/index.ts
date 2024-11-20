@@ -25,6 +25,9 @@ export interface IProjectItem {
   screenshots?: string[];
   image?: string;
   technologies?: Technology[];
+  featured?: boolean;
+  demoUrl?: string;
+  sourceUrl?: string;
 }
 
 export interface Link {
@@ -49,8 +52,10 @@ export interface Technology {
   icon: string;
 }
 
-// Remove duplicate Project interface and use IProjectItem instead
-export type Project = IProjectItem;
+export interface CoreComponentsProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
 export interface Skill {
   name: string;
