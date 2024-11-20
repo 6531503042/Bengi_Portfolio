@@ -15,7 +15,7 @@ export interface IProjectItem {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icons: string[];
   repoType: RepoType;
   projectType: ProjectType;
   githubUrl?: string;
