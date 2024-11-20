@@ -31,7 +31,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
         <Row classNames="w-full items-center justify-center mt-4 gap-2">
           {project.sourceUrl && (
             <Link
-              href={project.sourceUrl}
+              to={project.sourceUrl}
               target="_blank"
               className="p-2 rounded-full border border-gray-300 hover:border-gray-400 transition-colors"
             >
@@ -41,7 +41,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
 
           {project.demoUrl && (
             <Link
-              href={project.demoUrl}
+              to={project.demoUrl}
               target="_blank"
               className="p-2 rounded-full border border-gray-300 hover:border-gray-400 transition-colors"
             >
