@@ -8,7 +8,7 @@ export const projects: IProjectItem[] = [
     title: "Sport-Complex",
     description:
       "This is my college project booking system built using Go and Next.js used Microservices.",
-    icons: ["/skills/go.svg", "/skills/nextjs.svg"],
+    icon: "/skills/go.svg",
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
@@ -19,7 +19,7 @@ export const projects: IProjectItem[] = [
     title: "Weather-Forecast",
     description:
       "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icons: "/skills/spring-boot.svg",
+    icon: "/skills/spring-boot.svg",
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/ForecastAPI",
