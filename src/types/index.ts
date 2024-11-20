@@ -26,7 +26,10 @@ export interface Project {
   id: number;
   title: string;
   description: string;
+  icon: string;
   image: string;
+  projectType: string;
+  screenshots: string[];
   technologies: Technology[];
   featured?: boolean;
   demoUrl?: string;
