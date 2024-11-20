@@ -172,9 +172,10 @@ export const data: DataStore = {
       ]
     }
   ],
-  projects: projects
+  projects
 };
 
-export function getProjectDetails(id: string): IProjectItem | null {
+export { projects };
+export function getProjectDetails(id: string) {
   return projects.find((project) => project.id === id) || null;
 }
