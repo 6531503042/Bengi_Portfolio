@@ -1,14 +1,25 @@
-import { Code2, Server, Layout, Smartphone, Wrench, Network, Brain } from "lucide-react";
+import { Code2, Server, Layout, Smartphone, Wrench, Database } from "lucide-react";
 import { DataStore } from '@/types';
 import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 export const projects: IProjectItem[] = [
   {
+    id: "Sport-Complex",
+    title: "Sport-Complex",
+    description:
+      "This is my college project booking system built using Go and Next.js used Microservices.",
+    icons: ["/skills/go.svg", "/skills/nextjs.svg"],
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Sport-Complex",
+    tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
+  },
+  {
     id: "Weather-Forecast",
     title: "Weather-Forecast",
     description:
       "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icon: "/skills/spring-boot.svg",
+    icons: "/skills/spring-boot.svg",
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/ForecastAPI",
@@ -42,17 +53,6 @@ export const projects: IProjectItem[] = [
     githubUrl: "https://github.com/6531503042/Gigantic-Mall",
     tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
   },
-  {
-    id: "Core-Banking",
-    title: "Core-Banking",
-    description:
-      "This is my personal backend services built using Spring boot used Microservices.",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Core-Banking",
-    tags: ["Spring Boot", "TypeScript", "Next", "GraphQL"],
-  }
 ];
 
 export const data: DataStore = {
@@ -157,6 +157,18 @@ export const data: DataStore = {
         { name: "AWS", icon: "/icons/aws.svg" },
         { name: "Git", icon: "/icons/git.svg" },
         { name: "Linux", icon: "/icons/linux.svg" }
+      ]
+    },
+    {
+      title: "Databases & Tools",
+      description: "Experience with various databases and development tools.",
+      icon: Database,
+      skills: [
+        { name: "MongoDB", icon: "/icons/mongodb.svg" },
+        { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
+        { name: "MySQL", icon: "/icons/mysql.svg" },
+        { name: "Firebase", icon: "/icons/firebase.svg" },
+        { name: "Elasticsearch", icon: "/icons/elasticsearch.svg" }
       ]
     }
   ],
