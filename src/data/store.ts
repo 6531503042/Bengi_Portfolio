@@ -2,6 +2,59 @@ import { Code2, Server, Layout, Smartphone, Wrench, Network, Brain } from "lucid
 import { DataStore } from '@/types';
 import { IProjectItem, ProjectType, RepoType } from "@/types";
 
+export const projects: IProjectItem[] = [
+  {
+    id: "Weather-Forecast",
+    title: "Weather-Forecast",
+    description:
+      "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/ForecastAPI",
+    tags: ["Java", "Spring Boot", "Jsp"],
+    screenshots: ["https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png"],
+  },
+  {
+    id: "Deap-Appointment-App",
+    title: "Deap Appointment App",
+    description:
+      "Deap App is an appointment mobile application developed using Flutter and Firebase.",
+    icon: "/skills/flutter.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
+    url: "https://github.com/6531503042/Deap-Mobile-Application/releases",
+    playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
+    tags: ["Dart", "Flutter", "Firebase"],
+    screenshots: [
+      "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
+    ]
+  },
+  {
+    id: "Gigantic-Mall",
+    title: "Gigantic-Mall",
+    description:
+      "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Gigantic-Mall",
+    tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
+  },
+  {
+    id: "Core-Banking",
+    title: "Core-Banking",
+    description:
+      "This is my personal backend services built using Spring boot used Microservices.",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Core-Banking",
+    tags: ["Spring Boot", "TypeScript", "Next", "GraphQL"],
+  }
+];
+
 export const data: DataStore = {
   career: [
     {
@@ -72,7 +125,6 @@ export const data: DataStore = {
       ]
     }
   ],
-  
   skills: [
     {
       title: "Front-End",
@@ -108,62 +160,8 @@ export const data: DataStore = {
       ]
     }
   ],
-  
   projects: projects
 };
-
-export const projects: IProjectItem[] = [
-  {
-    id: "Weather-Forecast",
-    title: "Weather-Forecast",
-    description:
-      "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/ForecastAPI",
-    tags: ["Java", "Spring Boot", "Jsp"],
-    screenshots: ["https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png"],
-  },
-  {
-    id: "Deap-Appointment-App",
-    title: "Deap Appointment App",
-    description:
-      "Deap App is an appointment mobile application developed using Flutter and Firebase.",
-    icon: "/skills/flutter.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
-    url: "https://github.com/6531503042/Deap-Mobile-Application/releases",
-    playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
-    tags: ["Dart", "Flutter", "Firebase"],
-    screenshots: [
-      "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
-    ]
-  },
-  {
-    id: "Gigantic-Mall",
-    title: "Gigantic-Mall",
-    description:
-      "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Gigantic-Mall",
-    tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
-  },
-  {
-    id: "Core-Banking",
-    title: "Core-Banking",
-    description:
-      "This is my personal backend services built using Spring boot used Microservices.",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Core-Banking",
-    tags: ["Spring Boot", "TypeScript", "Next", "GraphQL"],
-  }
-];
 
 export function getProjectDetails(id: string): IProjectItem | null {
   return projects.find((project) => project.id === id) || null;
