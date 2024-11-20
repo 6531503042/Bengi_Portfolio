@@ -1,3 +1,4 @@
+import React from "react";
 import { Experience } from "@/types";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
