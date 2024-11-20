@@ -10,7 +10,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-12"
         >
           <div className="text-center space-y-4">
             <h2 className="text-4xl font-bold text-gray-900">My Projects</h2>
@@ -20,7 +20,9 @@ const ProjectsSection = () => {
             </p>
           </div>
 
-          <ProjectList projects={data.projects} />
+          <div className="overflow-hidden py-4">
+            <ProjectList projects={data.projects} />
+          </div>
         </motion.div>
       </div>
     </section>
