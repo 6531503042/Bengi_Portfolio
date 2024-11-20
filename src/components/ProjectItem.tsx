@@ -3,6 +3,9 @@ import { Github, ExternalLink, Play } from "lucide-react";
 import CardBox from "./core/CardBox";
 import Row from "./core/Row";
 import Column from "./core/Column";
+import ResponsiveBox from "./core/ResponsiveBox";
+import ConstraintedBox from "./core/ConstraintedBox";
+import ScreenshotGallery from "./ScreenshotGallery";
 
 const ProjectItem = ({ project }: { project: IProjectItem }) => {
   return (
@@ -10,15 +13,21 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
       classNames="min-w-[calc(100%-2rem)] sm:min-w-[25rem] md:min-w-[28rem] aspect-[3/5] max-h-[30rem] p-4 gap-8 items-center justify-between bg-[var(--textColor10)] group slide_in"
     >
       <Column classNames="w-full items-center justify-start">
-        <Row classNames="w-[2.5rem] md:w-[3rem] aspect-square items-center justify-center">
-          <img
-            src={project.icon}
-            alt={`project-${project.title}`}
-            className="w-full h-full object-cover aspect-square"
-          />
+        <Row classNames="items-center gap-2">
+          <Row classNames="w-[3rem] md:w-[3.5rem] p-2 aspect-square items-center justify-center border border-gray-200 rounded-full overflow-hidden">
+            <img
+              src={project.icon}
+              alt={`project-${project.title}`}
+              className="w-full h-full object-cover aspect-square"
+            />
+          </Row>
+          <Column>
+            <p className="text-lg/6 font-semibold">{project.title}</p>
+            <p className="text-base/6 text-gray-500">
+              {project.projectType}
+            </p>
+          </Column>
         </Row>
-
-        <p className="text-lg/6 font-semibold mt-4">{project.title}</p>
 
         <div className={`flex flex-row items-center justify-center rounded-full py-[0.05] px-[0.5rem] mt-4 capitalize text-center border ${
           project.repoType === RepoType.Private
@@ -85,13 +94,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
         )}
 
         {project.screenshots && project.screenshots.length > 0 && (
-          <div className="w-full mt-4">
-            <img
-              src={project.screenshots[0]}
-              alt={`${project.title} screenshot`}
-              className="w-full h-auto rounded-lg shadow-md"
-            />
-          </div>
+          <ScreenshotGallery imageList={project.screenshots} />
         )}
       </Column>
     </CardBox>
