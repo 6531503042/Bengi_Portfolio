@@ -1,0 +1,113 @@
+/* Add this to your global CSS file or create a new CSS module */
+
+.wave-emoji {
+    display: inline-block;
+    font-size: 1.2em; /* Slightly larger for emphasis */
+    position: relative;
+    animation: continuous-wave 2s infinite ease-in-out;
+    transform-origin: 70% 70%; /* Focus the wave around the emoji's hand area */
+    color: #2563eb; /* Bright, visible color */
+  }
+  
+  @keyframes continuous-wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-10deg);
+    }
+    30% {
+      transform: rotate(15deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .wave-emoji:hover {
+    animation: continuous-wave 1s infinite; /* Makes it wave faster on hover */
+    filter: brightness(1.2); /* Makes it slightly brighter on hover */
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .wave-emoji {
+      animation: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes quick-wave {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    50% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+/* Style for the gradient heading */
+.heading-gradient {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient-flow 3s linear infinite;
+  }
+  
+  /* Add smooth transitions */
+  .wave-emoji, 
+  .heading-gradient,
+  .social-icons a {
+    transition: all 0.3s ease-in-out;
+  }
+
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .wave-emoji {
+    text-shadow: 0 0 12px rgba(99, 102, 241, 0.5), 0 0 16px rgba(139, 92, 246, 0.4);
+  }
+  
+  /* Enhance accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .wave-emoji {
+      animation: none;
+    }
+    
+    .wave-emoji:hover {
+      animation: none;
+      transform: scale(1.1);
+    }
+  }
+/* For accessibility: Provide a fallback without animations */
+@media (prefers-reduced-motion: reduce) {
+    .wave-emoji,
+    .heading-gradient {
+      animation: none;
+      transform: none;
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+    }
+  }
+  
