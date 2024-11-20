@@ -23,6 +23,8 @@ export interface IProjectItem {
   playStore?: string;
   tags: string[];
   screenshots?: string[];
+  image?: string;
+  technologies?: Technology[];
 }
 
 export interface Link {
@@ -47,19 +49,8 @@ export interface Technology {
   icon: string;
 }
 
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  image: string;
-  projectType: string;
-  screenshots: string[];
-  technologies: Technology[];
-  featured?: boolean;
-  demoUrl?: string;
-  sourceUrl?: string;
-}
+// Remove duplicate Project interface and use IProjectItem instead
+export type Project = IProjectItem;
 
 export interface Skill {
   name: string;
@@ -77,5 +68,5 @@ export interface DataStore {
   career: Experience[];
   education: Experience[];
   skills: SkillCategory[];
-  projects: Project[];
+  projects: IProjectItem[];
 }

@@ -19,7 +19,7 @@ export const projects: IProjectItem[] = [
     title: "Weather-Forecast",
     description:
       "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icons: "/skills/spring-boot.svg",
+    icons: ["/skills/spring-boot.svg"],
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/ForecastAPI",
@@ -31,7 +31,7 @@ export const projects: IProjectItem[] = [
     title: "Deap Appointment App",
     description:
       "Deap App is an appointment mobile application developed using Flutter and Firebase.",
-    icon: "/skills/flutter.svg",
+    icons: ["/skills/flutter.svg"],
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
@@ -47,7 +47,7 @@ export const projects: IProjectItem[] = [
     title: "Gigantic-Mall",
     description:
       "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture",
-    icon: "/skills/spring-boot.svg",
+    icons: ["/skills/spring-boot.svg"],
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Gigantic-Mall",
