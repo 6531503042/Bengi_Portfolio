@@ -1,9 +1,8 @@
 import { Experience } from "@/types";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
-import { LucideIcon } from "lucide-react";
+import * as Icons from "lucide-react";
 
 interface TimelineItemProps {
   experience: Experience;
@@ -61,7 +60,8 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
             {links.map((link, idx) => (
               <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer">
                 <Badge variant="secondary" className="flex items-center gap-1 hover:bg-secondary/80">
-                  <LucideIcon name={link.icon as any} className="h-3 w-3" />
+                  {/* @ts-ignore - dynamic icon import */}
+                  {React.createElement(Icons[link.icon], { className: "h-3 w-3" })}
                   <span>{link.name}</span>
                 </Badge>
               </a>

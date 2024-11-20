@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Github, Mail, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TimelineSection from "../components/sections/TimelineSection";
 import SkillsSection from "../components/sections/SkillsSection";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import ContactSection from "../components/sections/ContactSection";
 import HeroSection from "../components/sections/HeroSection";
+import { Experience } from "@/types";
 
 const Index = () => {
   return (
@@ -53,12 +52,13 @@ const Index = () => {
   );
 };
 
-const education = [
+const education: Experience[] = [
   {
+    name: "Mae Fah Luang University",
+    href: "https://mfu.ac.th",
+    title: "Bachelor of Engineering in Software Engineering",
     logo: "https://agroindustry.mfu.ac.th/wp-content/uploads/2018/07/icon_logo.png",
-    title: "Mae Fah Luang University",
-    subtitle: "Bachelor of Engineering in Software Engineering",
-    period: "2021 - Present",
+    start: "2021",
     description: [
       "Currently pursuing my bachelor's degree",
       "3rd Year Student",
@@ -67,27 +67,36 @@ const education = [
   }
 ];
 
-const workExperiences = [
+const workExperiences: Experience[] = [
   {
+    name: "DBS Bank",
+    href: "https://www.dbs.com.sg",
+    title: "Software Engineer",
     logo: "/dbs-logo.png",
-    title: "DBS Bank",
-    subtitle: "Software Engineer",
-    period: "Jul 2023 - Present",
+    start: "Jul 2023",
     description: [
       "Developed the Java backend for a bank account servicing process with multiple channel integrations using Activiti workflow",
       "Built a custom database migration tool using Python and MariaDB and facilitated the migration of 1000+ processes from a vendor platform"
     ]
   },
   {
+    name: "Singapore Institute of Technology",
+    href: "https://www.singaporetech.edu.sg",
+    title: "Software Developer",
     logo: "/sit-logo.png",
-    title: "Singapore Institute of Technology",
-    subtitle: "Software Developer",
-    period: "Apr 2023 - Jun 2023",
+    start: "Apr 2023",
+    end: "Jun 2023",
     description: [
       "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs",
       "Worked on DemoConstruct, a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images"
     ],
-    link: { url: "https://nftvue.com", text: "NFTVue" }
+    links: [
+      {
+        name: "NFTVue",
+        href: "https://nftvue.vercel.app",
+        icon: "Globe"
+      }
+    ]
   }
 ];
 
