@@ -1,9 +1,9 @@
 import { Experience } from "@/types";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
-import { Icon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 interface TimelineItemProps {
   experience: Experience;
@@ -18,16 +18,17 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
       animate={{ opacity: 1, x: 0 }}
       className="relative ml-10 py-4"
     >
-      <Link
+      <a
         href={href}
         target="_blank"
+        rel="noopener noreferrer"
         className="absolute -left-16 top-4 flex items-center justify-center rounded-full bg-white hover:scale-105 transition-transform"
       >
         <Avatar className="h-12 w-12 border">
           <AvatarImage src={logo} alt={name} className="bg-background object-contain" />
           <AvatarFallback>{name[0]}</AvatarFallback>
         </Avatar>
-      </Link>
+      </a>
 
       <div className="flex flex-1 flex-col justify-start gap-1">
         <time className="text-xs text-muted-foreground">
@@ -58,12 +59,12 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
         {links && links.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
             {links.map((link, idx) => (
-              <Link key={idx} href={link.href} target="_blank">
+              <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer">
                 <Badge variant="secondary" className="flex items-center gap-1 hover:bg-secondary/80">
-                  <Icon name={link.icon as any} className="h-3 w-3" />
+                  <LucideIcon name={link.icon as any} className="h-3 w-3" />
                   <span>{link.name}</span>
                 </Badge>
-              </Link>
+              </a>
             ))}
           </div>
         )}

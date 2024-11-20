@@ -1,22 +1,14 @@
-import TimelineItem from "../Timeline";
+import Timeline from "../Timeline";
+import { Experience } from "@/types";
 
 interface TimelineSectionProps {
-  items: Array<{
-    logo: string;
-    title: string;
-    subtitle: string;
-    period: string;
-    description: string[];
-    link?: { url: string; text: string };
-  }>;
+  items: Experience[];
 }
 
 const TimelineSection = ({ items }: TimelineSectionProps) => {
   return (
     <div className="space-y-8">
-      {items.map((item, index) => (
-        <TimelineItem key={index} {...item} />
-      ))}
+      <Timeline items={items} />
     </div>
   );
 };
