@@ -1,3 +1,4 @@
+import { Code2, Server, Layout, Smartphone, Wrench, Network, Brain } from "lucide-react";
 import { DataStore } from '@/types';
 
 export const data: DataStore = {
@@ -70,100 +71,70 @@ export const data: DataStore = {
       ]
     }
   ],
+  
+  skills: [
+    {
+      title: "Front-End",
+      description: "Building responsive and interactive user interfaces with modern frameworks and libraries.",
+      icon: Layout,
+      skills: [
+        { name: "React", icon: "/icons/react.svg" },
+        { name: "TypeScript", icon: "/icons/typescript.svg" },
+        { name: "Next.js", icon: "/icons/nextjs.svg" },
+        { name: "TailwindCSS", icon: "/icons/tailwind.svg" }
+      ]
+    },
+    {
+      title: "Back-End",
+      description: "Developing robust server-side applications and APIs.",
+      icon: Server,
+      skills: [
+        { name: "Node.js", icon: "/icons/nodejs.svg" },
+        { name: "Python", icon: "/icons/python.svg" },
+        { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
+        { name: "MongoDB", icon: "/icons/mongodb.svg" }
+      ]
+    },
+    {
+      title: "DevOps",
+      description: "Managing deployment, scaling, and operations of applications.",
+      icon: Wrench,
+      skills: [
+        { name: "Docker", icon: "/icons/docker.svg" },
+        { name: "AWS", icon: "/icons/aws.svg" },
+        { name: "Git", icon: "/icons/git.svg" },
+        { name: "Linux", icon: "/icons/linux.svg" }
+      ]
+    }
+  ],
+  
   projects: [
     {
-      name: "Tradingview Telegram Alerts",
-      description: "Real-time trading alerts with chart snapshots sent to Telegram, designed to keep traders informed and responsive to market changes",
-      image: "/tv-tele-alerts.png",
-      tags: [
-        "Python",
-        "FastAPI",
-        "Docker",
-        "Fly.io",
-        "Selenium",
-        "Telegram Bot API"
+      id: 1,
+      title: "Portfolio Website",
+      description: "A modern portfolio website built with React and TailwindCSS showcasing my projects and skills.",
+      image: "/projects/portfolio.png",
+      technologies: [
+        { name: "React", icon: "/icons/react.svg" },
+        { name: "TailwindCSS", icon: "/icons/tailwind.svg" },
+        { name: "TypeScript", icon: "/icons/typescript.svg" }
       ],
-      links: [
-        {
-          name: "Source",
-          href: "https://github.com/tedawf/tradingview-telegram-alerts",
-          icon: "github"
-        }
-      ]
+      featured: true,
+      demoUrl: "https://portfolio.dev",
+      sourceUrl: "https://github.com/username/portfolio"
     },
     {
-      name: "NFTVue",
-      description: "Non-Fungible Tokens (NFTs) Gallery Viewer website that allows users to connect their crypto wallets to view and verify their tokens",
-      href: "https://nftvue.vercel.app",
-      image: "/nftvue.png",
-      tags: [
-        "NextJS",
-        "TailwindCSS",
-        "MetaMask",
-        "WalletConnect",
-        "Web3",
-        "NFTScan",
-        "HashKey DID"
+      id: 2,
+      title: "E-commerce Platform",
+      description: "A full-stack e-commerce platform with user authentication, product management, and payment integration.",
+      image: "/projects/ecommerce.png",
+      technologies: [
+        { name: "Next.js", icon: "/icons/nextjs.svg" },
+        { name: "MongoDB", icon: "/icons/mongodb.svg" },
+        { name: "Stripe", icon: "/icons/stripe.svg" }
       ],
-      links: [
-        {
-          name: "Website",
-          href: "https://nftvue.vercel.app",
-          icon: "globe"
-        }
-      ]
-    },
-    {
-      name: "Portfolio 2023 (Outdated)",
-      description: "Simple markdown portfolio made with Astro 🚀",
-      href: "https://tedawf-dot-com.netlify.app",
-      image: "/old-portfolio.png",
-      tags: ["Astro", "TailwindCSS", "Netlify", "SEO"],
-      links: [
-        {
-          name: "Website",
-          href: "https://tedawf-dot-com.netlify.app",
-          icon: "globe"
-        },
-        {
-          name: "Source",
-          href: "https://github.com/tedawf/portfolio-2023",
-          icon: "github"
-        }
-      ]
-    },
-    {
-      name: "Rapid Ride Fight (Final Year)",
-      description: "3D capture-the-flag, multiplayer boat fighting, with smart AI and water graphics",
-      href: "https://games.digipen.edu/games/rapid-ride-fight",
-      image: "/rrf.png",
-      tags: ["C/C++", "OpenGL", "Custom Game Engine", "3D"],
-      links: [
-        {
-          name: "Gameplay",
-          href: "https://www.youtube.com/watch?v=bge3fiypg5U",
-          icon: "youtube"
-        },
-        {
-          name: "Trailer",
-          href: "https://www.youtube.com/watch?v=PNAO-aI1Daw",
-          icon: "youtube"
-        }
-      ]
-    },
-    {
-      name: "Glowing Under (2nd Year)",
-      description: "2D platformer with a focus on puzzle-solving, no-death exploration and storytelling",
-      href: "https://games.digipen.edu/games/glowing-under",
-      image: "/gu.png",
-      tags: ["C/C++", "OpenGL", "Custom Game Engine", "2D"],
-      links: [
-        {
-          name: "Trailer",
-          href: "https://www.youtube.com/watch?v=u6RYwBZlSfg",
-          icon: "youtube"
-        }
-      ]
+      demoUrl: "https://ecommerce.dev",
+      sourceUrl: "https://github.com/username/ecommerce"
     }
   ]
 };

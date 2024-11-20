@@ -1,96 +1,81 @@
+import React from "react";
 import { motion } from "framer-motion";
-
-interface Technology {
-  name: string;
-  icon: string;
-}
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: Technology[];
-  featured?: boolean;
-  demoUrl?: string;
-  sourceUrl?: string;
-}
+import { data } from "@/data/store";
+import { Github, Globe } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 const ProjectsGrid = () => {
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Delvfox",
-      description: "Delvfox is a dynamic platform dedicated to uncovering vulnerabilities in various services and developing tools that exploit these weaknesses.",
-      image: "/projects/delvfox.png",
-      technologies: [
-        { name: "Next.js", icon: "/icons/nextjs.svg" },
-        { name: "TailwindCSS", icon: "/icons/tailwind.svg" },
-        { name: "JavaScript", icon: "/icons/javascript.svg" },
-        { name: "MySQL", icon: "/icons/mysql.svg" }
-      ],
-      featured: true,
-      demoUrl: "https://delvfox.com",
-      sourceUrl: "https://github.com/username/delvfox"
-    },
-    // ... Add more projects here
-  ];
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
+      {data.projects.map((project) => (
         <motion.div
           key={project.id}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass-card overflow-hidden group"
         >
           <div className="aspect-video relative overflow-hidden">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
             />
             {project.featured && (
-              <span className="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs">
+              <Badge
+                className="absolute top-2 right-2 bg-primary text-white"
+                variant="default"
+              >
                 Featured
-              </span>
+              </Badge>
             )}
           </div>
           <div className="p-6 space-y-4">
-            <h3 className="text-xl font-semibold text-gray-800">{project.title}</h3>
-            <p className="text-gray-600">{project.description}</p>
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+              {project.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              {project.description}
+            </p>
             <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
+              {project.technologies.map((tech) => (
                 <div
-                  key={index}
-                  className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full"
+                  key={tech.name}
+                  className="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded-full"
                 >
                   <img src={tech.icon} alt={tech.name} className="w-4 h-4" />
-                  <span className="text-sm text-gray-700">{tech.name}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
             <div className="flex gap-4 pt-2">
               {project.demoUrl && (
-                <a
+                <motion.a
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
+                  <Globe className="w-4 h-4" />
                   Live Demo
-                </a>
+                </motion.a>
               )}
               {project.sourceUrl && (
-                <a
+                <motion.a
                   href={project.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
+                  <Github className="w-4 h-4" />
                   Source
-                </a>
+                </motion.a>
               )}
             </div>
           </div>
