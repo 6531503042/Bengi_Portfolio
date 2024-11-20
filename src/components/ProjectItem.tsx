@@ -4,6 +4,7 @@ import { Github, ExternalLink, Play } from "lucide-react";
 import CardBox from "./core/CardBox";
 import Row from "./core/Row";
 import Column from "./core/Column";
+import { Link } from "react-router-dom";
 
 const ProjectItem = ({ project }: { project: Project }) => {
   return (
@@ -71,4 +72,4 @@ const ProjectItem = ({ project }: { project: Project }) => {
   );
 };
 
-export default ProjectItem; 
+export default ProjectItem;
