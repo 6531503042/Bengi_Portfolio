@@ -1,5 +1,6 @@
 import { Code2, Server, Layout, Smartphone, Wrench, Network, Brain } from "lucide-react";
 import { DataStore } from '@/types';
+import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 export const data: DataStore = {
   career: [
@@ -108,47 +109,62 @@ export const data: DataStore = {
     }
   ],
   
-  projects: [
-    {
-      id: 1,
-      title: "Portfolio Website",
-      description: "A modern portfolio website built with React and TailwindCSS showcasing my projects and skills.",
-      icon: "/projects/portfolio-icon.png",
-      image: "/projects/portfolio.png",
-      projectType: "Personal",
-      screenshots: [
-        "/projects/portfolio-1.png",
-        "/projects/portfolio-2.png",
-        "/projects/portfolio-3.png"
-      ],
-      technologies: [
-        { name: "React", icon: "/icons/react.svg" },
-        { name: "TailwindCSS", icon: "/icons/tailwind.svg" },
-        { name: "TypeScript", icon: "/icons/typescript.svg" }
-      ],
-      featured: true,
-      demoUrl: "https://portfolio.dev",
-      sourceUrl: "https://github.com/username/portfolio"
-    },
-    {
-      id: 2,
-      title: "E-commerce Platform",
-      description: "A full-stack e-commerce platform with user authentication, product management, and payment integration.",
-      icon: "/projects/ecommerce-icon.png",
-      image: "/projects/ecommerce.png",
-      projectType: "Freelance",
-      screenshots: [
-        "/projects/ecommerce-1.png",
-        "/projects/ecommerce-2.png",
-        "/projects/ecommerce-3.png"
-      ],
-      technologies: [
-        { name: "Next.js", icon: "/icons/nextjs.svg" },
-        { name: "MongoDB", icon: "/icons/mongodb.svg" },
-        { name: "Stripe", icon: "/icons/stripe.svg" }
-      ],
-      demoUrl: "https://ecommerce.dev",
-      sourceUrl: "https://github.com/username/ecommerce"
-    }
-  ]
+  projects: projects
 };
+
+export const projects: IProjectItem[] = [
+  {
+    id: "Weather-Forecast",
+    title: "Weather-Forecast",
+    description:
+      "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/ForecastAPI",
+    tags: ["Java", "Spring Boot", "Jsp"],
+    screenshots: ["https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png"],
+  },
+  {
+    id: "Deap-Appointment-App",
+    title: "Deap Appointment App",
+    description:
+      "Deap App is an appointment mobile application developed using Flutter and Firebase.",
+    icon: "/skills/flutter.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
+    url: "https://github.com/6531503042/Deap-Mobile-Application/releases",
+    playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
+    tags: ["Dart", "Flutter", "Firebase"],
+    screenshots: [
+      "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
+    ]
+  },
+  {
+    id: "Gigantic-Mall",
+    title: "Gigantic-Mall",
+    description:
+      "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Gigantic-Mall",
+    tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
+  },
+  {
+    id: "Core-Banking",
+    title: "Core-Banking",
+    description:
+      "This is my personal backend services built using Spring boot used Microservices.",
+    icon: "/skills/spring-boot.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Core-Banking",
+    tags: ["Spring Boot", "TypeScript", "Next", "GraphQL"],
+  }
+];
+
+export function getProjectDetails(id: string): IProjectItem | null {
+  return projects.find((project) => project.id === id) || null;
+}
