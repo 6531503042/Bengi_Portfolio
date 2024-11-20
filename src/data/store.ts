@@ -113,7 +113,14 @@ export const data: DataStore = {
       id: 1,
       title: "Portfolio Website",
       description: "A modern portfolio website built with React and TailwindCSS showcasing my projects and skills.",
+      icon: "/projects/portfolio-icon.png",
       image: "/projects/portfolio.png",
+      projectType: "Personal",
+      screenshots: [
+        "/projects/portfolio-1.png",
+        "/projects/portfolio-2.png",
+        "/projects/portfolio-3.png"
+      ],
       technologies: [
         { name: "React", icon: "/icons/react.svg" },
         { name: "TailwindCSS", icon: "/icons/tailwind.svg" },
@@ -127,7 +134,14 @@ export const data: DataStore = {
       id: 2,
       title: "E-commerce Platform",
       description: "A full-stack e-commerce platform with user authentication, product management, and payment integration.",
+      icon: "/projects/ecommerce-icon.png",
       image: "/projects/ecommerce.png",
+      projectType: "Freelance",
+      screenshots: [
+        "/projects/ecommerce-1.png",
+        "/projects/ecommerce-2.png",
+        "/projects/ecommerce-3.png"
+      ],
       technologies: [
         { name: "Next.js", icon: "/icons/nextjs.svg" },
         { name: "MongoDB", icon: "/icons/mongodb.svg" },
