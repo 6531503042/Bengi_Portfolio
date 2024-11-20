@@ -17,9 +17,16 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-6xl font-bold heading-gradient"
+              className="text-6xl font-bold heading-gradient flex items-center"
             >
-              hi BenGi here 👋
+              hi BenGi here{" "}
+              <motion.span
+                animate={{ rotate: [0, 20, -20, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="ml-2"
+              >
+                👋
+              </motion.span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -65,7 +72,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a 
                 href="https://github.com/6531503042" 
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
