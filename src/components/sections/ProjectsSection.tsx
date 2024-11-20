@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import ProjectsGrid from "../ProjectsGrid";
+import { data } from "@/data/store";
+import ProjectList from "../ProjectList";
 
 const ProjectsSection = () => {
   return (
@@ -14,11 +15,12 @@ const ProjectsSection = () => {
           <div className="text-center space-y-4">
             <h2 className="text-4xl font-bold text-gray-900">My Projects</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Here you can find a collection of my public open-source projects.
+              Here you can find a collection of my public projects.
               Feel free to explore and check them out!
             </p>
           </div>
-          <ProjectsGrid />
+
+          <ProjectList projects={data.projects} />
         </motion.div>
       </div>
     </section>
