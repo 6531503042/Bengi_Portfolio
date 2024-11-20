@@ -12,29 +12,54 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-12 items-center"
         >
-          <div>
-            <h1 className="text-6xl font-bold mb-6 text-gray-900">
+          <div className="space-y-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-6xl font-bold heading-gradient"
+            >
               hi BenGi here 👋
-            </h1>
-            <p className="text-xl text-gray-600 mb-4">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-xl text-gray-600"
+            >
               21-year-old backend software developer from Thailand 🇹🇭
-            </p>
-            <p className="text-xl text-gray-600 mb-8">
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-xl text-gray-600"
+            >
               I like to develop backend, drink instant coffee and get coding advice from my cat, Luffy.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button variant="outline" className="hover:bg-gray-50">
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Button variant="outline" className="glass-card">
                 Download Resume ↓
               </Button>
-            </div>
-            <div className="flex gap-6">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex gap-6"
+            >
               <motion.a 
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="bg-gray-50 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                className="glass-card p-3 rounded-full"
               >
                 <Linkedin className="w-6 h-6 text-gray-600 hover:text-gray-900 transition-colors" />
               </motion.a>
@@ -44,7 +69,7 @@ const HeroSection = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="bg-gray-50 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                className="glass-card p-3 rounded-full"
               >
                 <Github className="w-6 h-6 text-gray-600 hover:text-gray-900 transition-colors" />
               </motion.a>
@@ -52,11 +77,11 @@ const HeroSection = () => {
                 href="mailto:nimittanbooutor@gmail.com"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="bg-gray-50 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                className="glass-card p-3 rounded-full"
               >
                 <Mail className="w-6 h-6 text-gray-600 hover:text-gray-900 transition-colors" />
               </motion.a>
-            </div>
+            </motion.div>
           </div>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
