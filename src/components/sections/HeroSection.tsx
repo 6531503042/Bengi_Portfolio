@@ -41,7 +41,7 @@ const HeroSection = () => {
             >
               <h1 className="text-6xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 flex items-center gap-4"
                   style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
-                hi BenGi here
+                Hi I'm BenGii
                 <span className="wave-emoji">👋</span>
               </h1>
               <div className="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-blue-200 to-purple-200 opacity-20 blur-3xl"></div>
@@ -59,14 +59,8 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-xl text-gray-600 leading-relaxed"
             >
-              I like to develop backend, drink instant coffee and get coding advice from my cat, Luffy 
-              <motion.span
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="inline-block ml-2"
-              >
+              I like to develop backend, drink instant coffee and get coding advice from my cat,  
                 🐱
-              </motion.span>
             </motion.p>
 
             <motion.div
