@@ -3,7 +3,7 @@ import { Experience } from "@/types";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
-import * as Icons from "lucide-react";
+import * as LucideIcons from "lucide-react";
 
 interface TimelineItemProps {
   experience: Experience;
@@ -58,14 +58,19 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
 
         {links && links.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
-            {links.map((link, idx) => (
-              <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer">
-                <Badge variant="secondary" className="flex items-center gap-1 hover:bg-secondary/80">
-                  {React.createElement(Icons[link.icon], { className: "h-3 w-3" })}
-                  <span>{link.name}</span>
-                </Badge>
-              </a>
-            ))}
+            {links.map((link, idx) => {
+              // Get the icon component from Lucide icons
+              const IconComponent = LucideIcons[link.icon as keyof typeof LucideIcons];
+              
+              return (
+                <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer">
+                  <Badge variant="secondary" className="flex items-center gap-1 hover:bg-secondary/80">
+                    {IconComponent && <IconComponent className="h-3 w-3" />}
+                    <span>{link.name}</span>
+                  </Badge>
+                </a>
+              );
+            })}
           </div>
         )}
       </div>
