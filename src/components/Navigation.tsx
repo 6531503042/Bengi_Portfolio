@@ -1,83 +1,112 @@
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/hooks/useTheme";
 
 const Navigation = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "experience",
-        "skills",
-        "projects",
-        "contact"
-      ];
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
 
-      const sectionElements = sections.map(section => ({
-        id: section,
-        element: document.getElementById(section),
-        offset: document.getElementById(section)?.offsetTop || 0
-      }));
-
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const { id, offset } = sectionElements[i];
-        if (scrollPosition >= offset) {
-          setActiveSection(id);
-          break;
+      const sections = ["home", "experience", "projects", "contact"];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
     { id: "home", label: "Home" },
     { id: "experience", label: "Experience" },
-    { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" }
+    { id: "contact", label: "Contact" },
   ];
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-8"
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          <button 
+            onClick={() => scrollToSection("home")}
+            className="text-xl font-bold text-foreground"
           >
-            {navItems.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className={`text-sm font-medium transition-colors duration-200 relative ${
-                  activeSection === id
-                    ? "text-blue-600"
-                    : "text-gray-600 hover:text-blue-600"
-                }`}
+            BenGi
+          </button>
+
+          <div className="flex gap-1">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
               >
-                {label}
-                {activeSection === id && (
+                {activeSection === item.id && (
                   <motion.div
-                    layoutId="activeSection"
-                    className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-blue-600"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    layoutId="navbar-indicator"
+                    className="absolute inset-0 rounded-md bg-accent"
+                    style={{ zIndex: -1 }}
+                    transition={{ type: "spring", duration: 0.6 }}
                   />
                 )}
-              </a>
+                <span className="relative z-10">{item.label}</span>
+              </button>
             ))}
-          </motion.div>
+          </div>
+
+          <div className="flex gap-4">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-accent"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-foreground" />
+              ) : (
+                <Moon className="w-5 h-5 text-foreground" />
+              )}
+            </motion.button>
+          </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

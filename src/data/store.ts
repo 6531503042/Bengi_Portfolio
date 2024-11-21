@@ -130,7 +130,6 @@ export const data: DataStore = {
         { name: "MySQL", icon: "/skills/mysql.svg" },
         { name: "Firebase", icon: "/skills/firebase.svg" },
         { name: "Kafka", icon: "/skills/kafka.svg" },
-        { name: "Hugging Face", icon: "https://res.cloudinary.com/dyjxveu11/image/upload/v1625971707/Hugging_Face_400_200_00523b4a7e.png" }
       ]
     }
   ],
