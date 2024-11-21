@@ -19,12 +19,20 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
           <CardContent className="flex flex-col gap-3 p-5">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white">
-                  <img
-                    src={project.icon}
-                    alt={`${project.title} icon`}
-                    className="h-full w-full object-contain"
-                  />
+                <div className="flex -space-x-2">
+                  {project.icons.map((icon, index) => (
+                    <div 
+                      key={index} 
+                      className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white"
+                      style={{ marginLeft: index > 0 ? '0.5rem' : '0' }}
+                    >
+                      <img
+                        src={icon}
+                        alt={`${project.title} icon ${index + 1}`}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  ))}
                 </div>
                 <div>
                   <h3 className="font-semibold text-base leading-tight">{project.title}</h3>
