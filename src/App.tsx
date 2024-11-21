@@ -1,26 +1,27 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Index from "./pages/Index";
+import Navigation from "@/components/Navigation";
+import MouseEffect from "@/components/effects/MouseEffect";
+import HeroSection from "@/components/sections/HeroSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import EducationSection from "@/components/sections/EducationSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import ContactSection from "@/components/sections/ContactSection";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Index />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster />
-      <Sonner />
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <>
+      <Navigation />
+      <MouseEffect />
+      <main>
+        <HeroSection />
+        <ExperienceSection />
+        <EducationSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+    </>
+  );
+}
 
 export default App;
