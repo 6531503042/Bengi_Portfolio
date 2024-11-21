@@ -1,62 +1,6 @@
-import { Code2, Server, Layout, Wrench } from "lucide-react";
+import { Code2, Server, Layout, Wrench, Database } from "lucide-react";
 import { DataStore, IProjectItem, RepoType, ProjectType } from '@/types';
-
-const projects: IProjectItem[] = [
-  {
-    id: "Sport-Complex",
-    title: "Sport-Complex",
-    description: "This is my college project booking system built using Go and Next.js used Microservices.",
-    icons: ["/skills/go.svg", "/skills/nextjs.svg"],
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Sport-Complex",
-    tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project1.png",
-    technologies: [
-      { name: "Go", icon: "/skills/go.svg" },
-      { name: "Next.js", icon: "/skills/nextjs.svg" }
-    ],
-    featured: true,
-    demoUrl: "https://github.com/6531503042/Sport-Complex",
-    sourceUrl: "https://github.com/6531503042/Sport-Complex"
-  },
-  {
-    id: "NFTVue",
-    title: "NFTVue",
-    description: "An NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs.",
-    icons: ["/skills/react.svg", "/skills/javascript.svg"],
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/NFTVue",
-    tags: ["React", "JavaScript", "Web3", "NFT"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
-    technologies: [
-      { name: "React", icon: "/skills/react.svg" },
-      { name: "JavaScript", icon: "/skills/javascript.svg" }
-    ],
-    featured: true,
-    demoUrl: "https://nftvue.vercel.app",
-    sourceUrl: "https://github.com/6531503042/NFTVue"
-  },
-  {
-    id: "DemoConstruct",
-    title: "DemoConstruct",
-    description: "A full-stack web application that uses Meshroom to reconstruct 3D models from captured images.",
-    icons: ["/skills/python.svg", "/skills/react.svg"],
-    repoType: RepoType.Public,
-    projectType: ProjectType.JobWork,
-    githubUrl: "https://github.com/6531503042/DemoConstruct",
-    tags: ["Python", "React", "3D Reconstruction"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project3.png",
-    technologies: [
-      { name: "Python", icon: "/skills/python.svg" },
-      { name: "React", icon: "/skills/react.svg" }
-    ],
-    featured: true,
-    demoUrl: "https://demo-construct.vercel.app",
-    sourceUrl: "https://github.com/6531503042/DemoConstruct"
-  }
-];
+import { projects } from "./projects";
 
 export const data: DataStore = {
   career: [
@@ -120,9 +64,9 @@ export const data: DataStore = {
       href: "https://mfu.ac.th",
       title: "Bachelor of Engineering in Software Engineering",
       logo: "https://agroindustry.mfu.ac.th/wp-content/uploads/2018/07/icon_logo.png",
-      start: "2021",
+      start: "2022",
       description: [
-        "Currently pursuing my bachelor's degree",
+        "Currently studying at Mae Fah Luang University",
         "3rd Year Student",
         "School of Information Technology"
       ]
@@ -135,13 +79,13 @@ export const data: DataStore = {
       icon: Server,
       skills: [
         { name: "TypeScript", icon: "/skills/typescript.svg" },
+        { name: "JavaScript", icon: "/skills/javascript.svg" },
         { name: "Node.js", icon: "/skills/nodejs.svg" },
-        { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
         { name: "Python", icon: "/skills/python.svg" },
         { name: "Go", icon: "/skills/go.svg" },
         { name: "C#", icon: "/skills/csharp.svg" },
-        { name: "Redis", icon: "/skills/redis.svg" },
-        { name: "SQLite", icon: "/skills/sqlite.svg" },
+        { name: "Java", icon: "/skills/java.svg" },
+        { name: "Dart", icon: "/skills/dart.svg" },
         { name: "Spring Boot", icon: "/skills/spring-boot.svg" }
       ]
     },
@@ -167,17 +111,27 @@ export const data: DataStore = {
       skills: [
         { name: "Docker", icon: "/skills/docker.svg" },
         { name: "AWS", icon: "/skills/aws.svg" },
+        { name: "Terraform", icon: "/skills/terraform.svg" },
         { name: "Kubernetes", icon: "/skills/kubernetes.svg" },
         { name: "Jenkins", icon: "/skills/jenkins.svg" },
         { name: "Git", icon: "/skills/git.svg" },
         { name: "GitHub", icon: "/skills/github.svg" }
       ]
+    },
+    {
+      title: "Database & Tools",
+      description: "Experience with various databases and data management tools for building scalable applications.",
+      icon: Database,
+      skills: [
+        { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
+        { name: "MongoDB", icon: "/skills/mongodb.svg" },
+        { name: "Redis", icon: "/skills/redis.svg" },
+        { name: "SQLite", icon: "/skills/sqlite.svg" },
+        { name: "MySQL", icon: "/skills/mysql.svg" },
+        { name: "Firebase", icon: "/skills/firebase.svg" },
+        { name: "Kafka", icon: "/skills/kafka.svg" },
+      ]
     }
   ],
-  
   projects: projects
 };
-
-export function getProjectDetails(id: string): IProjectItem | null {
-  return projects.find((project) => project.id === id) || null;
-}
