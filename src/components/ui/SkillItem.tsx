@@ -1,5 +1,11 @@
 import { SkillCategory } from "@/types";
 import { motion } from "framer-motion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const SkillItem = ({ data }: { data: SkillCategory }) => {
   const Icon = data.icon;
@@ -11,30 +17,39 @@ const SkillItem = ({ data }: { data: SkillCategory }) => {
     >
       <div className="flex items-center gap-3 mb-3">
         <div className="p-2 bg-gray-50 rounded-md">
-          <Icon className="w-4 h-4 text-gray-600" />
+          <Icon className="w-5 h-5 text-gray-600" />
         </div>
         <h3 className="text-base font-medium text-gray-800">
           {data.title}
         </h3>
       </div>
       
-      <div className="grid grid-cols-2 gap-1.5">
+      <div className="grid grid-cols-4 sm:grid-cols-4 gap-2">
         {data.skills.map((skill) => (
-          <motion.div
-            key={skill.name}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-2 p-1.5 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors"
-          >
-            <img 
-              src={skill.icon} 
-              alt={skill.name} 
-              className="w-4 h-4"
-            />
-            <span className="text-xs font-medium text-gray-600">
-              {skill.name}
-            </span>
-          </motion.div>
+          <TooltipProvider key={skill.name}>
+            <Tooltip delayDuration={0}>
+              <TooltipTrigger asChild>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                >
+                  <img 
+                    src={skill.icon} 
+                    alt={skill.name} 
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </TooltipTrigger>
+              <TooltipContent 
+                side="top" 
+                sideOffset={5}
+                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg"
+              >
+                <p className="text-sm font-medium text-gray-800">{skill.name}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         ))}
       </div>
     </motion.div>
