@@ -13,7 +13,7 @@ const Navigation = () => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
 
-      const sections = ["home", "education", "experience", "projects", "contact"];
+      const sections = ["home", "experience", "projects", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -32,7 +32,6 @@ const Navigation = () => {
 
   const navItems = [
     { id: "home", label: "Home" },
-    { id: "education", label: "Education" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
     { id: "contact", label: "Contact" },
