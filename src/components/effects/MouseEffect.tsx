@@ -1,58 +1,127 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useRef } from "react";
+import { motion, useAnimation, useSpring } from "framer-motion";
 
 const MouseEffect = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
+  const [isMoving, setIsMoving] = useState(false);
+  const lastMousePos = useRef({ x: 0, y: 0 });
+  
+  // Adjusted spring settings for better following
+  const springConfig = { 
+    stiffness: 400,    // Increased for more responsive following
+    damping: 35,       // Increased for less oscillation
+    mass: 0.8,         // Reduced mass for lighter feel
+    restDelta: 0.001   // Adjusted for smoother stop
+  };
+
+  const springX = useSpring(0, springConfig);
+  const springY = useSpring(0, springConfig);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      setTrail(prev => [
-        { x: e.clientX, y: e.clientY, id: Date.now() },
-        ...prev.slice(0, 5)
-      ]);
+    let moveTimeout: NodeJS.Timeout;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      // Direct position calculation with offset
+      const targetX = e.clientX + 30;  // Offset to the right
+      const targetY = e.clientY + 20;  // Offset down
+
+      // Update springs
+      springX.set(targetX);
+      springY.set(targetY);
+
+      // Update state
+      setMousePosition({ x: targetX, y: targetY });
+      setIsMoving(true);
+      lastMousePos.current = { x: targetX, y: targetY };
+
+      // Reset moving state after delay
+      clearTimeout(moveTimeout);
+      moveTimeout = setTimeout(() => setIsMoving(false), 100);
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(moveTimeout);
+    };
+  }, [springX, springY]);
 
   return (
-    <>
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-50"
+      style={{
+        x: springX,
+        y: springY,
+        transform: 'translate(-50%, -50%)'  // Center the element on the cursor
+      }}
+    >
       <motion.div
-        className="pointer-events-none fixed inset-0 z-50"
-        animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16 }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
+        animate={{
+          scale: isMoving ? 1.05 : 1,
+        }}
+        transition={{
+          scale: { 
+            duration: 0.3,
+            ease: "easeOut"
+          },
+        }}
+        className="relative w-16 h-16"
       >
-        <div className="h-8 w-8 rounded-full bg-primary/30 blur-xl" />
-      </motion.div>
-      <AnimatePresence>
-        {trail.map((point, index) => (
-          <motion.div
-            key={point.id}
-            initial={{ scale: 1, opacity: 0.5 }}
-            animate={{ scale: 0, opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              position: 'fixed',
-              left: point.x - 8,
-              top: point.y - 8,
-              zIndex: 49,
-            }}
-            className="pointer-events-none"
-          >
-            <div 
-              className="h-4 w-4 rounded-full bg-primary/20 blur-lg"
+        <motion.div
+          className="relative w-full h-full"
+          animate={{
+            y: [0, -3, 0],
+            rotate: isMoving ? [-2, 2] : 0
+          }}
+          transition={{
+            y: {
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            rotate: {
+              duration: 0.3,
+              ease: "easeOut"
+            }
+          }}
+        >
+          {/* Main GIF */}
+          <div className="w-full h-full relative">
+            <img
+              src="./ezgif-2-168f4f6b3e.gif"
+              alt="Among Us"
+              className="w-full h-full object-contain relative z-10"
               style={{
-                opacity: 1 - (index * 0.2)
+                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.2))",
+                willChange: "transform",
+                imageRendering: "crisp-edges",
+                transform: `scale(${isMoving ? 1.02 : 1})`,
+                transition: "transform 0.2s ease-out"
               }}
             />
-          </motion.div>
-        ))}
-      </AnimatePresence>
-    </>
+          </div>
+
+          {/* Dynamic shadow */}
+          <motion.div
+            className="absolute inset-0 bg-black/15 rounded-full filter blur-md"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.2, 0.25, 0.2]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              transformOrigin: "center",
+              zIndex: 0
+            }}
+          />
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
