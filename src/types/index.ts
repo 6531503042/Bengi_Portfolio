@@ -11,11 +11,6 @@ export enum ProjectType {
   Freelance = "Freelance"
 }
 
-export interface Technology {
-  name: string;
-  icon: string;
-}
-
 export interface IProjectItem {
   id: string;
   title: string;
@@ -28,11 +23,6 @@ export interface IProjectItem {
   playStore?: string;
   tags: string[];
   screenshots?: string[];
-  image: string;
-  technologies: Technology[];
-  featured: boolean;
-  demoUrl?: string;
-  sourceUrl?: string;
 }
 
 export interface Link {
@@ -52,13 +42,23 @@ export interface Experience {
   links?: Link[];
 }
 
-export interface CoreComponentsProps {
-  children: React.ReactNode;
-  className?: string;
-  classNames?: string;
-  onClick?: () => void;
-  id?: string;
-  elementRef?: React.RefObject<any>;
+export interface Technology {
+  name: string;
+  icon: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  image: string;
+  projectType: string;
+  screenshots: string[];
+  technologies: Technology[];
+  featured?: boolean;
+  demoUrl?: string;
+  sourceUrl?: string;
 }
 
 export interface Skill {
@@ -77,5 +77,5 @@ export interface DataStore {
   career: Experience[];
   education: Experience[];
   skills: SkillCategory[];
-  projects: IProjectItem[];
+  projects: Project[];
 }
