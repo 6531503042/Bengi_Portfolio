@@ -2,10 +2,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Timeline from "@/components/Timeline";
 import { data } from "@/data/store";
 
-export const ExperienceSection = () => {
+const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-[#0a0b0c]">
-      <div className="container max-w-4xl">
+    <section id="experience" className="py-20 bg-background">
+      <div className="container max-w-4xl mx-auto px-4">
         <Tabs defaultValue="career" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="career">Career</TabsTrigger>
@@ -13,11 +13,11 @@ export const ExperienceSection = () => {
           </TabsList>
           
           <TabsContent value="career" className="mt-6">
-            <Timeline items={data.career} />
+            {data.career && <Timeline items={data.career} />}
           </TabsContent>
           
           <TabsContent value="education" className="mt-6">
-            <Timeline items={data.education} />
+            {data.education && <Timeline items={data.education} />}
           </TabsContent>
         </Tabs>
       </div>

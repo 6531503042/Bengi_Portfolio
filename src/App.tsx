@@ -9,10 +9,10 @@ import ContactSection from "@/components/sections/ContactSection";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen bg-background">
       <Navigation />
       <MouseEffect />
-      <main>
+      <main className="relative">
         <HeroSection />
         <ExperienceSection />
         <EducationSection />
@@ -20,7 +20,7 @@ function App() {
         <ProjectsSection />
         <ContactSection />
       </main>
-    </>
+    </div>
   );
 }
 
