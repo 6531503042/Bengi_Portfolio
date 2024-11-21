@@ -1,18 +1,19 @@
-import { Moon } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/hooks/useTheme";
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
 
-      // Update active section based on scroll position
-      const sections = ["home", "education", "projects", "contact"];
+      const sections = ["home", "education", "experience", "projects", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -30,16 +31,17 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { id: "home", label: "home" },
-    { id: "education", label: "education" },
-    { id: "projects", label: "projects" },
-    { id: "contact", label: "contact" },
+    { id: "home", label: "Home" },
+    { id: "education", label: "Education" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact" },
   ];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Height of the navigation bar plus some padding
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -56,7 +58,7 @@ const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm"
+          ? "bg-background/80 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -64,7 +66,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           <button 
             onClick={() => scrollToSection("home")}
-            className="text-xl font-bold"
+            className="text-xl font-bold text-foreground"
           >
             BenGi
           </button>
@@ -74,12 +76,12 @@ const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative px-4 py-2 text-gray-600 hover:text-black transition-colors"
+                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute inset-0 rounded-md bg-gray-100"
+                    className="absolute inset-0 rounded-md bg-accent"
                     style={{ zIndex: -1 }}
                     transition={{ type: "spring", duration: 0.6 }}
                   />
@@ -90,12 +92,18 @@ const Navigation = () => {
           </div>
 
           <div className="flex gap-4">
-            <motion.div
+            <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-accent"
             >
-              <Moon className="w-5 h-5 text-gray-600 hover:text-black cursor-pointer" />
-            </motion.div>
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-foreground" />
+              ) : (
+                <Moon className="w-5 h-5 text-foreground" />
+              )}
+            </motion.button>
           </div>
         </div>
       </div>
