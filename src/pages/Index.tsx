@@ -10,7 +10,7 @@ import { Experience } from "@/types";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#0a0b0c]">
+    <div className="min-h-screen bg-[#ffffff]">
       <MouseEffect />
       <HeroSection />
       <section id="experience" className="py-20">
@@ -19,7 +19,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#1a1b1e]/80 backdrop-blur-sm rounded-3xl p-8"
+            className="bg-[#FFFFFFFF]/80 backdrop-blur-sm rounded-3xl p-8"
           >
             <Tabs defaultValue="education" className="w-full">
               <div className="px-6 pt-6">
