@@ -61,7 +61,6 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
             {links.map((link, idx) => (
               <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer">
                 <Badge variant="secondary" className="flex items-center gap-1 hover:bg-secondary/80">
-                  {/* @ts-ignore - dynamic icon import */}
                   {React.createElement(Icons[link.icon], { className: "h-3 w-3" })}
                   <span>{link.name}</span>
                 </Badge>
