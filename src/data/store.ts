@@ -1,5 +1,62 @@
-import { Code2, Server, Layout, Wrench, Database } from "lucide-react";
-import { DataStore } from '@/types';
+import { Code2, Server, Layout, Wrench } from "lucide-react";
+import { DataStore, IProjectItem, RepoType, ProjectType } from '@/types';
+
+const projects: IProjectItem[] = [
+  {
+    id: "Sport-Complex",
+    title: "Sport-Complex",
+    description: "This is my college project booking system built using Go and Next.js used Microservices.",
+    icons: ["/skills/go.svg", "/skills/nextjs.svg"],
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/Sport-Complex",
+    tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
+    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project1.png",
+    technologies: [
+      { name: "Go", icon: "/skills/go.svg" },
+      { name: "Next.js", icon: "/skills/nextjs.svg" }
+    ],
+    featured: true,
+    demoUrl: "https://github.com/6531503042/Sport-Complex",
+    sourceUrl: "https://github.com/6531503042/Sport-Complex"
+  },
+  {
+    id: "NFTVue",
+    title: "NFTVue",
+    description: "An NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs.",
+    icons: ["/skills/react.svg", "/skills/javascript.svg"],
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/NFTVue",
+    tags: ["React", "JavaScript", "Web3", "NFT"],
+    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
+    technologies: [
+      { name: "React", icon: "/skills/react.svg" },
+      { name: "JavaScript", icon: "/skills/javascript.svg" }
+    ],
+    featured: true,
+    demoUrl: "https://nftvue.vercel.app",
+    sourceUrl: "https://github.com/6531503042/NFTVue"
+  },
+  {
+    id: "DemoConstruct",
+    title: "DemoConstruct",
+    description: "A full-stack web application that uses Meshroom to reconstruct 3D models from captured images.",
+    icons: ["/skills/python.svg", "/skills/react.svg"],
+    repoType: RepoType.Public,
+    projectType: ProjectType.JobWork,
+    githubUrl: "https://github.com/6531503042/DemoConstruct",
+    tags: ["Python", "React", "3D Reconstruction"],
+    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project3.png",
+    technologies: [
+      { name: "Python", icon: "/skills/python.svg" },
+      { name: "React", icon: "/skills/react.svg" }
+    ],
+    featured: true,
+    demoUrl: "https://demo-construct.vercel.app",
+    sourceUrl: "https://github.com/6531503042/DemoConstruct"
+  }
+];
 
 export const data: DataStore = {
   career: [
@@ -71,7 +128,6 @@ export const data: DataStore = {
       ]
     }
   ],
-  
   skills: [
     {
       title: "Backend",

@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { RefObject } from "react";
 
 export enum RepoType {
   Public = "Public",
@@ -11,11 +12,20 @@ export enum ProjectType {
   Freelance = "Freelance"
 }
 
+export interface CoreComponentsProps {
+  children?: React.ReactNode;
+  classNames?: string;
+  onClick?: () => void;
+  id?: string;
+  elementRef?: RefObject<HTMLDivElement>;
+}
+
 export interface IProjectItem {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon?: string;
+  icons?: string[];
   repoType: RepoType;
   projectType: ProjectType;
   githubUrl?: string;
@@ -23,6 +33,11 @@ export interface IProjectItem {
   playStore?: string;
   tags: string[];
   screenshots?: string[];
+  image?: string;
+  technologies?: Technology[];
+  featured?: boolean;
+  demoUrl?: string;
+  sourceUrl?: string;
 }
 
 export interface Link {
@@ -47,20 +62,6 @@ export interface Technology {
   icon: string;
 }
 
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  image: string;
-  projectType: string;
-  screenshots: string[];
-  technologies: Technology[];
-  featured?: boolean;
-  demoUrl?: string;
-  sourceUrl?: string;
-}
-
 export interface Skill {
   name: string;
   icon: string;
@@ -77,5 +78,5 @@ export interface DataStore {
   career: Experience[];
   education: Experience[];
   skills: SkillCategory[];
-  projects: Project[];
+  projects: IProjectItem[];
 }
