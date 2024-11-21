@@ -89,7 +89,7 @@ const MouseEffect = () => {
           {/* Main GIF */}
           <div className="w-full h-full relative">
             <img
-              src="./ezgif-2-168f4f6b3e.gif"
+              src="./among-us-eject.gif"
               alt="Among Us"
               className="w-full h-full object-contain relative z-10"
               style={{

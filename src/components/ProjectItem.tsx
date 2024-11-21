@@ -19,12 +19,16 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
           <CardContent className="flex flex-col gap-3 p-5">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
+                <div className="flex items-center">
                   {project.icons.map((icon, index) => (
                     <div 
                       key={index} 
-                      className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white"
-                      style={{ marginLeft: index > 0 ? '0.5rem' : '0' }}
+                      className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white hover:scale-110 transition-transform duration-200"
+                      style={{ 
+                        marginLeft: index > 0 ? '-0.5rem' : '0',
+                        zIndex: project.icons.length - index,
+                        transform: `translateX(${index * 5}px)`,
+                      }}
                     >
                       <img
                         src={icon}
@@ -34,7 +38,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                     </div>
                   ))}
                 </div>
-                <div>
+                <div className="ml-2">
                   <h3 className="font-semibold text-base leading-tight">{project.title}</h3>
                   <p className="text-xs text-gray-500">{project.projectType}</p>
                 </div>
@@ -72,18 +76,32 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white"
+                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                title="Source Code"
               >
                 <Github className="h-4 w-4" />
               </a>
             )}
 
-            {project.url && (
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                title="Live Demo"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
+
+            {project.url && !project.demoUrl && (
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white"
+                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                title="Release"
               >
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -94,7 +112,8 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.playStore}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white"
+                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                title="Play Store"
               >
                 <Play className="h-4 w-4" />
               </a>

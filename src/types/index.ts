@@ -9,7 +9,10 @@ export enum RepoType {
 export enum ProjectType {
   Personal = "Personal",
   JobWork = "JobWork",
-  Freelance = "Freelance"
+  Freelance = "Freelance",
+  College = "College",
+  Team = "Team",
+  OpenSource = "OpenSource",
 }
 
 export interface CoreComponentsProps {
