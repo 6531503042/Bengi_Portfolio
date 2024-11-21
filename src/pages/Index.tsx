@@ -5,11 +5,13 @@ import SkillsSection from "../components/sections/SkillsSection";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import ContactSection from "../components/sections/ContactSection";
 import HeroSection from "../components/sections/HeroSection";
+import MouseEffect from "../components/effects/MouseEffect";
 import { Experience } from "@/types";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0a0b0c]">
+      <MouseEffect />
       <HeroSection />
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -17,7 +19,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-card"
+            className="bg-[#1a1b1e]/80 backdrop-blur-sm rounded-3xl p-8"
           >
             <Tabs defaultValue="education" className="w-full">
               <div className="px-6 pt-6">

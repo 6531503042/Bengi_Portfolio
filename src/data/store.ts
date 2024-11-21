@@ -1,59 +1,5 @@
-import { Code2, Server, Layout, Smartphone, Wrench, Database } from "lucide-react";
+import { Code2, Server, Layout, Wrench, Database } from "lucide-react";
 import { DataStore } from '@/types';
-import { IProjectItem, ProjectType, RepoType } from "@/types";
-
-export const projects: IProjectItem[] = [
-  {
-    id: "Sport-Complex",
-    title: "Sport-Complex",
-    description:
-      "This is my college project booking system built using Go and Next.js used Microservices.",
-    icon: "/skills/go.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Sport-Complex",
-    tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
-  },
-  {
-    id: "Weather-Forecast",
-    title: "Weather-Forecast",
-    description:
-      "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/ForecastAPI",
-    tags: ["Java", "Spring Boot", "Jsp"],
-    screenshots: ["https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png"],
-  },
-  {
-    id: "Deap-Appointment-App",
-    title: "Deap Appointment App",
-    description:
-      "Deap App is an appointment mobile application developed using Flutter and Firebase.",
-    icon: "/skills/flutter.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
-    url: "https://github.com/6531503042/Deap-Mobile-Application/releases",
-    playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
-    tags: ["Dart", "Flutter", "Firebase"],
-    screenshots: [
-      "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
-    ]
-  },
-  {
-    id: "Gigantic-Mall",
-    title: "Gigantic-Mall",
-    description:
-      "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture",
-    icon: "/skills/spring-boot.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Gigantic-Mall",
-    tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
-  },
-];
 
 export const data: DataStore = {
   career: [
@@ -125,53 +71,54 @@ export const data: DataStore = {
       ]
     }
   ],
+  
   skills: [
     {
-      title: "Front-End",
-      description: "Building responsive and interactive user interfaces with modern frameworks and libraries.",
-      icon: Layout,
-      skills: [
-        { name: "React", icon: "/icons/react.svg" },
-        { name: "TypeScript", icon: "/icons/typescript.svg" },
-        { name: "Next.js", icon: "/icons/nextjs.svg" },
-        { name: "TailwindCSS", icon: "/icons/tailwind.svg" }
-      ]
-    },
-    {
-      title: "Back-End",
-      description: "Developing robust server-side applications and APIs.",
+      title: "Backend",
+      description: "I love problem-solving and building complex systems. I strive to create scalable, reliable, and secure solutions.",
       icon: Server,
       skills: [
-        { name: "Node.js", icon: "/icons/nodejs.svg" },
-        { name: "Python", icon: "/icons/python.svg" },
-        { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
-        { name: "MongoDB", icon: "/icons/mongodb.svg" }
+        { name: "TypeScript", icon: "/skills/typescript.svg" },
+        { name: "Node.js", icon: "/skills/nodejs.svg" },
+        { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
+        { name: "Python", icon: "/skills/python.svg" },
+        { name: "Go", icon: "/skills/go.svg" },
+        { name: "C#", icon: "/skills/csharp.svg" },
+        { name: "Redis", icon: "/skills/redis.svg" },
+        { name: "SQLite", icon: "/skills/sqlite.svg" },
+        { name: "Spring Boot", icon: "/skills/spring-boot.svg" }
       ]
     },
     {
-      title: "DevOps",
-      description: "Managing deployment, scaling, and operations of applications.",
+      title: "Frontend & Design",
+      description: "I'm passionate about design, animation, and interactions, always aiming to build fun websites with great user experiences.",
+      icon: Layout,
+      skills: [
+        { name: "React", icon: "/skills/react.svg" },
+        { name: "Next.js", icon: "/skills/nextjs.svg" },
+        { name: "TypeScript", icon: "/skills/typescript.svg" },
+        { name: "HTML", icon: "/skills/html.svg" },
+        { name: "CSS", icon: "/skills/css.svg" },
+        { name: "JavaScript", icon: "/skills/javascript.svg" },
+        { name: "Sass", icon: "/skills/sass.svg" },
+        { name: "Redux", icon: "/skills/redux.svg" }
+      ]
+    },
+    {
+      title: "Cloud & DevOps",
+      description: "I have managed AWS, GCP, and various other cloud services for multiple start-ups and my own projects.",
       icon: Wrench,
       skills: [
-        { name: "Docker", icon: "/icons/docker.svg" },
-        { name: "AWS", icon: "/icons/aws.svg" },
-        { name: "Git", icon: "/icons/git.svg" },
-        { name: "Linux", icon: "/icons/linux.svg" }
-      ]
-    },
-    {
-      title: "Databases & Tools",
-      description: "Experience with various databases and development tools.",
-      icon: Database,
-      skills: [
-        { name: "MongoDB", icon: "/icons/mongodb.svg" },
-        { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
-        { name: "MySQL", icon: "/icons/mysql.svg" },
-        { name: "Firebase", icon: "/icons/firebase.svg" },
-        { name: "Elasticsearch", icon: "/icons/elasticsearch.svg" }
+        { name: "Docker", icon: "/skills/docker.svg" },
+        { name: "AWS", icon: "/skills/aws.svg" },
+        { name: "Kubernetes", icon: "/skills/kubernetes.svg" },
+        { name: "Jenkins", icon: "/skills/jenkins.svg" },
+        { name: "Git", icon: "/skills/git.svg" },
+        { name: "GitHub", icon: "/skills/github.svg" }
       ]
     }
   ],
+  
   projects: projects
 };
 
