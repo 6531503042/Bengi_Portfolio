@@ -114,7 +114,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl -rotate-6 transform transition-transform duration-300 hover:rotate-0"></div>
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-3xl rotate-3 transform transition-transform duration-300 hover:rotate-0"></div>
               <img
-                src="/your-photo.jpg"
+                src="./public/images/not_found.png"
                 alt="Profile"
                 className="relative w-full h-full rounded-2xl object-cover shadow-xl transition-transform duration-300 hover:scale-105"
               />
