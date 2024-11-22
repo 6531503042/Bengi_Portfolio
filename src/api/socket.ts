@@ -1,22 +1,19 @@
-import { WebSocketServer } from '@vercel/websockets';
+const wss = new WebSocket('wss://api.example.com/socket');
 
-const wss = new WebSocketServer();
+wss.onopen = () => {
+  console.log('Connected to WebSocket server');
+};
 
-wss.on('connection', (ws) => {
-  console.log('Client connected');
+wss.onmessage = (event) => {
+  console.log('Received message:', event.data);
+};
 
-  ws.on('message', (message) => {
-    // Broadcast to all clients
-    wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
-  });
+wss.onclose = () => {
+  console.log('Disconnected from WebSocket server');
+};
 
-  ws.on('close', () => {
-    console.log('Client disconnected');
-  });
-});
+wss.onerror = (error) => {
+  console.error('WebSocket error:', error);
+};
 
-export default wss; 
+export default wss;
