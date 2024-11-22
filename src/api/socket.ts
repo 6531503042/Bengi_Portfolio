@@ -1,19 +1,23 @@
-const wss = new WebSocket('wss://api.example.com/socket');
+import { Server } from 'socket.io';
 
-wss.onopen = () => {
-  console.log('Connected to WebSocket server');
-};
+const io = new Server({
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
-wss.onmessage = (event) => {
-  console.log('Received message:', event.data);
-};
+io.on('connection', (socket) => {
+  console.log('Client connected');
 
-wss.onclose = () => {
-  console.log('Disconnected from WebSocket server');
-};
+  socket.on('message', (message) => {
+    // Broadcast message to all clients except sender
+    socket.broadcast.emit('message', message);
+  });
 
-wss.onerror = (error) => {
-  console.error('WebSocket error:', error);
-};
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
 
-export default wss;
+export default io;
