@@ -2,13 +2,22 @@ import { createRef, useState, MouseEvent } from "react";
 import { IProjectItem } from "@/types";
 import ProjectItem from "./ProjectItem";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
   const carouselRef = createRef<HTMLDivElement>();
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<IProjectItem | null>(null);
 
   const handleMouseDown = (e: MouseEvent) => {
     setIsDragging(true);
@@ -35,9 +44,8 @@ const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
   const handlePrev = () => {
     if (!carouselRef.current) return;
     const offset = window.innerWidth < 768 ? 320 : 400;
-    const targetScroll = carouselRef.current.scrollLeft - offset;
     carouselRef.current.scrollTo({
-      left: targetScroll,
+      left: carouselRef.current.scrollLeft - offset,
       behavior: 'smooth'
     });
   };
@@ -45,9 +53,8 @@ const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
   const handleNext = () => {
     if (!carouselRef.current) return;
     const offset = window.innerWidth < 768 ? 320 : 400;
-    const targetScroll = carouselRef.current.scrollLeft + offset;
     carouselRef.current.scrollTo({
-      left: targetScroll,
+      left: carouselRef.current.scrollLeft + offset,
       behavior: 'smooth'
     });
   };
@@ -63,8 +70,18 @@ const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
         onMouseMove={handleMouseMove}
       >
         {projects.map((project, index) => (
-          <div key={`project-${index}`} className="flex-shrink-0 w-[300px] md:w-[320px]">
+          <div key={`project-${index}`} className="relative flex-shrink-0 w-[300px] md:w-[320px] group">
             <ProjectItem project={project} />
+            {project.screenshots && project.screenshots.length > 0 && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={() => setSelectedProject(project)}
+              >
+                <Maximize2 className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         ))}
       </div>
@@ -74,7 +91,7 @@ const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
           variant="outline"
           size="icon"
           onClick={handlePrev}
-          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110 hover:bg-white"
+          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -83,13 +100,41 @@ const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
           variant="outline"
           size="icon"
           onClick={handleNext}
-          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110 hover:bg-white"
+          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
       </div>
+
+      <Dialog>
+        <DialogTrigger asChild>
+          {selectedProject && selectedProject.screenshots && (
+            <div className="hidden">Open Preview</div>
+          )}
+        </DialogTrigger>
+        <DialogContent className="max-w-4xl">
+          {selectedProject && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedProject.title}</DialogTitle>
+                <DialogDescription>{selectedProject.description}</DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                {selectedProject.screenshots?.map((screenshot, index) => (
+                  <img
+                    key={index}
+                    src={screenshot}
+                    alt={`${selectedProject.title} screenshot ${index + 1}`}
+                    className="w-full rounded-lg shadow-lg"
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
 
-export default ProjectList; 
+export default ProjectList;
