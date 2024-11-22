@@ -47,19 +47,27 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
+
+  * {
+    @apply border-border scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white/10 dark:bg-gray-800/10 backdrop-blur-md rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-background/10 dark:bg-gray-800/10 backdrop-blur-md rounded-2xl border border-border/20 shadow-lg transition-all duration-300;
   }
 
   .section-card {
-    @apply bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-100/20 dark:border-gray-700/20 p-8 hover:shadow-xl transition-all duration-300;
+    @apply bg-background/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-3xl shadow-lg border border-border/20 p-8 transition-all duration-300;
   }
 
   .nav-item {
-    @apply px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors;
+    @apply px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
   }
 }
 
@@ -71,4 +79,34 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
 }

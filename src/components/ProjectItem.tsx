@@ -1,21 +1,13 @@
 import { IProjectItem, RepoType } from "@/types";
 import { Github, ExternalLink, Play } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const ProjectItem = ({ project }: { project: IProjectItem }) => {
   return (
     <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger asChild>
-        <Card className="flex flex-col overflow-hidden h-[300px] hover:border-gray-400 transition-all duration-300 group">
+        <Card className="flex flex-col overflow-hidden h-[300px] hover:border-gray-400 transition-all duration-300 group bg-card dark:bg-gray-800/50 backdrop-blur-sm">
           <CardContent className="flex flex-col gap-3 p-5">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -23,7 +15,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                   {project.icons.map((icon, index) => (
                     <div 
                       key={index} 
-                      className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white hover:scale-110 transition-transform duration-200"
+                      className="h-8 w-8 rounded-full border border-border p-1.5 bg-background hover:scale-110 transition-transform duration-200"
                       style={{ 
                         marginLeft: index > 0 ? '-0.5rem' : '0',
                         zIndex: project.icons.length - index,
@@ -40,19 +32,19 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 </div>
                 <div className="ml-2">
                   <h3 className="font-semibold text-base leading-tight">{project.title}</h3>
-                  <p className="text-xs text-gray-500">{project.projectType}</p>
+                  <p className="text-xs text-muted-foreground">{project.projectType}</p>
                 </div>
               </div>
               <div className={`px-2 py-0.5 rounded-full text-xs font-medium border ${
                 project.repoType === RepoType.Private
-                  ? "text-red-600 border-red-200 bg-red-50"
-                  : "text-emerald-600 border-emerald-200 bg-emerald-50"
+                  ? "text-red-600 border-red-200 bg-red-50 dark:bg-red-900/20"
+                  : "text-emerald-600 border-emerald-200 bg-emerald-50 dark:bg-emerald-900/20"
               }`}>
                 {project.repoType}
               </div>
             </div>
 
-            <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
               {project.description}
             </p>
 
@@ -61,7 +53,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 {project.tags.map((tag, i) => (
                   <div
                     key={`tag-${i}`}
-                    className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600"
+                    className="px-2 py-0.5 rounded-full text-xs font-medium bg-secondary/50 text-secondary-foreground"
                   >
                     {tag}
                   </div>
@@ -76,7 +68,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                className="p-2 rounded-full border border-border hover:border-gray-300 transition-colors bg-background hover:scale-110 duration-200"
                 title="Source Code"
               >
                 <Github className="h-4 w-4" />
@@ -88,7 +80,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                className="p-2 rounded-full border border-border hover:border-gray-300 transition-colors bg-background hover:scale-110 duration-200"
                 title="Live Demo"
               >
                 <ExternalLink className="h-4 w-4" />
@@ -100,7 +92,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                className="p-2 rounded-full border border-border hover:border-gray-300 transition-colors bg-background hover:scale-110 duration-200"
                 title="Release"
               >
                 <ExternalLink className="h-4 w-4" />
@@ -112,7 +104,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                 href={project.playStore}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
+                className="p-2 rounded-full border border-border hover:border-gray-300 transition-colors bg-background hover:scale-110 duration-200"
                 title="Play Store"
               >
                 <Play className="h-4 w-4" />
@@ -123,7 +115,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
       </HoverCardTrigger>
       
       {project.screenshots && project.screenshots.length > 0 && (
-        <HoverCardContent side="top" className="w-[320px] p-0 bg-white/80 backdrop-blur-sm">
+        <HoverCardContent side="top" className="w-[320px] p-0 bg-background/80 backdrop-blur-sm">
           <div className="flex flex-col gap-2 p-2">
             <img
               src={project.screenshots[0]}
