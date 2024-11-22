@@ -14,16 +14,31 @@ const Navigation = () => {
       setScrolled(isScrolled);
 
       const sections = ["home", "experience", "projects", "contact"];
+      let active = "home";
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
+          const isVisible = rect.top <= 100 && rect.bottom >= 100;
+
+          if (isVisible) {
+            active = section;
             break;
           }
         }
       }
+
+      // Highlight "Contact" when at the bottom of the page
+      const lastSection = document.getElementById("contact");
+      if (
+        lastSection &&
+        lastSection.getBoundingClientRect().bottom <= window.innerHeight
+      ) {
+        active = "contact";
+      }
+
+      setActiveSection(active);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,13 +55,13 @@ const Navigation = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 80; // Adjust this to match the navbar height
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
+        top: Math.max(offsetPosition, 0), // Prevent scrolling above the top
+        behavior: "smooth",
       });
     }
   };
@@ -63,6 +78,7 @@ const Navigation = () => {
     >
       <div className="max-w-5xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
+          {/* Logo or Brand Name */}
           <button 
             onClick={() => scrollToSection("home")}
             className="text-xl font-bold text-foreground"
@@ -70,12 +86,15 @@ const Navigation = () => {
             BenGi
           </button>
 
+          {/* Navigation Links */}
           <div className="flex gap-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+                className={`relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors ${
+                  activeSection === item.id ? "font-bold" : ""
+                }`}
               >
                 {activeSection === item.id && (
                   <motion.div
@@ -90,6 +109,7 @@ const Navigation = () => {
             ))}
           </div>
 
+          {/* Theme Toggle Button */}
           <div className="flex gap-4">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -97,7 +117,7 @@ const Navigation = () => {
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-accent"
             >
-              {theme === 'dark' ? (
+              {theme === "dark" ? (
                 <Sun className="w-5 h-5 text-foreground" />
               ) : (
                 <Moon className="w-5 h-5 text-foreground" />
