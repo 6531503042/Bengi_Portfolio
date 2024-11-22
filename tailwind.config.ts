@@ -53,6 +53,9 @@ export default {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-in": "slideIn 0.5s ease-out",
         "slide-up": "slideUp 0.5s ease-out",
+        "float": "float 3s ease-in-out infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "bounce-slow": "bounce 3s infinite",
       },
       keyframes: {
         fadeIn: {
@@ -67,8 +70,19 @@ export default {
           "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      backdropFilter: {
+        'none': 'none',
+        'blur': 'blur(8px)',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 } satisfies Config;
