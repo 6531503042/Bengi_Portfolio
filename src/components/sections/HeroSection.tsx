@@ -26,7 +26,10 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-[90vh] flex items-center bg-gradient-to-br from-white to-blue-50">
+    <section 
+      id="home"
+      className="min-h-[90vh] flex items-center bg-gradient-to-br from-white to-blue-50"
+    >
       <div className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
           variants={containerVariants}
@@ -114,9 +117,9 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl -rotate-6 transform transition-transform duration-300 hover:rotate-0"></div>
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-3xl rotate-3 transform transition-transform duration-300 hover:rotate-0"></div>
               <img
-                src="./public/Bengi.jpg"
+                src="https://raw.githubusercontent.com/6531503042/Bengi_Portfolio/main/public/Bengi.jpg"
                 alt="Profile"
-                 className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl transition-transform duration-300 hover:scale-105"
+                className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl transition-transform duration-300 hover:scale-105"
               />
             </motion.div>
           </motion.div>
