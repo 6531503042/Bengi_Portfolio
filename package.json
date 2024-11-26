@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "bun run server/index.ts",
-    "start": "concurrently \"bun run dev\" \"bun run server\""
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
