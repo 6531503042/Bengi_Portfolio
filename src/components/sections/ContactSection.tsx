@@ -1,111 +1,67 @@
 import { motion } from "framer-motion";
 import { Mail, Calendar, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Chat from "@/components/ui/Chat";
 
 const ContactSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
   const contactMethods = [
     {
       icon: Mail,
       title: "Email",
-      description: "Get in touch via email",
+      description: "Drop me an email",
       href: "mailto:nimittanbooutor@gmail.com",
-      buttonText: "Send Email"
+      color: "from-blue-400 to-blue-600"
     },
     {
       icon: Calendar,
-      title: "Schedule Meeting",
-      description: "Book a time slot that suits you",
+      title: "Schedule",
+      description: "Book a meeting",
       href: "https://calendly.com/nimittanbooutor/interview-scheduling",
-      buttonText: "Schedule Now"
+      color: "from-green-400 to-green-600"
     },
     {
       icon: MessageCircle,
-      title: "Live Chat",
-      description: "Chat with me directly",
+      title: "Chat",
+      description: "Let's discuss",
       href: "https://t.me/BenGii",
-      buttonText: "Start Chat"
+      color: "from-purple-400 to-purple-600"
     }
   ];
 
   return (
-    <section id="contact" className="py-16 bg-white relative">
-      <div className="max-w-4xl mx-auto px-6">
-        <motion.div 
-          className="text-center mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, opportunities, or just having a chat about technology.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+    <section id="contact" className="py-16 bg-gradient-to-b from-white to-gray-50/50">
+      <motion.div 
+        className="max-w-6xl mx-auto px-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contactMethods.map((method, index) => (
-            <motion.div
+            <motion.a
               key={method.title}
+              href={method.href}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={itemVariants}
-              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              whileHover={{ y: -5 }}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="p-3 rounded-full bg-blue-50 mb-4">
-                  <method.icon className="w-6 h-6 text-blue-600" />
+              <div className="relative z-10">
+                <div className={`inline-flex rounded-xl bg-gradient-to-r ${method.color} p-3 text-white shadow-lg`}>
+                  <method.icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-medium text-gray-900 mb-2">
+                <h3 className="mt-6 font-semibold text-lg text-gray-900">
                   {method.title}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="mt-2 text-gray-600">
                   {method.description}
                 </p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full bg-white hover:bg-blue-50 text-blue-600 border-blue-200"
-                >
-                  <a
-                    href={method.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {method.buttonText}
-                  </a>
-                </Button>
               </div>
-            </motion.div>
+              <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.a>
           ))}
-        </motion.div>
-      </div>
-      <Chat />
+        </div>
+      </motion.div>
     </section>
   );
 };
