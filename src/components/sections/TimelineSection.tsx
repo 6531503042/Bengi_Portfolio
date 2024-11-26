@@ -1,9 +1,11 @@
 import Timeline from "../Timeline";
 import { Experience } from "@/types";
+import { Badge, GraduationCap } from "lucide-react";
 
 interface TimelineSectionProps {
   items: Experience[];
 }
+
 
 const TimelineSection = ({ items }: TimelineSectionProps) => {
   return (
