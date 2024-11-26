@@ -5,58 +5,35 @@ import { projects } from "./projects";
 export const data: DataStore = {
   career: [
     {
-      name: "DBS Bank",
-      href: "https://www.dbs.com.sg",
-      title: "Graduate Associate (SEED Programme)",
-      logo: "/dbs.png",
-      start: "Jul 2023",
+      name: "Tech Innovations Corp",
+      href: "https://example.com",
+      title: "Senior Software Engineer",
+      logo: "/company1.png",
+      start: "Jan 2023",
       description: [
-        "Developed the Java backend for a bank account servicing process with multiple channel integrations using Activiti workflow",
-        "Built a custom database migration tool using Python and MariaDB and facilitated the migration of 1000+ processes from a vendor platform"
+        "Led development of a microservices architecture handling 1M+ daily requests using Node.js and Kubernetes",
+        "Implemented real-time analytics dashboard reducing data processing latency by 60% using React and WebSocket"
       ]
     },
     {
-      name: "Singapore Institute of Technology",
-      href: "https://www.singaporetech.edu.sg",
-      title: "Software Developer (Contract)",
-      logo: "/sit.png",
-      start: "Apr 2023",
-      end: "Jun 2023",
+      name: "Digital Solutions Ltd",
+      href: "https://example.org",
+      title: "Full Stack Developer",
+      logo: "/company2.png",
+      start: "Mar 2022",
+      end: "Dec 2022",
       description: [
-        "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs",
-        "Worked on DemoConstruct, a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images"
+        "Architected and deployed an AI-powered recommendation engine increasing user engagement by 45%",
+        "Developed a scalable content management system serving 500k+ monthly active users"
       ],
       links: [
         {
-          name: "NFTVue",
-          href: "https://nftvue.vercel.app",
+          name: "Project X",
+          href: "https://project-x.demo",
           icon: "globe"
         }
       ]
     },
-    {
-      name: "DBS Bank",
-      href: "https://www.dbs.com.sg",
-      title: "Software Developer (Intern)",
-      logo: "/dbs.png",
-      start: "May 2022",
-      end: "Dec 2022",
-      description: [
-        "Worked on the backend for the digital exchange and asset custody application using Spring Boot and Java",
-        "Built an admin dashboard web application for a DBS Metaverse event using Spring Security and Angular"
-      ]
-    },
-    {
-      name: "Activate Interactive Pte Ltd",
-      href: "https://www.activate.sg",
-      title: "Software Developer (Intern)",
-      logo: "/activate.png",
-      start: "May 2019",
-      end: "Aug 2019",
-      description: [
-        "Developed RP Connect, the iOS and Android mobile app for Republic Polytechnic using React Native"
-      ]
-    }
   ],
   education: [
     {
