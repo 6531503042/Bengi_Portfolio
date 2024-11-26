@@ -1,12 +1,9 @@
-import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "@/hooks/useTheme";
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,22 +104,6 @@ const Navigation = () => {
                 <span className="relative z-10">{item.label}</span>
               </button>
             ))}
-          </div>
-
-          {/* Theme Toggle Button */}
-          <div className="flex gap-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-accent"
-            >
-              {theme === "dark" ? (
-                <Sun className="w-5 h-5 text-foreground" />
-              ) : (
-                <Moon className="w-5 h-5 text-foreground" />
-              )}
-            </motion.button>
           </div>
         </div>
       </div>
