@@ -40,7 +40,7 @@ const HeroSection = () => {
     },
     { 
       icon: Instagram, 
-      href: "https://www.instagram.com/bengi.dev/", 
+      href: "https://www.instagram.com/i.bengii/", 
       label: "Instagram",
       hoverColor: "hover:text-pink-600",
     },
