@@ -81,7 +81,7 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           {links && links.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-2">
               {links.map((link, idx) => {
-                let Icon = link.icon === 'Globe' ? Globe : 
+                const Icon = link.icon === 'Globe' ? Globe : 
                           link.icon === 'Github' ? Github : ExternalLink;
                 
                 return (
