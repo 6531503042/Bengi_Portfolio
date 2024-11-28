@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Github, Mail, Linkedin, Download } from "lucide-react";
+import { Github, Mail, Linkedin, Download, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "./HeroSection.css";
 
@@ -24,6 +24,33 @@ const HeroSection = () => {
       transition: { duration: 0.6, ease: "easeOut" }
     }
   };
+
+  const socialLinks = [
+    { 
+      icon: Linkedin, 
+      href: "https://linkedin.com", 
+      label: "LinkedIn",
+      hoverColor: "hover:text-blue-600"
+    },
+    { 
+      icon: Github, 
+      href: "https://github.com/6531503042", 
+      label: "GitHub",
+      hoverColor: "hover:text-gray-900"
+    },
+    { 
+      icon: Instagram, 
+      href: "https://www.instagram.com/bengi.dev/", 
+      label: "Instagram",
+      hoverColor: "hover:text-pink-600",
+    },
+    { 
+      icon: Mail, 
+      href: "mailto:nimittanbooutor@gmail.com", 
+      label: "Email",
+      hoverColor: "hover:text-red-600"
+    }
+  ];
 
   return (
     <section 
@@ -63,7 +90,7 @@ const HeroSection = () => {
               className="text-xl text-gray-600 leading-relaxed"
             >
               I like to develop backend, drink instant coffee and get coding advice from my cat,  
-                🐱
+              <span className="animate-bounce inline-block ml-2">🐱</span>
             </motion.p>
 
             <motion.div
@@ -86,20 +113,18 @@ const HeroSection = () => {
               variants={itemVariants}
               className="flex gap-6 pt-4"
             >
-              {[
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Github, href: "https://github.com/6531503042", label: "GitHub" },
-                { icon: Mail, href: "mailto:nimittanbooutor@gmail.com", label: "Email" }
-              ].map((social, index) => (
+              {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-2xl bg-white shadow-lg hover:shadow-xl border border-gray-100 backdrop-blur-sm transition-all duration-300"
+                  className={`p-4 rounded-2xl bg-white shadow-lg hover:shadow-xl border border-gray-100 backdrop-blur-sm transition-all duration-300 group`}
                   aria-label={social.label}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <social.icon className="w-6 h-6 text-gray-600 hover:text-blue-600 transition-colors duration-300" />
+                  <social.icon className={`w-6 h-6 text-gray-600 ${social.hoverColor} transition-colors duration-300`} />
                 </motion.a>
               ))}
             </motion.div>
