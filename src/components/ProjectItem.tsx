@@ -1,5 +1,5 @@
 import { IProjectItem, RepoType } from "@/types";
-import { Github, ExternalLink, Play } from "lucide-react";
+import { Github, ExternalLink, Play, AlertCircle } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -10,6 +10,44 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { motion } from "framer-motion";
+
+const getStatusBadge = (project: IProjectItem) => {
+  const statusMap = {
+    "Gigantic-Mall": { text: "Dev", color: "text-orange-600 border-orange-200 bg-orange-50" },
+    "Deap Appointment App": { text: "Alpha", color: "text-purple-600 border-purple-200 bg-purple-50" },
+    "Sport-Complex": { text: "Beta", color: "text-blue-600 border-blue-200 bg-blue-50" },
+    "ATA Feedback System": { text: "Dev", color: "text-indigo-600 border-indigo-200 bg-indigo-50" },
+    "Portfolio Website": { text: "Live", color: "text-emerald-600 border-emerald-200 bg-emerald-50" }
+  };
+
+  const status = statusMap[project.title];
+  if (status) {
+    return (
+      <div className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium border 
+        rounded-full whitespace-nowrap ${status.color} transition-all duration-200 
+        hover:scale-105 hover:shadow-sm`}
+      >
+        <AlertCircle className="w-2.5 h-2.5 mr-0.5" />
+        {status.text}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium border 
+      rounded-full whitespace-nowrap transition-all duration-200 hover:scale-105 
+      hover:shadow-sm ${
+        project.repoType === RepoType.Private
+          ? "text-red-600 border-red-200 bg-red-50"
+          : "text-emerald-600 border-emerald-200 bg-emerald-50"
+      }`}
+    >
+      <AlertCircle className="w-2.5 h-2.5 mr-0.5" />
+      {project.repoType === RepoType.Private ? "Private" : "Public"}
+    </div>
+  );
+};
 
 const ProjectItem = ({ project }: { project: IProjectItem }) => {
   return (
@@ -43,13 +81,7 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
                   <p className="text-xs text-gray-500">{project.projectType}</p>
                 </div>
               </div>
-              <div className={`px-2 py-0.5 rounded-full text-xs font-medium border ${
-                project.repoType === RepoType.Private
-                  ? "text-red-600 border-red-200 bg-red-50"
-                  : "text-emerald-600 border-emerald-200 bg-emerald-50"
-              }`}>
-                {project.repoType}
-              </div>
+              {getStatusBadge(project)}
             </div>
 
             <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
@@ -57,14 +89,24 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
             </p>
 
             {project.tags && (
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1 mt-1">
                 {project.tags.map((tag, i) => (
-                  <div
+                  <motion.div
                     key={`tag-${i}`}
-                    className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="px-1.5 py-0.5 text-[10px] font-medium bg-gray-50 
+                      text-gray-500 rounded-md border border-gray-100 
+                      hover:bg-gray-100 hover:text-gray-700 
+                      transition-all duration-200 cursor-default
+                      hover:scale-105 hover:shadow-sm"
+                    style={{
+                      transform: `rotate(${Math.random() * 2 - 1}deg)` // Slight random rotation
+                    }}
                   >
                     {tag}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}
@@ -123,22 +165,34 @@ const ProjectItem = ({ project }: { project: IProjectItem }) => {
       </HoverCardTrigger>
       
       {project.screenshots && project.screenshots.length > 0 && (
-        <HoverCardContent side="top" className="w-[320px] p-0 bg-white/80 backdrop-blur-sm">
-          <div className="flex flex-col gap-2 p-2">
-            <img
-              src={project.screenshots[0]}
-              alt={project.title}
-              className="aspect-video w-full rounded-lg object-cover"
-            />
+        <HoverCardContent 
+          side="top" 
+          className="w-[280px] p-2 bg-white/90 backdrop-blur-sm"
+          sideOffset={10}
+        >
+          <div className="flex flex-col gap-2">
+            <div className="relative w-full rounded-lg bg-gray-50">
+              <img
+                src={project.screenshots[0]}
+                alt={project.title}
+                className="w-full h-auto max-h-[160px] rounded-lg object-scale-down"
+                loading="lazy"
+              />
+            </div>
             {project.screenshots.length > 1 && (
               <div className="grid grid-cols-2 gap-2">
                 {project.screenshots.slice(1, 3).map((screenshot, index) => (
-                  <img
-                    key={index}
-                    src={screenshot}
-                    alt={`${project.title} screenshot ${index + 2}`}
-                    className="aspect-video w-full rounded-lg object-cover"
-                  />
+                  <div 
+                    key={index} 
+                    className="relative rounded-lg bg-gray-50"
+                  >
+                    <img
+                      src={screenshot}
+                      alt={`${project.title} screenshot ${index + 2}`}
+                      className="w-full h-auto max-h-[80px] rounded-lg object-scale-down"
+                      loading="lazy"
+                    />
+                  </div>
                 ))}
               </div>
             )}

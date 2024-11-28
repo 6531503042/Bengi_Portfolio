@@ -10,7 +10,10 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
     tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project1.png",
+    image: "https://raw.githubusercontent.com/6531503042/Sport-Complex/blob/main/assets/Screenshot%202567-09-01%20at%2021.57.59.png",
+    screenshots: [
+      "https://raw.githubusercontent.com/6531503042/Sport-Complex/refs/heads/main/assets/Screenshot%202567-09-01%20at%2021.57.59.png",
+    ],
     technologies: [
       { name: "Go", icon: "/skills/go.svg" },
       { name: "Next.js", icon: "/skills/nextjs.svg" }
@@ -27,9 +30,9 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/mood-metrics",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
-    image: "https://github.com/6531503042/mood-metrics/blob/main/images/ata%20icon.png",
+    image: "https://raw.githubusercontent.com/6531503042/mood-metrics/refs/heads/main/images/ata%20icon.png?token=GHSAT0AAAAAAC2T3P7VAF2QENZ3V7TIBX6WZ2IPUOA",
     screenshots: [
-      "https://github.com/6531503042/mood-metrics/raw/main/images/ata%20icon.png",
+      "https://raw.githubusercontent.com/6531503042/mood-metrics/refs/heads/main/images/ata%20icon.png?token=GHSAT0AAAAAAC2T3P7VAF2QENZ3V7TIBX6WZ2IPUOA",
     ],
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
@@ -77,8 +80,8 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/ForecastAPI",
     tags: ["Java", "Spring Boot", "Jsp"],
-    screenshots: ["https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project2.png",
+    screenshots: ["https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png"],
+    image: "https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png",
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" }
     ],
@@ -95,7 +98,10 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Gigantic-Mall",
     tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
-    image: "https://raw.githubusercontent.com/6531503042/Portfolio-BenGi/main/img/project4.png",
+    screenshots: [
+      "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
+    ],
+    image: "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
       { name: "React", icon: "/skills/react.svg" }
