@@ -28,7 +28,7 @@ const HeroSection = () => {
   const socialLinks = [
     { 
       icon: Linkedin, 
-      href: "https://linkedin.com", 
+      href: "https://www.linkedin.com/in/nimitben/", 
       label: "LinkedIn",
       hoverColor: "hover:text-blue-600"
     },
@@ -132,21 +132,31 @@ const HeroSection = () => {
 
           <motion.div
             className="relative aspect-square"
+            initial={{ opacity: 1 }}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute inset-0"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl -rotate-6 transform transition-transform duration-300 hover:rotate-0"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-3xl rotate-3 transform transition-transform duration-300 hover:rotate-0"></div>
-              <img
-                src="https://raw.githubusercontent.com/6531503042/Bengi_Portfolio/main/public/Bengi.jpg"
-                alt="Profile"
-                className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl transition-transform duration-300 hover:scale-105"
-              />
-            </motion.div>
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl transform -rotate-6"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-3xl transform rotate-3"></div>
+              <motion.div
+                initial={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ 
+                  scale: {
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 25
+                  }
+                }}
+                className="relative w-full h-full will-change-transform"
+              >
+                <img
+                  src="https://raw.githubusercontent.com/6531503042/Bengi_Portfolio/main/public/Bengi.jpg"
+                  alt="Profile"
+                  className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl"
+                  loading="eager"
+                />
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
