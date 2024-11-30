@@ -30,9 +30,9 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/mood-metrics",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
-    image: "./public/images/ata.png",
+    image: "./public/ata.png",
     screenshots: [
-      "./public/images/ata.png",
+      "./public/ata.png",
     ],
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
