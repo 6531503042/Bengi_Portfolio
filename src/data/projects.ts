@@ -24,11 +24,11 @@ export const projects: IProjectItem[] = [
   {
     id: "ATA Feedback System",
     title: "ATA Feedback System",
-    description: "Feedback System for ATA IT LIMITED Canada Banking for Feedback System.",
+    description: "Feedback System management for ATA IT LIMITED Canada Banking",
     icons: ["/skills/spring-boot.svg", "/skills/nextjs.svg", "/skills/python.svg"],
     repoType: RepoType.Public,
     projectType: ProjectType.College,
-    githubUrl: "https://github.com/6531503042/mood-metrics",
+    githubUrl: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
     image: "./public/ata.png",
     screenshots: [
