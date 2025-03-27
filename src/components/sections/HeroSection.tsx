@@ -177,7 +177,7 @@ const HeroSection = () => {
                   className="relative w-full h-full will-change-transform"
                 >
                   <img
-                    src="https://raw.githubusercontent.com/6531503042/Bengi_Portfolio/main/public/Bengi.jpg"
+                    src=""
                     alt="Profile"
                     className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl"
                     loading="eager"
