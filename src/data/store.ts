@@ -5,6 +5,28 @@ import { projects } from "./projects";
 export const data: DataStore = {
   career: [
     {
+      name: "Freelance Developer",
+      href: "https://github.com/6531503042",
+      title: "Full Stack Developer",
+      logo: "/freelance.png",
+      start: "Jan 2023",
+      description: [
+        "Successfully delivered multiple web applications and systems for various clients",
+        "Developed a Sport Complex Booking System using Go and Next.js with microservices architecture",
+        "Built ATA Feedback System for ATA IT LIMITED Canada Banking using Spring Boot and Next.js",
+        "Created Deap Appointment App, a mobile application using Flutter and Firebase",
+        "Implemented Weather Forecast application using Spring Boot and JSP",
+        "Developed Gigantic-Mall, an e-commerce platform using Spring Boot and React"
+      ],
+      links: [
+        {
+          name: "Portfolio",
+          href: "https://github.com/6531503042",
+          icon: "globe"
+        }
+      ]
+    },
+    {
       name: "Tech Innovations Corp",
       href: "https://example.com",
       title: "Senior Software Engineer",
@@ -47,6 +69,8 @@ export const data: DataStore = {
         "Currently Studying",
         "3rd Year Student",
         "School of Information Technology",
+        "Focus on Full Stack Development and Software Architecture",
+        "Active participant in coding competitions and hackathons"
       ]
     }
   ],

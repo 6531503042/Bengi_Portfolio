@@ -4,6 +4,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    esmExternals: true
+  },
   images: {
     domains: [
       'github.com',

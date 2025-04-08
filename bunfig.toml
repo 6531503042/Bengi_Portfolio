@@ -1,0 +1,18 @@
+[install]
+peer = true
+production = false
+frozen-lockfile = false
+
+[install.scopes]
+next = "latest"
+
+[test]
+coverage = true
+
+[debug]
+bun = true
+
+[build]
+target = "browser"
+minify = true
+sourcemap = true

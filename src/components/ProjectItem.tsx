@@ -1,15 +1,5 @@
 import { IProjectItem, RepoType } from "@/types";
-import { Github, ExternalLink, Play, AlertCircle, Image as ImageIcon } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+import { Github, ExternalLink, AlertCircle, Image as ImageIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
 const getStatusBadge = (project: IProjectItem) => {

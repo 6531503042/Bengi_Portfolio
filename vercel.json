@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "buildCommand": "bun run build",
+  "devCommand": "bun run dev",
+  "installCommand": "curl -fsSL https://bun.sh/install | bash && bun install",
   "framework": "nextjs",
   "regions": ["sin1"],
   "images": {
@@ -13,5 +13,10 @@
       "res.cloudinary.com",
       "agroindustry.mfu.ac.th"
     ]
+  },
+  "build": {
+    "env": {
+      "NEXT_TELEMETRY_DISABLED": "1"
+    }
   }
 } 
