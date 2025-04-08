@@ -30,9 +30,9 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
-    image: "./public/ata.png",
+    image: "",
     screenshots: [
-      "./public/ata.png",
+      "",
     ],
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" },

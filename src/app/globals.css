@@ -53,7 +53,7 @@
   }
 
   html {
-    @apply bg-[#0a0b0c];
+    @apply bg-[#0a0b0c] text-[14px] md:text-[16px];
   }
 
   body {
@@ -68,11 +68,11 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl hover:bg-white/10 transition-colors duration-300;
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-md hover:bg-white/10 transition-colors duration-300;
   }
 
   .section-card {
-    @apply bg-white/10 backdrop-blur-sm border border-white/10 shadow-lg hover:bg-white/15 transition-colors duration-300;
+    @apply bg-white/10 backdrop-blur-sm border border-white/10 shadow-md hover:bg-white/15 transition-colors duration-300;
   }
 
   .nav-item {
@@ -88,6 +88,34 @@
     background-origin: border-box;
     background-clip: padding-box, border-box;
   }
+
+  /* Reduce spacing in sections */
+  section {
+    @apply py-12 md:py-16;
+  }
+
+  /* Adjust heading sizes */
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+
+  /* Reduce card padding */
+  .card, .glass-card, .section-card {
+    @apply p-4 md:p-6;
+  }
+
+  /* Adjust button sizes */
+  .btn, button {
+    @apply text-sm md:text-base;
+  }
 }
 
 @layer utilities {
@@ -102,18 +130,18 @@
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
 @keyframes pulse-glow {
   0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+  70% { box-shadow: 0 0 0 5px rgba(59, 130, 246, 0); }
   100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .animate-glow {

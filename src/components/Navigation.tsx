@@ -23,7 +23,7 @@ const Navigation = () => {
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
-        top: offsetTop,
+        top: offsetTop - 100, // Offset for the fixed header
         behavior: 'smooth'
       });
       setIsOpen(false);
@@ -79,16 +79,20 @@ const Navigation = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:block">
-          <GooeyNav
-            items={navigationItems}
-            animationTime={600}
-            particleCount={15}
-            particleDistances={[20, 42]}
-            particleR={75}
-            colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-            timeVariance={300}
-          />
+        <div className="hidden md:flex justify-center">
+          <nav className="flex space-x-8">
+            {navigationItems.map((item) => (
+              <motion.button
+                key={item.href}
+                onClick={() => handleNavigation(item.href)}
+                className="text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
+          </nav>
         </div>
 
         {/* Mobile Navigation */}

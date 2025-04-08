@@ -45,7 +45,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="min-h-[90vh] flex flex-col items-center justify-center relative">
+    <section id="hero" className="min-h-[90vh] flex flex-col items-center justify-center relative">
       <motion.div
         variants={container}
         initial="hidden"
@@ -164,7 +164,7 @@ const HeroSection = () => {
         isOpen={showResumePreview}
         onClose={() => setShowResumePreview(false)}
       />
-    </div>
+    </section>
   );
 };
 
