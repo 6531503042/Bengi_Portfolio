@@ -1,4 +1,4 @@
-import { IProjectItem, RepoType, ProjectType } from './store';
+import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 export const projects: IProjectItem[] = [
   {
@@ -6,14 +6,13 @@ export const projects: IProjectItem[] = [
     title: "Sport-Complex",
     description: "This is my college project booking system built using Go and Next.js used Microservices.",
     icons: ["/skills/go.svg", "/skills/nextjs.svg"],
-    repoType: 'Public',
-    projectType: 'College',
+    repoType: RepoType.Public,
+    projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
-    link: "https://github.com/6531503042/Sport-Complex",
     tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
-    image: "https://raw.githubusercontent.com/6531503042/Sport-Complex/blob/main/assets/Screenshot%202567-09-01%20at%2021.57.59.png",
+    image: "",
     screenshots: [
-      "https://raw.githubusercontent.com/6531503042/Sport-Complex/refs/heads/main/assets/Screenshot%202567-09-01%20at%2021.57.59.png",
+      "",
     ],
     technologies: [
       { name: "Go", icon: "/skills/go.svg" },
@@ -27,10 +26,9 @@ export const projects: IProjectItem[] = [
     title: "ATA Feedback System",
     description: "Feedback System management for ATA IT LIMITED Canada Banking",
     icons: ["/skills/spring-boot.svg", "/skills/nextjs.svg", "/skills/python.svg"],
-    repoType: 'Public',
-    projectType: 'College',
+    repoType: RepoType.Public,
+    projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
-    link: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
     image: "./public/ata.png",
     screenshots: [
@@ -54,10 +52,9 @@ export const projects: IProjectItem[] = [
     title: "Deap Appointment App",
     description: "Deap App is an appointment mobile application developed using Flutter and Firebase.",
     icons: ["/skills/flutter.svg", "/skills/firebase.svg", "/skills/dart.svg"],
-    repoType: 'Public',
-    projectType: 'College',
+    repoType: RepoType.Public,
+    projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
-    link: "https://github.com/6531503042/Deap-Mobile-Application",
     url: "https://github.com/6531503042/Deap-Mobile-Application/releases/tag/v1.0.0",
     playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
     tags: ["Dart", "Flutter", "Firebase"],
@@ -75,14 +72,31 @@ export const projects: IProjectItem[] = [
     sourceUrl: "https://github.com/6531503042/Deap-Mobile-Application"
   },
   {
+    id: "Weather-Forecast",
+    title: "Weather-Forecast",
+    description: "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
+    icons: ["/skills/spring-boot.svg"],
+    repoType: RepoType.Public,
+    projectType: ProjectType.College,
+    githubUrl: "https://github.com/6531503042/ForecastAPI",
+    tags: ["Java", "Spring Boot", "Jsp"],
+    screenshots: ["https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png"],
+    image: "https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png",
+    technologies: [
+      { name: "Spring Boot", icon: "/skills/spring-boot.svg" }
+    ],
+    featured: false,
+    demoUrl: "https://github.com/6531503042/ForecastAPI",
+    sourceUrl: "https://github.com/6531503042/ForecastAPI"
+  },
+  {
     id: "Gigantic-Mall",
     title: "Gigantic-Mall",
     description: "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture.",
     icons: ["/skills/spring-boot.svg"],
-    repoType: 'Public',
-    projectType: 'Personal',
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Gigantic-Mall",
-    link: "https://github.com/6531503042/Gigantic-Mall",
     tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
     screenshots: [
       "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
@@ -96,4 +110,5 @@ export const projects: IProjectItem[] = [
     demoUrl: "https://github.com/6531503042/Gigantic-Mall",
     sourceUrl: "https://github.com/6531503042/Gigantic-Mall"
   },
+  
 ];

@@ -1,5 +1,3 @@
-"use client";
-
 interface ColumnProps {
   children: React.ReactNode;
   classNames?: string;
