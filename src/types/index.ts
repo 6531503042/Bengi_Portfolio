@@ -68,6 +68,7 @@ export interface Technology {
 export interface Skill {
   name: string;
   icon: string;
+  specialties?: string[];
 }
 
 export interface SkillCategory {
@@ -75,6 +76,7 @@ export interface SkillCategory {
   description: string;
   icon: LucideIcon;
   skills: Skill[];
+  specialties?: string[];
 }
 
 export interface DataStore {
