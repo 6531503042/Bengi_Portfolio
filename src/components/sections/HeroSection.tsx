@@ -99,7 +99,8 @@ const HeroSection = () => {
           className="mb-8"
         >
           <h2 className="text-xl sm:text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-semibold">
-            Full-Stack Developer & Problem Solver
+            Backend Developer
+            <span className="text-gray-400 font-normal"> with Frontend Skills</span>
           </h2>
         </motion.div>
 
@@ -113,8 +114,18 @@ const HeroSection = () => {
               Mae Fah Luang University
             </span>
             . Passionate about solving business problems through technology.
-            <br />
-            Specialized in backend development with expertise in frontend, AI/ML, and DevOps.
+            <br className="hidden sm:block" />
+            <span className="relative inline-block mt-2 sm:mt-4">
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-lg"></span>
+              <span className="relative">
+                Specialized in{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
+                  Backend Development
+                </span>
+              </span>
+            </span>
+            {' '}with experience in{' '}
+            <span className="text-gray-200/90 font-medium">Frontend Development</span>.
           </p>
         </motion.div>
 

@@ -5,57 +5,47 @@ import { projects } from "./projects";
 export const data: DataStore = {
   career: [
     {
-      name: "Freelance Developer",
-      href: "https://github.com/6531503042",
-      title: "Full Stack Developer",
-      logo: "/freelance.png",
-      start: "Jan 2023",
+      name: "Example Tech Company",
+      href: "#",
+      title: "Backend Developer Intern",
+      logo: "/company-logos/example1.png",
+      start: "Jun 2023",
+      end: "Aug 2023",
       description: [
-        "Successfully delivered multiple web applications and systems for various clients",
-        "Developed a Sport Complex Booking System using Go and Next.js with microservices architecture",
-        "Built ATA Feedback System for ATA IT LIMITED Canada Banking using Spring Boot and Next.js",
-        "Created Deap Appointment App, a mobile application using Flutter and Firebase",
-        "Implemented Weather Forecast application using Spring Boot and JSP",
-        "Developed Gigantic-Mall, an e-commerce platform using Spring Boot and React"
+        "Developed and maintained microservices using Go and Spring Boot",
+        "Implemented clean architecture patterns and best practices",
+        "Worked with PostgreSQL, MongoDB, and Redis for data management",
+        "Contributed to API design and documentation"
       ],
       links: [
         {
-          name: "Portfolio",
-          href: "https://github.com/6531503042",
+          name: "Company Website",
+          href: "#",
           icon: "globe"
         }
       ]
     },
     {
-      name: "Tech Innovations Corp",
-      href: "https://example.com",
-      title: "Senior Software Engineer",
-      logo: "/company1.png",
-      start: "Jan 2023",
+      name: "Example Startup",
+      href: "#",
+      title: "Backend Developer (Part-time)",
+      logo: "/company-logos/example2.png",
+      start: "Sep 2023",
+      end: "Present",
       description: [
-        "Led development of a microservices architecture handling 1M+ daily requests using Node.js and Kubernetes",
-        "Implemented real-time analytics dashboard reducing data processing latency by 60% using React and WebSocket"
-      ]
-    },
-    {
-      name: "Digital Solutions Ltd",
-      href: "https://example.org",
-      title: "Full Stack Developer",
-      logo: "/company2.png",
-      start: "Mar 2022",
-      end: "Dec 2022",
-      description: [
-        "Architected and deployed an AI-powered recommendation engine increasing user engagement by 45%",
-        "Developed a scalable content management system serving 500k+ monthly active users"
+        "Building scalable backend systems using Go and microservices",
+        "Implementing event-driven architecture with Kafka",
+        "Managing containerized applications with Docker and Kubernetes",
+        "Developing RESTful APIs and gRPC services"
       ],
       links: [
         {
-          name: "Project X",
-          href: "https://project-x.demo",
+          name: "Project Demo",
+          href: "#",
           icon: "globe"
         }
       ]
-    },
+    }
   ],
   education: [
     {
@@ -66,11 +56,10 @@ export const data: DataStore = {
       start: "2022",
       end: "2026",
       description: [
-        "Currently Studying",
-        "3rd Year Student",
-        "School of Information Technology",
-        "Focus on Full Stack Development and Software Architecture",
-        "Active participant in coding competitions and hackathons"
+        "Currently in 3rd Year",
+        "Focus on Backend Development and System Architecture",
+        "Relevant Coursework: Distributed Systems, Database Management, Software Architecture",
+        "GPA: 3.XX/4.00"
       ]
     }
   ],
