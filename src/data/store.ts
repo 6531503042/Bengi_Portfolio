@@ -1,6 +1,71 @@
 import { Code2, Server, Layout, Wrench, Database } from "lucide-react";
-import { DataStore, IProjectItem, RepoType, ProjectType } from '@/types';
-import { projects } from "./projects";
+import { projects } from './projects';
+
+export interface IProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  tags: string[];
+  status?: string;
+  githubUrl?: string;
+  url?: string;
+  screenshots?: string[];
+  icons?: string[];
+  repoType?: RepoType;
+  projectType?: ProjectType;
+  technologies?: { name: string; icon: string; }[];
+  featured?: boolean;
+  demoUrl?: string;
+  sourceUrl?: string;
+  playStore?: string;
+}
+
+export enum RepoType {
+  Public = "Public",
+  Private = "Private"
+}
+
+export enum ProjectType {
+  Personal = "Personal",
+  College = "College",
+  Work = "Work"
+}
+
+export interface CareerItem {
+  name: string;
+  href: string;
+  title: string;
+  logo: string;
+  start: string;
+  end?: string;
+  description: string[];
+  links?: {
+    name: string;
+    href: string;
+    icon: string;
+  }[];
+}
+
+export interface SkillItem {
+  name: string;
+  icon: string;
+}
+
+export interface SkillSection {
+  title: string;
+  description: string;
+  icon: typeof Code2 | typeof Server | typeof Layout | typeof Wrench | typeof Database;
+  skills: SkillItem[];
+}
+
+export interface DataStore {
+  career: CareerItem[];
+  education: CareerItem[];
+  skills: SkillSection[];
+  projects: IProjectItem[];
+}
 
 export const data: DataStore = {
   career: [
@@ -112,5 +177,5 @@ export const data: DataStore = {
       ]
     }
   ],
-  projects: projects
+  projects
 };

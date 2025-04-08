@@ -1,4 +1,4 @@
-import { IProjectItem, ProjectType, RepoType } from "@/types";
+import { IProjectItem, RepoType, ProjectType } from './store';
 
 export const projects: IProjectItem[] = [
   {
@@ -9,6 +9,7 @@ export const projects: IProjectItem[] = [
     repoType: RepoType.Public,
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
+    link: "https://github.com/6531503042/Sport-Complex",
     tags: ["Go", "Next.js", "Microservices", "MongoDB", "Docker", "Kafka", "JWT", "Management"],
     image: "https://raw.githubusercontent.com/6531503042/Sport-Complex/blob/main/assets/Screenshot%202567-09-01%20at%2021.57.59.png",
     screenshots: [
@@ -29,6 +30,7 @@ export const projects: IProjectItem[] = [
     repoType: RepoType.Public,
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
+    link: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1.git",
     tags: ["Java", "Spring Boot", "Next.js", "Python", "PostgreSQL", "MongoDB", "Docker", "Hugging Face"],
     image: "./public/ata.png",
     screenshots: [
@@ -55,6 +57,7 @@ export const projects: IProjectItem[] = [
     repoType: RepoType.Public,
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
+    link: "https://github.com/6531503042/Deap-Mobile-Application",
     url: "https://github.com/6531503042/Deap-Mobile-Application/releases/tag/v1.0.0",
     playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
     tags: ["Dart", "Flutter", "Firebase"],
@@ -72,24 +75,6 @@ export const projects: IProjectItem[] = [
     sourceUrl: "https://github.com/6531503042/Deap-Mobile-Application"
   },
   {
-    id: "Weather-Forecast",
-    title: "Weather-Forecast",
-    description: "A weather forecast application developed using Spring Boot, Java and JSP during my 2nd year. It provides current weather updates and a 5-day forecast with hourly details.",
-    icons: ["/skills/spring-boot.svg"],
-    repoType: RepoType.Public,
-    projectType: ProjectType.College,
-    githubUrl: "https://github.com/6531503042/ForecastAPI",
-    tags: ["Java", "Spring Boot", "Jsp"],
-    screenshots: ["https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png"],
-    image: "https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png",
-    technologies: [
-      { name: "Spring Boot", icon: "/skills/spring-boot.svg" }
-    ],
-    featured: false,
-    demoUrl: "https://github.com/6531503042/ForecastAPI",
-    sourceUrl: "https://github.com/6531503042/ForecastAPI"
-  },
-  {
     id: "Gigantic-Mall",
     title: "Gigantic-Mall",
     description: "Is a Shopping Mall for both Management & Buyer for web application developed using Spring Boot and React. And Used Microservices Architecture.",
@@ -97,6 +82,7 @@ export const projects: IProjectItem[] = [
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/Gigantic-Mall",
+    link: "https://github.com/6531503042/Gigantic-Mall",
     tags: ["Java", "Spring Boot", "React", "MySQL", "Heroku"],
     screenshots: [
       "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
@@ -110,5 +96,4 @@ export const projects: IProjectItem[] = [
     demoUrl: "https://github.com/6531503042/Gigantic-Mall",
     sourceUrl: "https://github.com/6531503042/Gigantic-Mall"
   },
-  
 ];

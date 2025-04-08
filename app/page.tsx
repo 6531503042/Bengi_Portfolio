@@ -6,7 +6,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ContactSection from '@/components/sections/ContactSection';
-import MouseEffect from '@/components/effects/MouseEffect';
+import { MouseEffect } from '@/components/effects/MouseEffect';
 import { motion } from 'framer-motion';
 
 const ClientWaves = dynamic(() => import('@/components/ClientWaves'), {

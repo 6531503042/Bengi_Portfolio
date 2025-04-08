@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
+import typography from '@tailwindcss/typography';
+import animatePlugin from "tailwindcss-animate";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -79,10 +81,26 @@ export default {
         'none': 'none',
         'blur': 'blur(8px)',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '65ch',
+            color: 'inherit',
+            a: {
+              color: 'inherit',
+              '&:hover': {
+                color: 'var(--primary)',
+              },
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
-    require('@tailwindcss/typography'),
+    animatePlugin,
+    typography,
   ],
-} satisfies Config;
+};
+
+export default config;
