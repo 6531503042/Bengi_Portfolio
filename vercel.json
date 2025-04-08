@@ -4,5 +4,14 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "images": {
+    "sizes": [640, 750, 828, 1080, 1200, 1920],
+    "domains": [
+      "github.com",
+      "raw.githubusercontent.com",
+      "res.cloudinary.com",
+      "agroindustry.mfu.ac.th"
+    ]
+  }
 } 

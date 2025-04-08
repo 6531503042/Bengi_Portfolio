@@ -5,7 +5,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['github.com', 'raw.githubusercontent.com'],
+    domains: [
+      'github.com',
+      'raw.githubusercontent.com',
+      'res.cloudinary.com',
+      'agroindustry.mfu.ac.th'
+    ],
+    unoptimized: true
   },
   // Ensure proper handling of Three.js
   webpack: (config) => {
