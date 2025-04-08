@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "bun run next build",
+    "start": "bun run next start",
+    "lint": "bun run next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
