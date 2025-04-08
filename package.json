@@ -39,7 +39,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-three/drei": "9.92.7",
     "@react-three/fiber": "8.15.12",
-    "@tanstack/react-query": "^5.17.19",
+    "@tanstack/react-query": "^5.72.0",
     "@types/three": "^0.159.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -48,6 +48,7 @@
     "embla-carousel-react": "^8.0.0-rc22",
     "framer-motion": "^11.0.3",
     "framer-motion-3d": "^10.16.16",
+    "input-otp": "^1.4.2",
     "lucide-react": "^0.330.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
@@ -56,10 +57,12 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.0",
     "react-resizable-panels": "^2.0.6",
+    "recharts": "^2.15.2",
     "sonner": "^1.4.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "three": "0.159.0"
+    "three": "0.159.0",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

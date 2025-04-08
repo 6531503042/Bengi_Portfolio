@@ -1,5 +1,10 @@
+'use client';
+
 import { Code2, Server, Layout, Wrench, Database } from "lucide-react";
 import { projects } from './projects';
+
+export type RepoType = 'Public' | 'Private';
+export type ProjectType = 'Personal' | 'College' | 'Work';
 
 export interface IProjectItem {
   id: string;
@@ -20,17 +25,6 @@ export interface IProjectItem {
   demoUrl?: string;
   sourceUrl?: string;
   playStore?: string;
-}
-
-export enum RepoType {
-  Public = "Public",
-  Private = "Private"
-}
-
-export enum ProjectType {
-  Personal = "Personal",
-  College = "College",
-  Work = "Work"
 }
 
 export interface CareerItem {
