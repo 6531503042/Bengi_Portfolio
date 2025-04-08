@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import MouseEffect from '@/components/effects/MouseEffect';
 import dynamic from 'next/dynamic';
 
-const ClientWaves = dynamic(() => import('@/components/ClientWaves'), {
+const Waves = dynamic(() => import('@/components/effects/Waves'), {
   ssr: false,
 });
 
@@ -69,18 +69,18 @@ export default function RootLayout({
               
               {/* Wave effects */}
               <div className="absolute inset-0">
-                <ClientWaves 
+                <Waves
                   lineColor="rgba(255, 255, 255, 0.2)"
                   backgroundColor="transparent"
-                  waveSpeedX={0.007}
-                  waveSpeedY={0.005}
-                  waveAmpX={30}
-                  waveAmpY={25}
-                  friction={0.6}
-                  tension={0.015}
+                  waveSpeedX={0.02}
+                  waveSpeedY={0.01}
+                  waveAmpX={40}
+                  waveAmpY={20}
+                  friction={0.9}
+                  tension={0.01}
                   maxCursorMove={120}
-                  xGap={28}
-                  yGap={52}
+                  xGap={12}
+                  yGap={36}
                 />
               </div>
             </div>
