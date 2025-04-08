@@ -1,199 +1,170 @@
-import React from 'react';
-import { motion } from "framer-motion";
-import { Github, Mail, Linkedin, Download, Instagram, ZoomIn } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import "./HeroSection.css";
-import { useState } from 'react';
-import ResumePreview from '@/components/ResumePreview';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Twitter, Mail, FileText, Download } from 'lucide-react';
+import { Button } from '../ui/button';
+import ResumePreview from '../ResumePreview';
+import './HeroSection.css';
 
 const HeroSection = () => {
   const [showResumePreview, setShowResumePreview] = useState(false);
 
-  const containerVariants = {
+  const container = {
     hidden: { opacity: 0 },
-    visible: {
+    show: {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  const glowVariants = {
+    initial: { opacity: 0.5, scale: 1 },
+    animate: {
+      opacity: [0.5, 0.8, 0.5],
+      scale: [1, 1.05, 1],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
   const socialLinks = [
-    { 
-      icon: Linkedin, 
-      href: "https://www.linkedin.com/in/nimitben/", 
-      label: "LinkedIn",
-      hoverColor: "hover:text-blue-600"
-    },
-    { 
-      icon: Github, 
-      href: "https://github.com/6531503042", 
-      label: "GitHub",
-      hoverColor: "hover:text-gray-900"
-    },
-    { 
-      icon: Instagram, 
-      href: "https://www.instagram.com/i.bengii/", 
-      label: "Instagram",
-      hoverColor: "hover:text-pink-600",
-    },
-    { 
-      icon: Mail, 
-      href: "mailto:nimittanbooutor@gmail.com", 
-      label: "Email",
-      hoverColor: "hover:text-red-600"
-    }
+    { icon: <Github className="w-5 h-5" />, url: 'https://github.com/6531503042', label: 'GitHub' },
+    { icon: <Linkedin className="w-5 h-5" />, url: 'https://linkedin.com/in/bengi', label: 'LinkedIn' },
+    { icon: <Twitter className="w-5 h-5" />, url: 'https://twitter.com/bengi', label: 'Twitter' },
+    { icon: <Mail className="w-5 h-5" />, url: 'mailto:nimittanbooutor@gmail.com', label: 'Email' },
   ];
 
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/Resume.pdf';
-    link.download = 'Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
-    <>
-      <section 
-        id="home"
-        className="min-h-[90vh] flex items-center bg-gradient-to-br from-white to-blue-50"
+    <div className="min-h-[90vh] flex flex-col items-center justify-center relative">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="text-center w-full max-w-4xl mx-auto px-4 relative z-10"
       >
-        <div className="max-w-6xl mx-auto px-6 py-12">
+        <motion.div 
+          variants={item} 
+          className="mb-2 relative"
+        >
+          {/* Glowing background effect */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-16 items-center"
-          >
-            <div className="space-y-8">
-              <motion.div
-                variants={itemVariants}
-                className="relative"
-              >
-                <h1 className="text-6xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 flex items-center gap-4"
-                    style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
-                  Hi I'm BenGii
-                  <span className="wave-emoji">👋</span>
-                </h1>
-                <div className="absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-blue-200 to-purple-200 opacity-20 blur-3xl"></div>
-              </motion.div>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-2xl text-gray-600 leading-relaxed"
-              >
-                21-year-old backend software developer from Thailand 
-                <span className="ml-2 animate-pulse">🇹🇭</span>
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-xl text-gray-600 leading-relaxed"
-              >
-                I like to develop backend, drink instant coffee and get coding advice from my cat,  
-                <span className="animate-bounce inline-block ml-2">🐱</span>
-              </motion.p>
-
-              <motion.div
-                variants={itemVariants}
-                className="pt-4 flex gap-3"
-              >
-                <Button 
-                  variant="outline" 
-                  className="group relative px-6 py-3 bg-white backdrop-blur-sm border-2 border-blue-200 hover:border-blue-400 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={handleDownloadResume}
-                >
-                  <span className="relative z-10 flex items-center gap-2 text-blue-600 group-hover:text-blue-700">
-                    <Download className="w-5 h-5" />
-                    Download Resume
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Button>
-
-                <Button 
-                  variant="outline" 
-                  className="group relative px-6 py-3 bg-white backdrop-blur-sm border-2 border-blue-200 hover:border-blue-400 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => setShowResumePreview(true)}
-                >
-                  <span className="relative z-10 flex items-center gap-2 text-blue-600 group-hover:text-blue-700">
-                    <ZoomIn className="w-5 h-5" />
-                    Preview Resume
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-6 pt-4"
-              >
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-4 rounded-2xl bg-white shadow-lg hover:shadow-xl border border-gray-100 backdrop-blur-sm transition-all duration-300 group`}
-                    aria-label={social.label}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <social.icon className={`w-6 h-6 text-gray-600 ${social.hoverColor} transition-colors duration-300`} />
-                  </motion.a>
-                ))}
-              </motion.div>
-            </div>
-
-            <motion.div
-              className="relative aspect-square"
-              initial={{ opacity: 1 }}
+            className="absolute -inset-10 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+            variants={glowVariants}
+            initial="initial"
+            animate="animate"
+          />
+          
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 relative">
+            Hello there, I'm{' '}
+            <motion.span
+              className="inline-block relative"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
             >
-              <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl transform -rotate-6"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-3xl transform rotate-3"></div>
-                <motion.div
-                  initial={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ 
-                    scale: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 25
-                    }
-                  }}
-                  className="relative w-full h-full will-change-transform"
-                >
-                  <img
-                    src="https://raw.githubusercontent.com/6531503042/Bengi_Portfolio/main/public/Bengi.jpg"
-                    alt="Profile"
-                    className="relative w-full h-full rounded-2xl object-cover object-[60%] shadow-xl"
-                    loading="eager"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-      
-      <ResumePreview 
-        isOpen={showResumePreview} 
-        onClose={() => setShowResumePreview(false)} 
+              <span className="relative inline-block">
+                <span className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg blur-xl opacity-50" />
+                <span className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-transparent bg-clip-text">
+                  Bengi
+                </span>
+              </span>
+            </motion.span>{' '}
+            <motion.span
+              className="wave-emoji inline-block"
+              animate={{
+                rotate: [0, 15, -15, 15, 0],
+                transition: {
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                }
+              }}
+            >
+              👋
+            </motion.span>
+          </h1>
+        </motion.div>
+
+        <motion.div 
+          variants={item} 
+          className="mb-8"
+        >
+          <h2 className="text-xl sm:text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-semibold">
+            Full-Stack Developer & Problem Solver
+          </h2>
+        </motion.div>
+
+        <motion.div 
+          variants={item} 
+          className="mb-10 text-center max-w-2xl mx-auto"
+        >
+          <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+            3rd year Software Engineering student at{' '}
+            <span className="font-semibold text-blue-400">
+              Mae Fah Luang University
+            </span>
+            . Passionate about solving business problems through technology.
+            <br />
+            Specialized in backend development with expertise in frontend, AI/ML, and DevOps.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          variants={item} 
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+        >
+          <Button 
+            variant="default" 
+            size="lg" 
+            onClick={() => setShowResumePreview(true)}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <FileText className="w-4 h-4 mr-2" /> View Resume
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            onClick={() => window.open('/resume.pdf', '_blank')}
+            className="border-2 border-purple-500/30 hover:border-purple-500/50 backdrop-blur-sm transition-all duration-300"
+          >
+            <Download className="w-4 h-4 mr-2" /> Download Resume
+          </Button>
+        </motion.div>
+
+        <motion.div 
+          variants={item} 
+          className="social-icons flex justify-center gap-4 sm:gap-6"
+        >
+          {socialLinks.map((link, index) => (
+            <motion.a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:border-white/20"
+              whileHover={{ y: -3 }}
+              aria-label={link.label}
+            >
+              {link.icon}
+            </motion.a>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      <ResumePreview
+        isOpen={showResumePreview}
+        onClose={() => setShowResumePreview(false)}
       />
-    </>
+    </div>
   );
 };
 

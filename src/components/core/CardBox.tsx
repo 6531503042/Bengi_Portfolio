@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useMotionTemplate, useSpring } from "framer-motion";
 import { MouseEvent } from "react";
 
@@ -20,8 +22,8 @@ const CardBox = ({ children, classNames = "", onClick, id, elementRef }: CardBox
     mouseY.set(e.clientY - top);
   }
 
-  let maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
-  let style = { maskImage, WebkitMaskImage: maskImage };
+  const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <div

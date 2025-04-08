@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, useSpring } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 
 const MouseEffect = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -86,14 +88,14 @@ const MouseEffect = () => {
             }
           }}
         >
-          {/* Main GIF */}
+          {/* Main GIF with glass effect */}
           <div className="w-full h-full relative">
             <img
               src="./among-us-eject.gif"
               alt="Among Us"
               className="w-full h-full object-contain relative z-10"
               style={{
-                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.2))",
+                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.1))",
                 willChange: "transform",
                 imageRendering: "crisp-edges",
                 transform: `scale(${isMoving ? 1.02 : 1})`,
@@ -102,12 +104,12 @@ const MouseEffect = () => {
             />
           </div>
 
-          {/* Dynamic shadow */}
+          {/* Subtle glow effect */}
           <motion.div
-            className="absolute inset-0 bg-black/15 rounded-full filter blur-md"
+            className="absolute inset-0 rounded-full filter blur-md"
             animate={{
               scale: [1, 1.05, 1],
-              opacity: [0.2, 0.25, 0.2]
+              opacity: [0.15, 0.2, 0.15]
             }}
             transition={{
               duration: 2,
@@ -115,6 +117,7 @@ const MouseEffect = () => {
               ease: "easeInOut"
             }}
             style={{
+              background: "radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%)",
               transformOrigin: "center",
               zIndex: 0
             }}

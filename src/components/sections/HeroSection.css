@@ -6,7 +6,8 @@
     position: relative;
     animation: continuous-wave 2s infinite ease-in-out;
     transform-origin: 70% 70%; /* Focus the wave around the emoji's hand area */
-    color: #2563eb; /* Bright, visible color */
+    color: #3b82f6; /* Bright, visible color */
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
   }
   
   @keyframes continuous-wave {
@@ -38,7 +39,7 @@
   
   .wave-emoji:hover {
     animation: continuous-wave 1s infinite; /* Makes it wave faster on hover */
-    filter: brightness(1.2); /* Makes it slightly brighter on hover */
+    filter: brightness(1.2) drop-shadow(0 0 12px rgba(59, 130, 246, 0.5)); /* Makes it slightly brighter on hover */
   }
   
   @media (prefers-reduced-motion: reduce) {
@@ -60,11 +61,12 @@
 .heading-gradient {
     font-size: 2.5rem;
     font-weight: bold;
-    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     animation: gradient-flow 3s linear infinite;
+    background-size: 200% auto;
   }
   
   /* Add smooth transitions */
@@ -87,7 +89,7 @@
   }
   
   .wave-emoji {
-    text-shadow: 0 0 12px rgba(99, 102, 241, 0.5), 0 0 16px rgba(139, 92, 246, 0.4);
+    text-shadow: 0 0 12px rgba(59, 130, 246, 0.5), 0 0 16px rgba(99, 102, 241, 0.4);
   }
   
   /* Enhance accessibility */
@@ -107,7 +109,23 @@
     .heading-gradient {
       animation: none;
       transform: none;
-      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
     }
   }
+  
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .wave-emoji {
+    color: #60a5fa;
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.4));
+  }
+
+  .wave-emoji:hover {
+    filter: brightness(1.2) drop-shadow(0 0 12px rgba(96, 165, 250, 0.5));
+  }
+
+  .heading-gradient {
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+  }
+}
   

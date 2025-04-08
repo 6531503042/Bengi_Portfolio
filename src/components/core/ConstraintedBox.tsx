@@ -1,3 +1,5 @@
+"use client";
+
 import type { CoreComponentsProps } from "@/types";
 
 const ConstraintedBox = (props: Readonly<CoreComponentsProps>) => {

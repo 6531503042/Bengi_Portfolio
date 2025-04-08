@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { data } from "@/data/store";
 import SkillItem from "../ui/SkillItem";

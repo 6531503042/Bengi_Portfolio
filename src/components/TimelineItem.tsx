@@ -40,8 +40,8 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
               <>
                 <span className="text-muted-foreground/60">→</span>
                 <span className="font-medium">
-                  {end === "2022" ? "2027" : end}
-                  {end === "2027" && (
+                  {end === "2022" ? "2026" : end}
+                  {end === "2026" && (
                     <Badge variant="secondary" className="ml-2">
                       Expected
                     </Badge>

@@ -38,7 +38,7 @@ const ProjectsGrid = () => {
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
+              {project.technologies?.map((tech) => (
                 <div
                   key={tech.name}
                   className="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded-full"

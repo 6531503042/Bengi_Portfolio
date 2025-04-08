@@ -38,11 +38,11 @@ export const data: DataStore = {
   education: [
     {
       name: "Mae Fah Luang University",
-      href: "https://mfu.ac.th",
+      href: "https://agroindustry.mfu.ac.th",
       title: "Bachelor of Engineering in Software Engineering",
       logo: "https://agroindustry.mfu.ac.th/wp-content/uploads/2018/07/icon_logo.png",
       start: "2022",
-      end: "2027",
+      end: "2026",
       description: [
         "Currently Studying",
         "3rd Year Student",

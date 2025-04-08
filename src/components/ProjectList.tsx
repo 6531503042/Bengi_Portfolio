@@ -1,93 +1,92 @@
-import { createRef, useState, MouseEvent } from "react";
-import { IProjectItem } from "@/types";
-import ProjectItem from "./ProjectItem";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
 
-const ProjectList = ({ projects }: { projects: IProjectItem[] }) => {
-  const carouselRef = createRef<HTMLDivElement>();
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  github?: string;
+  demo?: string;
+}
 
-  const handleMouseDown = (e: MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0));
-    setScrollLeft(carouselRef.current?.scrollLeft || 0);
-  };
+interface ProjectListProps {
+  projects: Project[];
+}
 
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !carouselRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - (carouselRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handlePrev = () => {
-    if (!carouselRef.current) return;
-    const offset = window.innerWidth < 768 ? 320 : 400;
-    const targetScroll = carouselRef.current.scrollLeft - offset;
-    carouselRef.current.scrollTo({
-      left: targetScroll,
-      behavior: 'smooth'
-    });
-  };
-
-  const handleNext = () => {
-    if (!carouselRef.current) return;
-    const offset = window.innerWidth < 768 ? 320 : 400;
-    const targetScroll = carouselRef.current.scrollLeft + offset;
-    carouselRef.current.scrollTo({
-      left: targetScroll,
-      behavior: 'smooth'
-    });
+const ProjectList = ({ projects }: ProjectListProps) => {
+  const projectVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
   };
 
   return (
-    <div className="relative px-12">
-      <div
-        ref={carouselRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar pb-4 cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
-        {projects.map((project, index) => (
-          <div key={`project-${index}`} className="flex-shrink-0 w-[300px] md:w-[320px]">
-            <ProjectItem project={project} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <motion.div
+          key={index}
+          variants={projectVariants}
+          className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          <div className="relative h-48 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-        ))}
-      </div>
-
-      <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between w-full pointer-events-none px-2">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={handlePrev}
-          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110 hover:bg-white"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={handleNext}
-          className="rounded-full shadow-lg hover:shadow-xl bg-white/80 backdrop-blur-sm pointer-events-auto transform transition-all hover:scale-110 hover:bg-white"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-      </div>
+          
+          <div className="p-6 space-y-4">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              {project.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">
+              {project.description}
+            </p>
+            
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag, tagIndex) => (
+                <span
+                  key={tagIndex}
+                  className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <div className="flex gap-4 pt-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>Source</span>
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-sm text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Demo</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import Timeline from "../Timeline";
 import { Experience } from "@/types";
 import { Badge, GraduationCap } from "lucide-react";

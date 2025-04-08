@@ -1,113 +1,121 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import GooeyNav from './GooeyNav';
+
+const navigationItems = [
+  { label: "Home", href: "#hero" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" }
+];
 
 const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 100], [0.2, 0.8]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
-
-      const sections = ["home", "experience", "projects", "contact"];
-      let active = "home";
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const isVisible = rect.top <= 100 && rect.bottom >= 100;
-
-          if (isVisible) {
-            active = section;
-            break;
-          }
-        }
-      }
-
-      // Highlight "Contact" when at the bottom of the page
-      const lastSection = document.getElementById("contact");
-      if (
-        lastSection &&
-        lastSection.getBoundingClientRect().bottom <= window.innerHeight
-      ) {
-        active = "contact";
-      }
-
-      setActiveSection(active);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
-  ];
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+  // Handle smooth scrolling
+  const handleNavigation = (href: string) => {
+    const element = document.querySelector(href);
     if (element) {
-      const offset = 80; // Adjust this to match the navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
-        top: Math.max(offsetPosition, 0), // Prevent scrolling above the top
-        behavior: "smooth",
+        top: offsetTop,
+        behavior: 'smooth'
       });
+      setIsOpen(false);
     }
   };
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <motion.nav
+    <motion.header 
+      className="fixed top-0 left-0 right-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
-      }`}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          {/* Logo or Brand Name */}
-          <button 
-            onClick={() => scrollToSection("home")}
-            className="text-xl font-bold text-foreground"
+      {/* Glass background */}
+      <motion.div 
+        className="absolute inset-0 backdrop-blur-md"
+        style={{ 
+          opacity,
+          background: 'linear-gradient(to bottom, rgba(10, 11, 12, 0.8), rgba(10, 11, 12, 0.7))'
+        }}
+      />
+      
+      {/* Subtle borders */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      
+      {/* Content */}
+      <div className="container relative mx-auto px-4 py-4">
+        {/* Mobile menu button */}
+        <div className="md:hidden absolute right-4 top-4 z-50">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
           >
-            BenGi
+            {isOpen ? (
+              <X className="w-6 h-6 text-white" />
+            ) : (
+              <Menu className="w-6 h-6 text-white" />
+            )}
           </button>
+        </div>
 
-          {/* Navigation Links */}
-          <div className="flex gap-1">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors ${
-                  activeSection === item.id ? "font-bold" : ""
-                }`}
+        {/* Desktop Navigation */}
+        <div className="hidden md:block">
+          <GooeyNav
+            items={navigationItems}
+            animationTime={600}
+            particleCount={15}
+            particleDistances={[20, 42]}
+            particleR={75}
+            colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            timeVariance={300}
+          />
+        </div>
+
+        {/* Mobile Navigation */}
+        <motion.div
+          initial={false}
+          animate={{ 
+            opacity: isOpen ? 1 : 0,
+            x: isOpen ? 0 : 100
+          }}
+          className={`${isOpen ? 'fixed' : 'hidden'} inset-0 bg-[#0B0B1E]/95 backdrop-blur-lg md:hidden`}
+        >
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            {navigationItems.map((item) => (
+              <motion.button
+                key={item.href}
+                onClick={() => handleNavigation(item.href)}
+                className="text-2xl font-medium text-white/80 hover:text-white transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute inset-0 rounded-md bg-accent"
-                    style={{ zIndex: -1 }}
-                    transition={{ type: "spring", duration: 0.6 }}
-                  />
-                )}
-                <span className="relative z-10">{item.label}</span>
-              </button>
+                {item.label}
+              </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.nav>
+    </motion.header>
   );
 };
 

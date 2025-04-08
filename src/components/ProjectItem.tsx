@@ -1,5 +1,5 @@
 import { IProjectItem, RepoType } from "@/types";
-import { Github, ExternalLink, Play, AlertCircle } from "lucide-react";
+import { Github, ExternalLink, Play, AlertCircle, Image as ImageIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -14,192 +14,130 @@ import { motion } from "framer-motion";
 
 const getStatusBadge = (project: IProjectItem) => {
   const statusMap = {
-    "Gigantic-Mall": { text: "Dev", color: "text-orange-600 border-orange-200 bg-orange-50" },
-    "Deap Appointment App": { text: "Alpha", color: "text-purple-600 border-purple-200 bg-purple-50" },
-    "Sport-Complex": { text: "Beta", color: "text-blue-600 border-blue-200 bg-blue-50" },
-    "ATA Feedback System": { text: "Dev", color: "text-indigo-600 border-indigo-200 bg-indigo-50" },
-    "Portfolio Website": { text: "Live", color: "text-emerald-600 border-emerald-200 bg-emerald-50" }
+    "Gigantic-Mall": { text: "Dev", color: "text-orange-400 bg-orange-400/10 border-orange-400/20" },
+    "Deap Appointment App": { text: "Alpha", color: "text-purple-400 bg-purple-400/10 border-purple-400/20" },
+    "Sport-Complex": { text: "Beta", color: "text-blue-400 bg-blue-400/10 border-blue-400/20" },
+    "ATA Feedback System": { text: "Dev", color: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20" },
+    "Portfolio Website": { text: "Live", color: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20" }
   };
 
   const status = statusMap[project.title];
   if (status) {
     return (
-      <div className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium border 
-        rounded-full whitespace-nowrap ${status.color} transition-all duration-200 
+      <div className={`inline-flex items-center px-2 py-1 text-xs font-medium border 
+        rounded-full whitespace-nowrap ${status.color} backdrop-blur-sm transition-all duration-200 
         hover:scale-105 hover:shadow-sm`}
       >
-        <AlertCircle className="w-2.5 h-2.5 mr-0.5" />
+        <AlertCircle className="w-3 h-3 mr-1" />
         {status.text}
       </div>
     );
   }
 
   return (
-    <div className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium border 
-      rounded-full whitespace-nowrap transition-all duration-200 hover:scale-105 
+    <div className={`inline-flex items-center px-2 py-1 text-xs font-medium border 
+      rounded-full whitespace-nowrap backdrop-blur-sm transition-all duration-200 hover:scale-105 
       hover:shadow-sm ${
         project.repoType === RepoType.Private
-          ? "text-red-600 border-red-200 bg-red-50"
-          : "text-emerald-600 border-emerald-200 bg-emerald-50"
+          ? "text-red-400 bg-red-400/10 border-red-400/20"
+          : "text-emerald-400 bg-emerald-400/10 border-emerald-400/20"
       }`}
     >
-      <AlertCircle className="w-2.5 h-2.5 mr-0.5" />
+      <AlertCircle className="w-3 h-3 mr-1" />
       {project.repoType === RepoType.Private ? "Private" : "Public"}
     </div>
   );
 };
 
-const ProjectItem = ({ project }: { project: IProjectItem }) => {
+interface ProjectItemProps {
+  project: IProjectItem;
+}
+
+const ProjectItem = ({ project }: ProjectItemProps) => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    target.onerror = null;
+    target.src = '/placeholder.svg';
+  };
+
   return (
-    <HoverCard openDelay={0} closeDelay={0}>
-      <HoverCardTrigger asChild>
-        <Card className="flex flex-col overflow-hidden h-[300px] hover:border-gray-400 transition-all duration-300 group">
-          <CardContent className="flex flex-col gap-3 p-5">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center">
-                  {project.icons.map((icon, index) => (
-                    <div 
-                      key={index} 
-                      className="h-8 w-8 rounded-full border border-gray-200 p-1.5 bg-white hover:scale-110 transition-transform duration-200"
-                      style={{ 
-                        marginLeft: index > 0 ? '-0.5rem' : '0',
-                        zIndex: project.icons.length - index,
-                        transform: `translateX(${index * 5}px)`,
-                      }}
-                    >
-                      <img
-                        src={icon}
-                        alt={`${project.title} icon ${index + 1}`}
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="ml-2">
-                  <h3 className="font-semibold text-base leading-tight">{project.title}</h3>
-                  <p className="text-xs text-gray-500">{project.projectType}</p>
-                </div>
-              </div>
-              {getStatusBadge(project)}
-            </div>
-
-            <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-              {project.description}
-            </p>
-
-            {project.tags && (
-              <div className="flex flex-wrap gap-1 mt-1">
-                {project.tags.map((tag, i) => (
-                  <motion.div
-                    key={`tag-${i}`}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="px-1.5 py-0.5 text-[10px] font-medium bg-gray-50 
-                      text-gray-500 rounded-md border border-gray-100 
-                      hover:bg-gray-100 hover:text-gray-700 
-                      transition-all duration-200 cursor-default
-                      hover:scale-105 hover:shadow-sm"
-                    style={{
-                      transform: `rotate(${Math.random() * 2 - 1}deg)` // Slight random rotation
-                    }}
-                  >
-                    {tag}
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-
-          <CardFooter className="mt-auto flex items-center gap-2 px-5 pb-5">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
-                title="Source Code"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-            )}
-
-            {project.demoUrl && (
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
-                title="Live Demo"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-
-            {project.url && !project.demoUrl && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
-                title="Release"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-
-            {project.playStore && (
-              <a
-                href={project.playStore}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white hover:scale-110 duration-200"
-                title="Play Store"
-              >
-                <Play className="h-4 w-4" />
-              </a>
-            )}
-          </CardFooter>
-        </Card>
-      </HoverCardTrigger>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg hover:shadow-xl transition-all duration-500"
+      whileHover={{ y: -5 }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {project.screenshots && project.screenshots.length > 0 && (
-        <HoverCardContent 
-          side="top" 
-          className="w-[280px] p-2 bg-white/90 backdrop-blur-sm"
-          sideOffset={10}
-        >
-          <div className="flex flex-col gap-2">
-            <div className="relative w-full rounded-lg bg-gray-50">
-              <img
-                src={project.screenshots[0]}
-                alt={project.title}
-                className="w-full h-auto max-h-[160px] rounded-lg object-scale-down"
-                loading="lazy"
-              />
-            </div>
-            {project.screenshots.length > 1 && (
-              <div className="grid grid-cols-2 gap-2">
-                {project.screenshots.slice(1, 3).map((screenshot, index) => (
-                  <div 
-                    key={index} 
-                    className="relative rounded-lg bg-gray-50"
-                  >
-                    <img
-                      src={screenshot}
-                      alt={`${project.title} screenshot ${index + 2}`}
-                      className="w-full h-auto max-h-[80px] rounded-lg object-scale-down"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+      <div className="relative h-48 overflow-hidden">
+        {!project.image && !project.screenshots?.[0] ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#151538] to-[#1F1155]">
+            <ImageIcon className="w-16 h-16 text-white/20" />
           </div>
-        </HoverCardContent>
-      )}
-    </HoverCard>
+        ) : (
+          <img
+            src={project.image || project.screenshots?.[0] || '/placeholder.svg'}
+            alt={project.title}
+            className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            onError={handleImageError}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B1E]/90 via-[#0B0B1E]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+        
+        {/* Status Badge */}
+        <div className="absolute top-4 right-4">
+          {getStatusBadge(project)}
+        </div>
+      </div>
+      
+      <div className="relative p-6 space-y-4">
+        <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+          {project.title}
+        </h3>
+        <p className="text-gray-300/80 text-sm line-clamp-2">
+          {project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="px-3 py-1 text-xs font-medium bg-white/5 text-white/70 rounded-full border border-white/10 backdrop-blur-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex gap-4 pt-2">
+          {project.githubUrl && (
+            <motion.a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-white/70 hover:text-blue-400 transition-colors"
+              whileHover={{ y: -2 }}
+            >
+              <Github className="w-4 h-4" />
+              <span>Source</span>
+            </motion.a>
+          )}
+          {project.url && (
+            <motion.a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-white/70 hover:text-purple-400 transition-colors"
+              whileHover={{ y: -2 }}
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>Demo</span>
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

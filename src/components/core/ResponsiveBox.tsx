@@ -1,3 +1,6 @@
+
+"use client";
+
 import type { CoreComponentsProps } from "@/types";
 
 const ResponsiveBox = (props: Readonly<CoreComponentsProps>) => {
