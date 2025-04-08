@@ -1,3 +1,5 @@
+"use client";
+
 interface GridBoxProps {
   children: React.ReactNode;
   classNames?: string;
