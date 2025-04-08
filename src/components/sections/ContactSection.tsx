@@ -65,7 +65,7 @@ const ContactSection = () => {
             Get in Touch
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Feel free to reach out through any of these channels. I'm always open to discussing new opportunities and ideas!
+            Feel free to reach out through any of these channels. I&apos;m always open to discussing new opportunities and ideas!
           </p>
         </motion.div>
 

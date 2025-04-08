@@ -1,128 +1,105 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import Navigation from '@/components/Navigation';
-import HeroSection from '@/components/sections/HeroSection';
-import ExperienceSection from '@/components/sections/ExperienceSection';
-import ProjectsSection from '@/components/sections/ProjectsSection';
-import ContactSection from '@/components/sections/ContactSection';
-import MouseEffect from '@/components/effects/MouseEffect';
-import { motion } from 'framer-motion';
-
-const ClientWaves = dynamic(() => import('@/components/ClientWaves'), {
-  ssr: false,
-});
+import { motion } from "framer-motion";
+import { Lock } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TimelineSection from "@/components/sections/TimelineSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import HeroSection from "@/components/sections/HeroSection";
+import { data } from "@/data/store";
+import SkillsSection from "@/components/sections/SkillsSection";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#0a0b0c]">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0b0c] via-[#1a1b1e] to-[#0a0b0c]" />
-
-      {/* Ambient background effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Radial gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
-        
-        {/* Animated gradient lines */}
-        <motion.div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'linear-gradient(to right, transparent, rgba(59, 130, 246, 0.2) 15%, transparent 30%)',
-            backgroundSize: '200% 100%',
-          }}
-          animate={{
-            backgroundPosition: ['0% 0%', '200% 0%'],
-          }}
-          transition={{
-            duration: 15,
-            ease: 'linear',
-            repeat: Infinity,
-          }}
-        />
-
-        {/* Additional decorative elements */}
-        <div className="absolute inset-0">
-          {/* Top-right glow */}
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/20 rounded-full blur-3xl" />
-          
-          {/* Bottom-left glow */}
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl" />
-        </div>
-
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]" 
-          style={{
-            backgroundImage: `radial-gradient(circle at center, white 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
-      
-      {/* Wave effects */}
-      <div className="absolute inset-0">
-        {/* Primary wave layer - more visible */}
-        <ClientWaves 
-          lineColor="rgba(255, 255, 255, 0.2)"
-          backgroundColor="transparent"
-          waveSpeedX={0.007}
-          waveSpeedY={0.005}
-          waveAmpX={30}
-          waveAmpY={25}
-          friction={0.6}
-          tension={0.015}
-          maxCursorMove={120}
-          xGap={28}
-          yGap={52}
-        />
-        
-        {/* Secondary wave layer - blue accent */}
-        <ClientWaves 
-          lineColor="rgba(59, 130, 246, 0.15)"
-          backgroundColor="transparent"
-          waveSpeedX={0.01}
-          waveSpeedY={0.008}
-          waveAmpX={20}
-          waveAmpY={15}
-          friction={0.7}
-          tension={0.012}
-          maxCursorMove={80}
-          xGap={36}
-          yGap={44}
-        />
-
-        {/* Tertiary wave layer - subtle depth */}
-        <ClientWaves 
-          lineColor="rgba(99, 102, 241, 0.08)"
-          backgroundColor="transparent"
-          waveSpeedX={0.013}
-          waveSpeedY={0.01}
-          waveAmpX={15}
-          waveAmpY={10}
-          friction={0.8}
-          tension={0.01}
-          maxCursorMove={40}
-          xGap={44}
-          yGap={36}
-        />
-      </div>
-      
+    <div className="relative">
       {/* Content */}
-      <Navigation />
-      <MouseEffect />
-      
-      <motion.div 
-        className="relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
+      <div className="relative">
         <HeroSection />
-        <ExperienceSection />
+        
+        <section id="experience" className="py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl overflow-hidden border border-white/10"
+            >
+              <Tabs defaultValue="education" className="w-full">
+                <div className="px-6 pt-6">
+                  <TabsList className="grid w-full grid-cols-3 relative bg-white/5 backdrop-blur-md rounded-lg border border-white/10">
+                    <TabsTrigger 
+                      value="education" 
+                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/20 data-[state=active]:to-purple-600/20 data-[state=active]:backdrop-blur-sm text-white/70 data-[state=active]:text-white rounded-lg transition-all duration-300"
+                    >
+                      Education
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="skills" 
+                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/20 data-[state=active]:to-purple-600/20 data-[state=active]:backdrop-blur-sm text-white/70 data-[state=active]:text-white rounded-lg transition-all duration-300"
+                    >
+                      Skills
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="experience" 
+                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/20 data-[state=active]:to-purple-600/20 data-[state=active]:backdrop-blur-sm text-white/70 data-[state=active]:text-white rounded-lg transition-all duration-300"
+                    >
+                      Experience
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                
+                <div className="p-6">
+                  <TabsContent value="education" className="mt-0">
+                    <TimelineSection items={data.education} />
+                  </TabsContent>
+                  
+                  <TabsContent value="skills" className="mt-0">
+                    <SkillsSection />
+                  </TabsContent>
+                  
+                  <TabsContent value="experience" className="mt-0">
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm p-12 border border-white/10"
+                    >
+                      <div className="relative z-10 text-center max-w-2xl mx-auto">
+                        <motion.div
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                          className="flex justify-center mb-6"
+                        >
+                          <div className="relative">
+                            <div className="absolute inset-0 blur-xl bg-purple-500/20 rounded-full" />
+                            <Lock className="w-12 h-12 text-purple-400 relative z-10" />
+                          </div>
+                        </motion.div>
+                        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-4">
+                          Work Experience Quest
+                        </h3>
+                        <p className="text-lg text-gray-300/90">
+                          Currently leveling up as a 3rd-year student at{' '}
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
+                            Mae Fah Luang University
+                          </span>. 
+                          <br />
+                          While this achievement is still locked, I&apos;m gathering experience and preparing for real-world challenges!
+                        </p>
+                      </div>
+                    </motion.div>
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </motion.div>
+          </div>
+        </section>
+
         <ProjectsSection />
         <ContactSection />
-      </motion.div>
-    </main>
+      </div>
+    </div>
   );
 } 

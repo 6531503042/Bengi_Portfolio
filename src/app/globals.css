@@ -57,7 +57,7 @@
   }
 
   body {
-    @apply text-foreground antialiased overflow-x-hidden;
+    @apply text-foreground bg-background antialiased overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 

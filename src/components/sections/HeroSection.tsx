@@ -65,7 +65,7 @@ const HeroSection = () => {
           />
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 relative">
-            Hello there, I'm{' '}
+            Hello there, I&apos;m{' '}
             <motion.span
               className="inline-block relative"
               whileHover={{ scale: 1.05 }}
