@@ -1,45 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
 
 interface ImagePreviewProps {
   isOpen: boolean;
   onClose: () => void;
   images: string[];
-  title: string;
+  title?: string;
   subtitle?: string;
 }
 
-const ImagePreview: React.FC<ImagePreviewProps> = ({
-  isOpen,
-  onClose,
-  images,
-  title,
-  subtitle
-}) => {
+const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreviewProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
-  const handlePrevious = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') handlePrevious();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex]);
+
+  const handleNext = () => {
+    if (currentIndex < images.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+    }
   };
 
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  const handleImageClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
+    }
   };
 
   const handleImageError = (index: number) => {
-    setImageErrors(prev => ({ ...prev, [index]: true }));
+    setImageError(prev => ({ ...prev, [index]: true }));
   };
-
-  // If no valid images are available, show placeholder
-  const hasValidImages = images.some((_, index) => !imageErrors[index]);
 
   return (
     <AnimatePresence>
@@ -48,94 +48,87 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl"
           onClick={onClose}
         >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-[101]"
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+
+          {/* Main content */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="relative w-[95%] max-w-6xl max-h-[90vh] m-4"
-            onClick={handleImageClick}
+            className="relative w-full max-w-7xl mx-auto px-4"
+            onClick={e => e.stopPropagation()}
           >
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
+            {/* Navigation buttons */}
+            {currentIndex > 0 && (
+              <button
+                onClick={handlePrevious}
+                className="absolute left-8 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-20"
+              >
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+            )}
+            {currentIndex < images.length - 1 && (
+              <button
+                onClick={handleNext}
+                className="absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-20"
+              >
+                <ChevronRight className="w-6 h-6 text-white" />
+              </button>
+            )}
 
-            {/* Image Container */}
-            <div className="relative aspect-video bg-[#151538] rounded-lg overflow-hidden">
-              {imageErrors[currentIndex] ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white/40">
-                  <ImageIcon className="w-16 h-16 mb-4" />
-                  <p className="text-sm">Image failed to load</p>
+            {/* Image container */}
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-[#0B0B1E]/50 backdrop-blur-sm border border-white/10">
+              {imageError[currentIndex] ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full" />
+                    <div className="relative bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                      <ImageIcon className="w-12 h-12 text-white/40" />
+                    </div>
+                  </div>
+                  <span className="mt-4 text-sm text-white/60 font-medium">Image failed to load</span>
                 </div>
               ) : (
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentIndex}
-                    src={images[currentIndex]}
-                    alt={`${title} - Image ${currentIndex + 1}`}
-                    className="w-full h-full object-contain"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    onError={() => handleImageError(currentIndex)}
-                  />
-                </AnimatePresence>
-              )}
-
-              {/* Navigation arrows - only show if there are multiple valid images */}
-              {hasValidImages && images.length > 1 && (
-                <>
-                  <button
-                    onClick={handlePrevious}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors text-white"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors text-white"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
+                <img
+                  src={images[currentIndex]}
+                  alt={`Preview ${currentIndex + 1}`}
+                  className="w-full h-full object-contain"
+                  onError={() => handleImageError(currentIndex)}
+                />
               )}
             </div>
 
             {/* Image info */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-              <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+              {title && (
+                <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+              )}
               {subtitle && (
-                <p className="text-sm text-white/80">{subtitle}</p>
+                <p className="text-sm text-white/70">{subtitle}</p>
               )}
-              {/* Only show navigation dots if there are multiple valid images */}
-              {hasValidImages && images.length > 1 && (
-                <div className="mt-2 flex items-center gap-2">
-                  {images.map((_, index) => (
-                    !imageErrors[index] && (
-                      <button
-                        key={index}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentIndex(index);
-                        }}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentIndex
-                            ? "bg-white w-4"
-                            : "bg-white/50 hover:bg-white/80"
-                        }`}
-                      />
-                    )
-                  ))}
-                </div>
-              )}
+              <div className="flex items-center gap-2 mt-4">
+                {images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      idx === currentIndex
+                        ? 'bg-white scale-125'
+                        : 'bg-white/40 hover:bg-white/60'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.div>

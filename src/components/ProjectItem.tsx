@@ -98,12 +98,14 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
         {/* Image Section */}
         <div className="relative h-48 overflow-hidden">
           {(!mainImage || mainImageError) ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#151538] to-[#1F1155]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#151538]/80 to-[#1F1155]/80 backdrop-blur-sm">
               <div className="relative">
-                <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full" />
-                <ImageIcon className="w-16 h-16 text-white/20 relative z-10" />
+                <div className="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full" />
+                <div className="relative bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                  <ImageIcon className="w-12 h-12 text-white/40" />
+                </div>
               </div>
-              <span className="mt-4 text-sm text-white/40">No preview available</span>
+              <span className="mt-4 text-sm text-white/60 font-medium">Preview not available</span>
             </div>
           ) : (
             <>
@@ -115,11 +117,9 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
                 onLoad={() => handleImageLoad(mainImage)}
               />
               <div 
-                className="absolute inset-0 cursor-pointer"
+                className="absolute inset-0 cursor-pointer bg-gradient-to-t from-[#0B0B1E]/90 via-[#0B0B1E]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"
                 onClick={handleImageClick}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B1E]/90 via-[#0B0B1E]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-              </div>
+              />
             </>
           )}
           
@@ -130,39 +130,35 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
 
           {/* Preview Indicator */}
           {showImagePreviewIndicator && (
-            <div 
-              className="absolute bottom-4 right-4 px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs text-white/80 flex items-center gap-1.5 z-10 cursor-pointer hover:bg-white/20 transition-colors"
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute bottom-4 right-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs text-white/90 flex items-center gap-2 z-10 cursor-pointer hover:bg-white/20 transition-colors border border-white/20"
               onClick={handleImageClick}
             >
               <ImageIcon className="w-3.5 h-3.5" />
-              <span>{allImages.length} {allImages.length === 1 ? 'image' : 'images'}</span>
-            </div>
-          )}
-
-          {/* Image Missing Indicator */}
-          {(!mainImage || mainImageError) && (
-            <div className="absolute bottom-4 left-4 px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs text-white/60 flex items-center gap-1.5 z-10">
-              <AlertCircle className="w-3.5 h-3.5" />
-              <span>Image coming soon</span>
-            </div>
+              <span className="font-medium">{allImages.length} {allImages.length === 1 ? 'image' : 'images'}</span>
+            </motion.div>
           )}
         </div>
         
         {/* Content Section */}
         <div className="relative p-6 space-y-4">
-          <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-            {project.title}
-          </h3>
-          <p className="text-gray-300/80 text-sm line-clamp-2">
-            {project.description}
-          </p>
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+              {project.title}
+            </h3>
+            <p className="text-gray-300/90 text-sm leading-relaxed">
+              {project.description}
+            </p>
+          </div>
           
           {/* Framework Tags */}
           <div className="flex flex-wrap gap-2">
             {project.technologies?.map((tech, index) => (
               <div
                 key={index}
-                className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-white/5 text-white/70 rounded-full border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/5 text-white/80 rounded-full border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors"
               >
                 <img 
                   src={tech.icon} 
@@ -184,12 +180,12 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/70 hover:text-blue-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-white/80 hover:text-blue-400 transition-colors"
                 whileHover={{ y: -2 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <Github className="w-4 h-4" />
-                <span>Source</span>
+                <span className="font-medium">Source</span>
               </motion.a>
             )}
             {project.url && (
@@ -197,12 +193,12 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/70 hover:text-purple-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-white/80 hover:text-purple-400 transition-colors"
                 whileHover={{ y: -2 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink className="w-4 h-4" />
-                <span>Demo</span>
+                <span className="font-medium">Demo</span>
               </motion.a>
             )}
           </div>

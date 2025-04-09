@@ -10,13 +10,13 @@ interface TimelineProps {
 
 export const Timeline = ({ items, className }: TimelineProps) => {
   return (
-    <Card className={`bg-background/50 dark:bg-background/20 backdrop-blur-sm border-none shadow-lg ${className}`}>
-      <CardContent className="p-6">
-        <motion.ul 
+    <Card className={`bg-white/[0.02] backdrop-blur-xl border-white/10 shadow-2xl ${className}`}>
+      <CardContent className="p-8">
+        <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative ml-3 space-y-8 border-l border-gray-200 dark:border-gray-700"
+          className="relative space-y-2"
         >
           {items.map((item, index) => (
             <motion.div
@@ -24,12 +24,11 @@ export const Timeline = ({ items, className }: TimelineProps) => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="transition-all duration-300 ease-in-out"
             >
               <TimelineItem experience={item} />
             </motion.div>
           ))}
-        </motion.ul>
+        </motion.div>
       </CardContent>
     </Card>
   );

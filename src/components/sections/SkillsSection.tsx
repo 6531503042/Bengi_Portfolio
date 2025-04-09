@@ -69,19 +69,19 @@ const SkillsSection = () => {
 
                     {/* Specialties Popup */}
                     {skill.specialties && (
-                      <div className="absolute left-1/2 bottom-full mb-2 -translate-x-1/2 w-40 opacity-0 invisible group-hover/skill:opacity-100 group-hover/skill:visible transition-all duration-300 z-[60]">
-                        <div className="bg-[#1a1b1e]/95 backdrop-blur-sm rounded-lg p-2 border border-white/10 shadow-xl">
-                          <div className="text-[10px] font-medium text-white mb-1">Specialized in:</div>
-                          <ul className="space-y-0.5">
+                      <div className="fixed z-[9999] left-1/2 bottom-full mb-2 -translate-x-1/2 w-48 opacity-0 invisible group-hover/skill:opacity-100 group-hover/skill:visible transition-all duration-300">
+                        <div className="bg-[#1a1b1e]/95 backdrop-blur-md rounded-lg p-3 border border-white/10 shadow-xl">
+                          <div className="text-[11px] font-medium text-white mb-2">Specialized in:</div>
+                          <ul className="space-y-1.5">
                             {skill.specialties.map((specialty: string, idx: number) => (
-                              <li key={idx} className="text-[10px] text-gray-300 flex items-center gap-1.5">
+                              <li key={idx} className="text-[11px] text-gray-300 flex items-center gap-2">
                                 <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
                                 {specialty}
                               </li>
                             ))}
                           </ul>
+                          <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-[#1a1b1e] border-r border-b border-white/10 rotate-45"></div>
                         </div>
-                        <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-[#1a1b1e] border-r border-b border-white/10 rotate-45"></div>
                       </div>
                     )}
                   </motion.div>
