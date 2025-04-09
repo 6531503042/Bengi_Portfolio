@@ -50,16 +50,24 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [showProjectDetails, setShowProjectDetails] = useState(false);
   const [mainImageError, setMainImageError] = useState(false);
+  const [imageLoadStatus, setImageLoadStatus] = useState<Record<string, boolean>>({});
   
-  const handleImageError = () => {
-    setMainImageError(true);
+  const handleImageError = (imageUrl: string) => {
+    setImageLoadStatus(prev => ({ ...prev, [imageUrl]: false }));
+    if (imageUrl === mainImage) {
+      setMainImageError(true);
+    }
   };
 
-  // Filter out any empty or invalid image URLs
+  const handleImageLoad = (imageUrl: string) => {
+    setImageLoadStatus(prev => ({ ...prev, [imageUrl]: true }));
+  };
+
+  // Filter out any empty or invalid image URLs and already failed images
   const allImages = [
     ...(project.image ? [project.image] : []),
     ...(project.screenshots || [])
-  ].filter(url => url && url.trim() !== '');
+  ].filter(url => url && url.trim() !== '' && imageLoadStatus[url] !== false);
 
   const handleImageClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -103,7 +111,8 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
                 src={mainImage}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                onError={handleImageError}
+                onError={() => handleImageError(mainImage)}
+                onLoad={() => handleImageLoad(mainImage)}
               />
               <div 
                 className="absolute inset-0 cursor-pointer"

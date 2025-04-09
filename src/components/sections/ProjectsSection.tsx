@@ -25,6 +25,13 @@ const ProjectsSection = () => {
     }
   };
 
+  // Add placeholder images for projects without images
+  const projectsWithPlaceholders = data.projects.map(project => ({
+    ...project,
+    image: project.image || '/placeholder.svg',
+    screenshots: project.screenshots?.length ? project.screenshots : ['/placeholder.svg']
+  }));
+
   return (
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -52,7 +59,7 @@ const ProjectsSection = () => {
             variants={itemVariants} 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {data.projects.map((project) => (
+            {projectsWithPlaceholders.map((project) => (
               <ProjectItem key={project.id} project={project} />
             ))}
           </motion.div>

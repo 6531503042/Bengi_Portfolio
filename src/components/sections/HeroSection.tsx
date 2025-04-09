@@ -8,6 +8,16 @@ import './HeroSection.css';
 const HeroSection = () => {
   const [showResumePreview, setShowResumePreview] = useState(false);
 
+  const handleDownloadResume = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = '/Resume.pdf';
+    link.download = 'Bengi_Resume.pdf'; // This will be the downloaded file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -144,7 +154,7 @@ const HeroSection = () => {
           <Button 
             variant="outline" 
             size="lg" 
-            onClick={() => window.open('/resume.pdf', '_blank')}
+            onClick={handleDownloadResume}
             className="border-2 border-purple-500/30 hover:border-purple-500/50 backdrop-blur-sm transition-all duration-300"
           >
             <Download className="w-4 h-4 mr-2" /> Download Resume
