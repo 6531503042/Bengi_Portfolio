@@ -13,11 +13,13 @@ const Waves = dynamic(() => import('@/components/effects/Waves'), {
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
 });
 
 const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-manrope',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -26,10 +28,16 @@ export const metadata: Metadata = {
   description: 'Full-Stack Developer specializing in modern web applications with a focus on user experience and clean code.',
   keywords: ['Full-Stack Developer', 'Web Development', 'React', 'Next.js', 'TypeScript'],
   authors: [{ name: 'Bengi' }],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://your-domain.com',
+    url: 'https://bengi-portfolio.vercel.app/',
     siteName: 'Bengi Portfolio',
     title: 'Bengi Portfolio | Full-Stack Developer',
     description: 'Full-Stack Developer specializing in modern web applications with a focus on user experience and clean code.',
@@ -56,7 +64,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <body className={`${inter.variable} ${manrope.variable} font-sans antialiased bg-[#0a0b0c]`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
+      <body className={`${inter.variable} ${manrope.variable} font-sans antialiased bg-[#0a0b0c] text-base`}>
         <Providers>
           <div className="relative min-h-screen overflow-x-hidden">
             {/* Base gradient */}

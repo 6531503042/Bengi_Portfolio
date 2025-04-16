@@ -53,7 +53,21 @@
   }
 
   html {
-    @apply bg-[#0a0b0c] text-[14px] md:text-[16px];
+    @apply antialiased;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    html {
+      font-size: 18px;
+    }
   }
 
   body {
@@ -89,32 +103,45 @@
     background-clip: padding-box, border-box;
   }
 
-  /* Reduce spacing in sections */
-  section {
-    @apply py-12 md:py-16;
-  }
-
-  /* Adjust heading sizes */
+  /* Base Typography */
   h1 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold;
   }
 
   h3 {
-    @apply text-xl md:text-2xl;
+    @apply text-lg sm:text-xl md:text-2xl font-semibold;
   }
 
-  /* Reduce card padding */
-  .card, .glass-card, .section-card {
-    @apply p-4 md:p-6;
+  p {
+    @apply text-sm sm:text-base leading-relaxed;
   }
 
-  /* Adjust button sizes */
+  /* Component Sizing */
   .btn, button {
-    @apply text-sm md:text-base;
+    @apply text-sm;
+  }
+
+  /* Section Spacing */
+  section {
+    @apply py-8 sm:py-12 md:py-16;
+  }
+
+  /* Card Padding */
+  .card, .glass-card, .section-card {
+    @apply p-4 sm:p-6;
+  }
+
+  /* Navigation */
+  .nav-container {
+    @apply px-4 py-2 sm:px-6 sm:py-3;
+  }
+
+  .nav-link {
+    @apply text-sm sm:text-base;
   }
 }
 
@@ -128,6 +155,7 @@
   }
 }
 
+/* Animations */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
