@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, FileText, Download } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, FileText, Download } from 'lucide-react';
 import { Button } from '../ui/button';
 import ResumePreview from '../ResumePreview';
 import './HeroSection.css';
@@ -49,8 +49,8 @@ const HeroSection = () => {
 
   const socialLinks = [
     { icon: <Github className="w-5 h-5" />, url: 'https://github.com/6531503042', label: 'GitHub' },
-    { icon: <Linkedin className="w-5 h-5" />, url: 'https://linkedin.com/in/bengi', label: 'LinkedIn' },
-    { icon: <Twitter className="w-5 h-5" />, url: 'https://twitter.com/bengi', label: 'Twitter' },
+    { icon: <Linkedin className="w-5 h-5" />, url: 'https://www.linkedin.com/in/nimitben/', label: 'LinkedIn' },
+    { icon: <Instagram className="w-5 h-5" />, url: 'https://www.instagram.com/i.bengii/', label: 'Instagram' },
     { icon: <Mail className="w-5 h-5" />, url: 'mailto:nimittanbooutor@gmail.com', label: 'Email' },
   ];
 
