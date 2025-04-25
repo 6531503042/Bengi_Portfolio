@@ -21,13 +21,11 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
       className="relative pl-8 pb-8 group"
     >
       {/* Timeline line */}
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-transparent" />
+      <div className="absolute left-0 top-[0.75rem] bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-transparent" />
 
       {/* Timeline dot */}
       <motion.div
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="absolute left-0 -translate-x-1/2 top-0"
+        className="absolute left-0 -translate-x-1/2 top-0 transition-all duration-300"
       >
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-lg" />

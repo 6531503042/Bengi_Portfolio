@@ -2,17 +2,17 @@
 peer = true
 production = false
 frozen-lockfile = false
+registry = "https://registry.npmjs.org"
 
 [install.scopes]
-next = "latest"
-
-[test]
-coverage = true
-
-[debug]
-bun = true
+next = "https://registry.npmjs.org"
 
 [build]
 target = "browser"
 minify = true
 sourcemap = true
+framework = "next"
+
+[runtime]
+env = "development"
+watch = true

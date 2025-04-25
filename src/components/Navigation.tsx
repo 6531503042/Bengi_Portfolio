@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import GooeyNav from './GooeyNav';
@@ -17,8 +17,22 @@ const Navigation = () => {
   const opacity = useTransform(scrollY, [0, 100], [0.2, 0.8]);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Throttle function
+  const throttle = useCallback((callback: Function, limit: number) => {
+    let waiting = false;
+    return function(this: any, ...args: any[]) {
+      if (!waiting) {
+        callback.apply(this, args);
+        waiting = true;
+        setTimeout(() => {
+          waiting = false;
+        }, limit);
+      }
+    };
+  }, []);
+
   // Handle smooth scrolling
-  const handleNavigation = (href: string) => {
+  const handleNavigation = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
@@ -28,19 +42,19 @@ const Navigation = () => {
       });
       setIsOpen(false);
     }
-  };
+  }, []);
 
   // Close mobile menu on resize
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = throttle(() => {
       if (window.innerWidth > 768) {
         setIsOpen(false);
       }
-    };
+    }, 100);
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    window.addEventListener('resize', handleResize as any);
+    return () => window.removeEventListener('resize', handleResize as any);
+  }, [throttle]);
 
   return (
     <motion.header 
@@ -123,4 +137,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default memo(Navigation);

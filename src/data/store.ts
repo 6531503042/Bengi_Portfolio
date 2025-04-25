@@ -5,48 +5,49 @@ import { projects } from "./projects";
 export const data: DataStore = {
   career: [
     {
-      name: "Example Tech Company",
+      name: "SEEZ Dev",
       href: "#",
-      title: "Backend Developer Intern",
-      logo: "/company-logos/example1.png",
-      start: "Jun 2023",
-      end: "Aug 2023",
+      title: "Fullstack Developer",
+      logo: "public/projects/logo.svg",
+      start: "Mar 2025",
+      end: "Present",
       description: [
-        "Developed and maintained microservices using Go and Spring Boot",
-        "Implemented clean architecture patterns and best practices",
-        "Worked with PostgreSQL, MongoDB, and Redis for data management",
-        "Contributed to API design and documentation"
+        "พัฒนาและดูแลระบบ Web Application ทั้งฝั่ง Frontend และ Backend",
+        "ใช้เทคโนโลยี Go, React, Next.js, และ MongoDB",
+        "ออกแบบระบบ Chat, Notification, และ Dashboard สำหรับการใช้งานแบบ Real-time",
+        "วางโครงสร้างโปรเจกต์ตามหลัก Clean Architecture พร้อมด้วยระบบ CI/CD และ Containerized Deployment"
       ],
       links: [
         {
           name: "Company Website",
-          href: "#",
+          href: "https://seezdev.com",
           icon: "globe"
         }
       ]
     },
     {
-      name: "Example Startup",
+      name: "HLLC-2025",
       href: "#",
-      title: "Backend Developer (Part-time)",
-      logo: "/company-logos/example2.png",
-      start: "Sep 2023",
-      end: "Present",
+      title: "Backend Architecture Designer",
+      logo: "/company-logos/hllc2025.png",
+      start: "May 2025",
+      end: "Jul 2025",
       description: [
-        "Building scalable backend systems using Go and microservices",
-        "Implementing event-driven architecture with Kafka",
-        "Managing containerized applications with Docker and Kubernetes",
-        "Developing RESTful APIs and gRPC services"
+        "ออกแบบสถาปัตยกรรม Backend โดยใช้ Clean Architecture และ Modular Design",
+        "ตั้งค่าและจัดการระบบ Microservices ด้วย Go และ MongoDB",
+        "วางระบบ gRPC และ REST API ให้สามารถทำงานร่วมกันได้อย่างยืดหยุ่น",
+        "ปรับใช้ระบบ Logging, Error Handling, และ Middleware ให้สามารถขยายได้ในระยะยาว"
       ],
       links: [
         {
-          name: "Project Demo",
-          href: "#",
+          name: "Project Repository",
+          href: "https://github.com/HLLC-MFU/HLLC-2025",
           icon: "globe"
         }
       ]
     }
   ],
+
   education: [
     {
       name: "Mae Fah Luang University",

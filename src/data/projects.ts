@@ -26,12 +26,12 @@ export const projects: IProjectItem[] = [
       "Management",
       "Real-time Booking"
     ],
-    image: "/projects/sport-complex/main.png",
+    image: "/projects/sport-complex/booking-gym.png",
     screenshots: [
-      "/projects/sport-complex/dashboard.png",
-      "/projects/sport-complex/booking.png",
-      "/projects/sport-complex/facilities.png",
-      "/projects/sport-complex/admin.png"
+      "/projects/sport-complex/booking-gym.png",
+      "/projects/sport-complex/confirm-booking.png",
+      "/projects/sport-complex/payment-client.png",
+      "/projects/sport-complex/payment-scan-qr-code.png"
     ],
     technologies: [
       { name: "Go", icon: "/skills/go.svg" },
@@ -69,11 +69,19 @@ export const projects: IProjectItem[] = [
       "NLP",
       "Clean Architecture"
     ],
-    image: "/projects/ata-feedback/main.png",
+    image: "/projects/ata-senior/Screenshot 2568-04-08 at 23.22.27.png",
     screenshots: [
-      "/projects/ata-feedback/dashboard.png",
-      "/projects/ata-feedback/analytics.png",
-      "/projects/ata-feedback/responses.png"
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.22.27.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.24.27.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.24.56.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.25.05.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.25.26.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.25.39.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.25.57.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.26.14.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.27.23.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.27.34.png",
+      "/projects/ata-senior/Screenshot 2568-04-08 at 23.27.47.png"
     ],
     technologies: [
       { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
@@ -111,10 +119,7 @@ export const projects: IProjectItem[] = [
       "Authentication"
     ],
     screenshots: [
-      "https://github.com/6531503042/Deap-Mobile-Application/raw/main/assets/DeapV2.png",
-      "/projects/deap/schedule.png",
-      "/projects/deap/profile.png",
-      "/projects/deap/notifications.png"
+      "/projects/deap-application"
     ],
     image: "https://github.com/6531503042/Deap-Mobile-Application/raw/main/assets/DeapV2.png",
     technologies: [
@@ -127,74 +132,146 @@ export const projects: IProjectItem[] = [
     sourceUrl: "https://github.com/6531503042/Deap-Mobile-Application"
   },
   {
-    id: "weather-forecast",
-    title: "Weather Forecast App",
-    description: "A comprehensive weather forecasting application built with Spring Boot and JSP. Features include current weather updates, 5-day forecasts with hourly details, location-based weather, and weather alerts.",
-    icons: ["/skills/spring-boot.svg", "/skills/java.svg"],
+    id: "fc-online",
+    title: "FC Online Platform",
+    description: "A sports club management platform allowing fans to connect, purchase merchandise, book tickets, and participate in club activities. Built with modern web technologies for a seamless user experience.",
+    icons: [
+      "/skills/nextjs.svg",
+      "/skills/typescript.svg",
+      "/skills/nodejs.svg",
+      "/skills/mongodb.svg"
+    ],
     repoType: RepoType.Public,
     projectType: ProjectType.College,
-    githubUrl: "https://github.com/6531503042/ForecastAPI",
+    githubUrl: "https://github.com/6531503042/FC-Online",
     tags: [
-      "Java",
-      "Spring Boot",
-      "JSP",
-      "REST API",
-      "Weather API",
-      "Responsive Design"
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Responsive Design",
+      "Sports Platform"
     ],
     screenshots: [
-      "https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png",
-      "/projects/weather/forecast.png",
-      "/projects/weather/details.png"
+      "/projects/fc-online/s1.png",
+      "/projects/fc-online/s2.png",
+      "/projects/fc-online/s3.png",
+      "/projects/fc-online/s4.png",
+      "/projects/fc-online/s5.png",
+      "/projects/fc-online/s6.png",
+      "/projects/fc-online/s7.png"
     ],
-    image: "https://raw.githubusercontent.com/6531503042/ForecastAPI/refs/heads/main/Assets/cover.png",
+    image: "/projects/fc-online/s1.png",
     technologies: [
-      { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
-      { name: "Java", icon: "/skills/java.svg" }
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "Node.js", icon: "/skills/nodejs.svg" },
+      { name: "MongoDB", icon: "/skills/mongodb.svg" }
     ],
-    featured: false,
-    demoUrl: "https://github.com/6531503042/ForecastAPI",
-    sourceUrl: "https://github.com/6531503042/ForecastAPI"
+    sourceUrl: "https://github.com/6531503042/FC-Online"
   },
   {
-    id: "gigantic-mall",
-    title: "Gigantic Mall",
-    description: "A full-featured e-commerce platform built with Spring Boot and React, implementing microservices architecture. Features include product management, shopping cart, order processing, and admin dashboard.",
+    id: "hllc-2025",
+    title: "HLLC 2025 Conference",
+    description: "Website for the HLLC 2025 conference providing information about the event, registration, schedule, and speakers with a clean, professional interface.",
     icons: [
-      "/skills/spring-boot.svg",
+      "/skills/nextjs.svg",
+      "/skills/typescript.svg",
+      "/skills/tailwind.svg"
+    ],
+    repoType: RepoType.Public,
+    projectType: ProjectType.Freelance,
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "Conference",
+      "Event Website"
+    ],
+    screenshots: [
+      "/projects/hllc-2025/1.png",
+      "/projects/hllc-2025/2.png"
+    ],
+    image: "/projects/hllc-2025/1.png",
+    technologies: [
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "TailwindCSS", icon: "/skills/tailwind.svg" }
+    ]
+  },
+  {
+    id: "iot-sensor",
+    title: "IoT Sensor Dashboard",
+    description: "Real-time IoT sensor monitoring dashboard with data visualization, alerting system, and remote device management capabilities.",
+    icons: [
       "/skills/react.svg",
-      "/skills/mysql.svg",
-      "/skills/redis.svg"
+      "/skills/nodejs.svg",
+      "/skills/mqtt.svg",
+      "/skills/mongo.svg"
     ],
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Gigantic-Mall",
     tags: [
-      "Java",
-      "Spring Boot",
       "React",
-      "MySQL",
-      "Redis",
-      "Microservices",
-      "E-commerce",
-      "Payment Gateway"
+      "Node.js",
+      "IoT",
+      "MQTT",
+      "MongoDB",
+      "Real-time Data",
+      "Dashboard"
     ],
     screenshots: [
-      "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
-      "/projects/mall/products.png",
-      "/projects/mall/cart.png",
-      "/projects/mall/admin.png"
+      "/projects/iot-sensor/1.png",
+      "/projects/iot-sensor/2.png",
+      "/projects/iot-sensor/3.png",
+      "/projects/iot-sensor/4.png",
+      "/projects/iot-sensor/5.png",
+      "/projects/iot-sensor/6.png",
+      "/projects/iot-sensor/7.png"
     ],
-    image: "https://raw.githubusercontent.com/6531503042/Gigantic-Mall/refs/heads/main/assets/Gigantic_icon.png",
+    image: "/projects/iot-sensor/1.png",
     technologies: [
-      { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
       { name: "React", icon: "/skills/react.svg" },
-      { name: "MySQL", icon: "/skills/mysql.svg" },
-      { name: "Redis", icon: "/skills/redis.svg" }
+      { name: "Node.js", icon: "/skills/nodejs.svg" },
+      { name: "MongoDB", icon: "/skills/mongodb.svg" }
+    ]
+  },
+  {
+    id: "readrealm",
+    title: "ReadRealm Book Platform",
+    description: "An online book reading and publishing platform with features for authors to publish, readers to discover, and a community to discuss literary works.",
+    icons: [
+      "/skills/nextjs.svg",
+      "/skills/typescript.svg",
+      "/skills/postgresql.svg"
     ],
-    featured: true,
-    demoUrl: "https://github.com/6531503042/Gigantic-Mall",
-    sourceUrl: "https://github.com/6531503042/Gigantic-Mall"
+    repoType: RepoType.Public,
+    projectType: ProjectType.Team,
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Books",
+      "Publishing",
+      "Community"
+    ],
+    screenshots: [
+      "/projects/readrealm/1.png",
+      "/projects/readrealm/2.png",
+      "/projects/readrealm/3.png",
+      "/projects/readrealm/4.png",
+      "/projects/readrealm/5.png",
+      "/projects/readrealm/6.png",
+      "/projects/readrealm/7.png",
+      "/projects/readrealm/8.png",
+      "/projects/readrealm/9.png"
+    ],
+    image: "/projects/readrealm/1.png",
+    technologies: [
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "PostgreSQL", icon: "/skills/postgresql.svg" }
+    ]
   },
   {
     id: "portfolio",

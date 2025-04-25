@@ -6,8 +6,10 @@ import Navigation from '@/components/Navigation';
 import MouseEffect from '@/components/effects/MouseEffect';
 import dynamic from 'next/dynamic';
 
-const Waves = dynamic(() => import('@/components/effects/Waves'), {
+// Dynamically import Waves with lazy loading and no SSR
+const ClientWaves = dynamic(() => import('@/components/ClientWaves'), {
   ssr: false,
+  loading: () => null // Don't show anything during loading
 });
 
 const inter = Inter({ 
@@ -78,20 +80,20 @@ export default function RootLayout({
               {/* Radial gradient overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
               
-              {/* Wave effects */}
+              {/* Wave effects - Wrapped in client component with reduced values */}
               <div className="absolute inset-0">
-                <Waves
-                  lineColor="rgba(255, 255, 255, 0.2)"
+                <ClientWaves
+                  lineColor="rgba(255, 255, 255, 0.15)"
                   backgroundColor="transparent"
-                  waveSpeedX={0.02}
-                  waveSpeedY={0.01}
-                  waveAmpX={40}
-                  waveAmpY={20}
-                  friction={0.9}
-                  tension={0.01}
-                  maxCursorMove={120}
-                  xGap={12}
-                  yGap={36}
+                  waveSpeedX={0.01} 
+                  waveSpeedY={0.005}
+                  waveAmpX={30}
+                  waveAmpY={15} 
+                  friction={0.95}
+                  tension={0.008}
+                  maxCursorMove={90}
+                  xGap={18}
+                  yGap={48}
                 />
               </div>
             </div>

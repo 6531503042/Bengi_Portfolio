@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, memo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Linkedin, Instagram, Mail, FileText, Download } from 'lucide-react';
 import { Button } from '../ui/button';
 import ResumePreview from '../ResumePreview';
@@ -7,6 +7,7 @@ import './HeroSection.css';
 
 const HeroSection = () => {
   const [showResumePreview, setShowResumePreview] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleDownloadResume = () => {
     // Create a link element
@@ -23,35 +24,37 @@ const HeroSection = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 15 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
-  const glowVariants = {
-    initial: { opacity: 0.5, scale: 1 },
-    animate: {
-      opacity: [0.5, 0.8, 0.5],
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
+  const glowVariants = prefersReducedMotion 
+    ? { initial: {}, animate: {} } 
+    : {
+        initial: { opacity: 0.4, scale: 1 },
+        animate: {
+          opacity: [0.4, 0.6, 0.4],
+          scale: [1, 1.03, 1],
+          transition: {
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }
+        }
+      };
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, url: 'https://github.com/6531503042', label: 'GitHub' },
-    { icon: <Linkedin className="w-5 h-5" />, url: 'https://www.linkedin.com/in/nimitben/', label: 'LinkedIn' },
-    { icon: <Instagram className="w-5 h-5" />, url: 'https://www.instagram.com/i.bengii/', label: 'Instagram' },
-    { icon: <Mail className="w-5 h-5" />, url: 'mailto:nimittanbooutor@gmail.com', label: 'Email' },
+    { icon: <Github className="w-5 h-5 text-white" />, url: 'https://github.com/6531503042', label: 'GitHub' },
+    { icon: <Linkedin className="w-5 h-5 text-white" />, url: 'https://www.linkedin.com/in/nimitben/', label: 'LinkedIn' },
+    { icon: <Instagram className="w-5 h-5 text-white" />, url: 'https://www.instagram.com/i.bengii/', label: 'Instagram' },
+    { icon: <Mail className="w-5 h-5 text-white" />, url: 'mailto:nimittanbooutor@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -66,20 +69,21 @@ const HeroSection = () => {
           variants={item} 
           className="mb-2 relative"
         >
-          {/* Glowing background effect */}
-          <motion.div
-            className="absolute -inset-10 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-            variants={glowVariants}
-            initial="initial"
-            animate="animate"
-          />
+          {!prefersReducedMotion && (
+            <motion.div
+              className="absolute -inset-10 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+              variants={glowVariants}
+              initial="initial"
+              animate="animate"
+            />
+          )}
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 relative">
             Hello there, I&apos;m{' '}
             <motion.span
               className="inline-block relative"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              whileHover={{ scale: prefersReducedMotion ? 1 : 1.02 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
               <span className="relative inline-block">
                 <span className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg blur-xl opacity-50" />
@@ -90,12 +94,12 @@ const HeroSection = () => {
             </motion.span>{' '}
             <motion.span
               className="wave-emoji inline-block"
-              animate={{
-                rotate: [0, 15, -15, 15, 0],
+              animate={prefersReducedMotion ? {} : {
+                rotate: [0, 12, -12, 12, 0],
                 transition: {
-                  duration: 1.5,
+                  duration: 2,
                   repeat: Infinity,
-                  repeatDelay: 1,
+                  repeatDelay: 2,
                 }
               }}
             >
@@ -171,8 +175,8 @@ const HeroSection = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:border-white/20"
-              whileHover={{ y: -3 }}
+              className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:border-white/20 text-white"
+              whileHover={prefersReducedMotion ? {} : { y: -2 }}
               aria-label={link.label}
             >
               {link.icon}
@@ -181,12 +185,14 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      <ResumePreview
-        isOpen={showResumePreview}
-        onClose={() => setShowResumePreview(false)}
-      />
+      {showResumePreview && (
+        <ResumePreview
+          isOpen={showResumePreview}
+          onClose={() => setShowResumePreview(false)}
+        />
+      )}
     </section>
   );
 };
 
-export default HeroSection;
+export default memo(HeroSection);
