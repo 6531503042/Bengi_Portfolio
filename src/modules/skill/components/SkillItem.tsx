@@ -47,7 +47,7 @@ const SkillItem = ({ data }: { data: SkillCategory }) => {
               <TooltipContent 
                 side="top" 
                 sideOffset={5}
-                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg"
+                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg z-[99999]"
               >
                 <p className="text-sm font-medium text-gray-800">{skill.name}</p>
               </TooltipContent>
