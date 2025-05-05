@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRef, useEffect } from "react";
 import "./Waves.css";
@@ -20,7 +20,7 @@ class Noise {
     this.grad3 = [
       new Grad(1, 1, 0), new Grad(-1, 1, 0), new Grad(1, -1, 0), new Grad(-1, -1, 0),
       new Grad(1, 0, 1), new Grad(-1, 0, 1), new Grad(1, 0, -1), new Grad(-1, 0, -1),
-      new Grad(0, 1, 1), new Grad(0, -1, 1), new Grad(0, 1, -1), new Grad(0, -1, -1)
+      new Grad(0, 1, 1), new Grad(0, -1, 1), new Grad(0, 1, -1), new Grad(0, -1, -1),
     ];
     this.p = [...Array(256)].map((_, i) => i);
     this.perm = new Array(512);
@@ -32,7 +32,6 @@ class Noise {
     if (seed > 0 && seed < 1) seed *= 65536;
     seed = Math.floor(seed);
     if (seed < 256) seed |= seed << 8;
-
     for (let i = 0; i < 256; i++) {
       const v = (i & 1) ? this.p[i] ^ (seed & 255) : this.p[i] ^ ((seed >> 8) & 255);
       this.perm[i] = this.perm[i + 256] = v;
@@ -62,7 +61,7 @@ class Noise {
   }
 }
 
-interface WavesProps {
+export interface WavesProps {
   lineColor?: string;
   backgroundColor?: string;
   waveSpeedX?: number;
@@ -79,7 +78,7 @@ interface WavesProps {
 }
 
 const Waves = ({
-  lineColor = "black",
+  lineColor = "rgba(255, 255, 255, 0.2)",
   backgroundColor = "transparent",
   waveSpeedX = 0.0125,
   waveSpeedY = 0.005,
