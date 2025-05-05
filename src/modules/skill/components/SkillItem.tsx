@@ -46,9 +46,12 @@ const SkillItem = ({ data }: { data: SkillCategory }) => {
               </TooltipTrigger>
               <TooltipContent 
                 side="top" 
-                sideOffset={5}
-                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg z-[9999]"
-                style={{ zIndex: 9999 }}
+                sideOffset={10}
+                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg z-[9999] transform scale-125"
+                style={{ 
+                  zIndex: 9999,
+                  transformOrigin: 'bottom center'
+                }}
               >
                 <p className="text-sm font-medium text-gray-800">{skill.name}</p>
               </TooltipContent>

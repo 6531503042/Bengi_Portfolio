@@ -43,7 +43,7 @@ const Skills = () => {
                       className="w-8 h-8 object-contain"
                     />
                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-xs text-white whitespace-nowrap bg-black/50 px-2 py-1 rounded">
+                      <span className="text-xs text-white whitespace-nowrap bg-black/50 px-2 py-1 rounded transform scale-125">
                         {skill.name}
                       </span>
                     </div>

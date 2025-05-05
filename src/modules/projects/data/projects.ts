@@ -43,27 +43,27 @@ export const projects: IProjectItem[] = [
   {
     id: "Sport-Complex",
     title: "Sport Complex Management",
-    description: "A comprehensive sports facility management system built using Go and Next.js with microservices architecture. Features include real-time booking, facility management, payment processing, and user management.",
-    icons: [
-      "/skills/go.svg", 
-      "/skills/nextjs.svg",
-      "/skills/docker.svg",
-      "/skills/mongodb.svg",
-      "/skills/kafka.svg"
-    ],
+    description: "A redesigned scalable sport complex system built with Go, gRPC, Kafka, Redis, and Next.js. It manages facility booking, payment, and notifications using microservices and Kubernetes-ready architecture.",
+  icons: [
+    "/skills/go.svg", "/skills/grpc.svg", "/skills/mongodb.svg", "/skills/docker.svg", "/skills/nextjs.svg",
+    "/skills/kafka.svg", "/skills/tailwind.png", "/skills/typescript.svg", "/skills/redis.svg"
+  ],
     repoType: RepoType.Public,
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
     tags: [
-      "Go",
-      "Next.js",
-      "Microservices",
-      "MongoDB",
-      "Docker",
-      "Kafka",
-      "JWT",
-      "Management",
-      "Real-time Booking"
+      "Go", "gRPC", "MongoDB", "Docker", "Next.js", "Kafka", "Redis", "TailwindCSS", "Typescript", "Kubernetes", "Microservices"
+    ],
+    technologies: [
+      { name: "Go", icon: "/skills/go.svg" },
+      { name: "gRPC", icon: "/skills/grpc.png" },
+      { name: "MongoDB", icon: "/skills/mongodb.svg" },
+      { name: "Docker", icon: "/skills/docker.svg" },
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "Kafka", icon: "/skills/kafka.svg" },
+      { name: "Redis", icon: "/skills/redis.svg" },
+      { name: "TailwindCSS", icon: "/skills/tailwind.png" },
+      { name: "Typescript", icon: "/skills/typescript.svg" }
     ],
     image: "/projects/sport-complex/Sport-Complex-Banner.png",
     screenshots: [
@@ -73,20 +73,13 @@ export const projects: IProjectItem[] = [
       "/projects/sport-complex/payment-client.png",
       "/projects/sport-complex/payment-scan-qr-code.png"
     ],
-    technologies: [
-      { name: "Go", icon: "/skills/go.svg" },
-      { name: "Next.js", icon: "/skills/nextjs.svg" },
-      { name: "Docker", icon: "/skills/docker.svg" },
-      { name: "MongoDB", icon: "/skills/mongodb.svg" },
-      { name: "Kafka", icon: "/skills/kafka.svg" }
-    ],
     featured: true,
     sourceUrl: "https://github.com/6531503042/Sport-Complex"
   },
   {
     id: "ata-feedback",
     title: "ATA Feedback System",
-    description: "An advanced feedback management system for ATA IT LIMITED Canada Banking, featuring sentiment analysis, automated response generation, and comprehensive analytics. Built with Spring Boot, Next.js, and Python for NLP processing.",
+    description: "A microservices-based confidential feedback platform for ATA Canada Bank using Java Spring WebFlux, NLP in Python, and role-based control. Features include AI sentiment analysis, visual dashboards, and secure user workflows.",
     icons: [
       "/skills/spring-boot.svg",
       "/skills/nextjs.svg",
@@ -98,16 +91,7 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/feedback-ata-microservices-clean-arch-v1",
     tags: [
-      "Java",
-      "Spring Boot",
-      "Next.js",
-      "Python",
-      "PostgreSQL",
-      "MongoDB",
-      "Docker",
-      "Hugging Face",
-      "NLP",
-      "Clean Architecture"
+      "Java", "Spring WebFlux", "Python", "PostgreSQL", "MongoDB", "Docker", "Swagger", "Next.js", "Typescript", "TailwindCSS", "Hero UI", "ReactBit"
     ],
     image: "/projects/ata-senior/Screenshot 2568-04-08 at 23.22.27.png",
     screenshots: [
@@ -124,12 +108,14 @@ export const projects: IProjectItem[] = [
       "/projects/ata-senior/Screenshot 2568-04-08 at 23.27.47.png"
     ],
     technologies: [
-      { name: "Spring Boot", icon: "/skills/spring-boot.svg" },
-      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "Spring WebFlux", icon: "/skills/spring-boot.svg" },
       { name: "Python", icon: "/skills/python.svg" },
       { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
       { name: "MongoDB", icon: "/skills/mongodb.svg" },
-      { name: "Docker", icon: "/skills/docker.svg" }
+      { name: "Docker", icon: "/skills/docker.svg" },
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "TailwindCSS", icon: "/skills/tailwind.png" }
     ],
     featured: true,
     demoUrl: "https://mood-metrics-zi4z.vercel.app/",
@@ -138,7 +124,7 @@ export const projects: IProjectItem[] = [
   {
     id: "deap-appointment",
     title: "Deap Appointment App",
-    description: "A modern mobile appointment scheduling application built with Flutter and Firebase. Features include real-time scheduling, push notifications, user authentication, and calendar integration.",
+    description: "A Flutter-based dental appointment mobile app integrating Firebase for scheduling, reviews, calendar sync, and doctor info. Features include booking by specialization and in-app user feedback.",
     icons: [
       "/skills/flutter.svg",
       "/skills/firebase.svg",
@@ -149,15 +135,7 @@ export const projects: IProjectItem[] = [
     githubUrl: "https://github.com/6531503042/Deap-Mobile-Application",
     url: "https://github.com/6531503042/Deap-Mobile-Application/releases/tag/v1.0.0",
     playStore: "https://play.google.com/store/apps/details?id=com.mobileapp.deap",
-    tags: [
-      "Dart",
-      "Flutter",
-      "Firebase",
-      "Real-time",
-      "Mobile App",
-      "Cloud Messaging",
-      "Authentication"
-    ],
+    tags: ["Dart", "Flutter", "Firebase", "Dental", "Real-time", "Mobile", "Reviews"],
     screenshots: [
       "/projects/deap-application"
     ],
@@ -174,9 +152,11 @@ export const projects: IProjectItem[] = [
   {
     id: "fc-online",
     title: "FC Online Platform",
-    description: "A sports club management platform allowing fans to connect, purchase merchandise, book tickets, and participate in club activities. Built with modern web technologies for a seamless user experience.",
+    description: "A full-stack website for Garena’s Football Game Fan Meet, built in 3 days for user team voting, prize claim, CSV import/export, and admin dashboards. Scales for over 1,000+ users.",
     icons: [
       "/skills/nextjs.svg",
+      "/skills/go.svg",
+      "/skills/tailwind.png",
       "/skills/typescript.svg",
       "/skills/nodejs.svg",
       "/skills/mongodb.svg"
@@ -185,12 +165,7 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/FC-Online",
     tags: [
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
-      "Responsive Design",
-      "Sports Platform"
+      "Next.js", "Go", "TypeScript", "Node.js", "MongoDB", "TailwindCSS", "Responsive Design", "Sports Platform"
     ],
     screenshots: [
       "/projects/fc-online/s1.png",
@@ -203,31 +178,32 @@ export const projects: IProjectItem[] = [
     ],
     image: "/projects/fc-online/s1.png",
     technologies: [
+      { name: "Go", icon: "/skills/go.svg" },
       { name: "Next.js", icon: "/skills/nextjs.svg" },
-      { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "Node.js", icon: "/skills/nodejs.svg" },
+      { name: "TailwindCSS", icon: "/skills/tailwind.png" },
       { name: "MongoDB", icon: "/skills/mongodb.svg" }
     ],
-    featured: false,
+    featured: true,
     sourceUrl: "https://github.com/6531503042/FC-Online"
   },
   {
     id: "hllc-2025",
     title: "HLLC 2025 Conference",
-    description: "Website for the HLLC 2025 conference providing information about the event, registration, schedule, and speakers with a clean, professional interface.",
+    description: "A multi-platform conference system for MFU with 3D interactive tools, student check-in tracking, SSE notifications, and gRPC backends. Designed for 3,000–4,000 concurrent users.",
     icons: [
-      "/skills/nextjs.svg",
-      "/skills/typescript.svg",
-      "/skills/tailwind.svg"
+      "/skills/nestjs.png",
+      "/skills/mongodb.svg",
+      "/skills/react-native.svg",
+      "/skills/redis.svg",
+      "/skills/grpc.png",
+      "/skills/kafka.svg",
+      "/skills/tailwind.png",
+      "/skills/blender.png"
     ],
     repoType: RepoType.Public,
     projectType: ProjectType.Freelance,
     tags: [
-      "Next.js",
-      "TypeScript",
-      "TailwindCSS",
-      "Conference",
-      "Event Website"
+      "Nest.js", "MongoDB", "React Native", "Redis", "gRPC", "Kafka", "SSE", "Next.js", "Hero UI", "TailwindCSS", "3D", "Blender"
     ],
     image: "/projects/hllc-2025/HLLC-Banner.png",
     screenshots: [
@@ -236,9 +212,14 @@ export const projects: IProjectItem[] = [
       "/projects/hllc-2025/2.png"
     ],
     technologies: [
-      { name: "Next.js", icon: "/skills/nextjs.svg" },
-      { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "TailwindCSS", icon: "/skills/tailwind.svg" }
+        { name: "Nest.js", icon: "/skills/nestjs.png" },
+        { name: "MongoDB", icon: "/skills/mongodb.svg" },
+        { name: "React Native", icon: "/skills/react-native.svg" },
+        { name: "Redis", icon: "/skills/redis.svg" },
+        { name: "gRPC", icon: "/skills/grpc.png" },
+        { name: "Kafka", icon: "/skills/kafka.svg" },
+        { name: "TailwindCSS", icon: "/skills/tailwind.png" },
+        { name: "Blender", icon: "/skills/blender.png" }
     ],
     featured: true,
     sourceUrl: "https://github.com/6531503042/HLLC-2025"
@@ -246,7 +227,7 @@ export const projects: IProjectItem[] = [
   {
     id: "iot-sensor",
     title: "IoT Sensor Dashboard",
-    description: "Real-time IoT sensor monitoring dashboard with data visualization, alerting system, and remote device management capabilities.",
+    description: "UI/UX mockup dashboard for real-time sensor data using React, Radix UI, Hero UI, Shadcn, and Leaflet. Built for visualizing mock IoT metrics on maps.",
     icons: [
       "/skills/react.svg",
       "/skills/nodejs.svg",
@@ -255,15 +236,7 @@ export const projects: IProjectItem[] = [
     ],
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
-    tags: [
-      "React",
-      "Node.js",
-      "IoT",
-      "MQTT",
-      "MongoDB",
-      "Real-time Data",
-      "Dashboard"
-    ],
+    tags: ["React", "Radix", "Leaflet", "Hero UI", "Shadcn", "IoT", "Dashboard", "UX/UI"],
     image: "/projects/iot-sensor/IoT-Banner.png",
     screenshots: [
       "/projects/iot-sensor/IoT-Banner.png",
@@ -276,31 +249,23 @@ export const projects: IProjectItem[] = [
       "/projects/iot-sensor/7.png"
     ],
     technologies: [
-      { name: "React", icon: "/skills/react.svg" },
-      { name: "Node.js", icon: "/skills/nodejs.svg" },
-      { name: "MongoDB", icon: "/skills/mongodb.svg" }
+      { name: "React", icon: "/skills/react.svg" }
     ],
     featured: true
   },
   {
     id: "readrealm",
     title: "ReadRealm Book Platform",
-    description: "An online book reading and publishing platform with features for authors to publish, readers to discover, and a community to discuss literary works.",
+    description: "A manga and book reading platform with CMS, payment integration, VIP membership, and advertising modules. Backend powered by Golang and MongoDB.",
     icons: [
       "/skills/nextjs.svg",
       "/skills/typescript.svg",
-      "/skills/postgresql.svg"
+      "/skills/go.svg",
+      "/skills/mongodb.svg"
     ],
     repoType: RepoType.Public,
     projectType: ProjectType.Team,
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Books",
-      "Publishing",
-      "Community"
-    ],
+    tags: ["Next.js", "Golang", "MongoDB", "Book", "CMS", "Coin System", "Payment"],
     image: "/projects/readrealm/ReadRealm-Banner.png",
     screenshots: [
       "/projects/readrealm/ReadRealm-Banner.png",
@@ -317,51 +282,16 @@ export const projects: IProjectItem[] = [
     technologies: [
       { name: "Next.js", icon: "/skills/nextjs.svg" },
       { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "PostgreSQL", icon: "/skills/postgresql.svg" }
+      { name: "MongoDB", icon: "/skills/mongodb.svg" },
+      { name: "Golang", icon: "/skills/go.svg" }
     ],
     featured: true,
     sourceUrl: "https://github.com/6531503042/ReadRealm"
   },
   {
-    id: "portfolio",
-    title: "Portfolio Website",
-    description: "My personal portfolio website built with Next.js and TailwindCSS, featuring a modern UI design, animations, and responsive layout. Showcases my projects, skills, and experience.",
-    icons: [
-      "/skills/nextjs.svg",
-      "/skills/typescript.svg",
-      "/skills/tailwind.svg"
-    ],
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/6531503042/Bengi_Portfolio",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "TailwindCSS",
-      "Framer Motion",
-      "Responsive Design",
-      "Portfolio"
-    ],
-    screenshots: [
-      "/placeholder.svg", 
-      "/placeholder.svg",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    image: "/placeholder.svg",
-    technologies: [
-      { name: "Next.js", icon: "/skills/nextjs.svg" },
-      { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "TailwindCSS", icon: "/placeholder.svg" }
-    ],
-    featured: false,
-    demoUrl: "https://bengi-portfolio.vercel.app",
-    sourceUrl: "https://github.com/6531503042/Bengi_Portfolio"
-  },
-  {
     id: "devwithme",
     title: "DevWithMe",
-    description: "A social platform for developers to collaborate on projects, share knowledge, and build their professional network with real-time chat, project management tools, and resource sharing.",
+    description: "A productivity suite for students/devs featuring Pomodoro, tasks, finance tracker, and Kanban—built with Vite, Tailwind, Supabase, and Recharts.",
     icons: [
       "/skills/nextjs.svg",
       "/skills/typescript.svg",
@@ -372,13 +302,7 @@ export const projects: IProjectItem[] = [
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/6531503042/devwithme",
     tags: [
-      "Next.js",
-      "TypeScript",
-      "TailwindCSS",
-      "Firebase",
-      "Real-time",
-      "Collaboration",
-      "Developer Community"
+      "Next.js", "TypeScript", "Hero UI", "TailwindCSS", "Radix", "Supabase", "Recharts", "Pomodoro", "Kanban", "Finance Tracker"
     ],
     image: "/projects/devWithMe/devWithMe-Banner.png",
     screenshots: [
@@ -399,8 +323,8 @@ export const projects: IProjectItem[] = [
     technologies: [
       { name: "Next.js", icon: "/skills/nextjs.svg" },
       { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "TailwindCSS", icon: "/skills/tailwind.svg" },
-      { name: "Firebase", icon: "/skills/firebase.svg" }
+      { name: "TailwindCSS", icon: "/skills/tailwind.png" },
+      { name: "Supabase", icon: "/skills/supabase.png" }
     ],
     featured: true,
     demoUrl: "https://devwithme.vercel.app",

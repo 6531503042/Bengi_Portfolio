@@ -29,12 +29,14 @@ const SkillsSection = () => {
     if (!ref) return;
     
     const rect = ref.getBoundingClientRect();
+    const zoomLevel = 0.8; // Match the 80% zoom from layout.tsx
+    
     setTooltipPositions(prev => ({
       ...prev,
       [skillId]: {
         id: skillId,
-        top: rect.top - 8,
-        left: rect.left + rect.width / 2,
+        top: rect.top / zoomLevel,
+        left: rect.left / zoomLevel + (rect.width / zoomLevel) / 2,
         visible
       }
     }));
@@ -157,7 +159,7 @@ const SkillsSection = () => {
                 position: 'fixed',
                 top: `${pos.top}px`,
                 left: `${pos.left}px`,
-                transform: 'translate(-50%, -100%)',
+                transform: 'translate(-50%, -100%) scale(1.25)', // Scale up to counteract page zoom
                 opacity: pos.visible ? 1 : 0,
                 zIndex: 9999,
                 pointerEvents: 'none',

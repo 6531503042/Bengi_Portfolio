@@ -138,7 +138,7 @@ export const skillCategories: SkillCategory[] = [
       },
       {
         name: "TailwindCSS",
-        icon: "/skills/tailwind.svg",
+        icon: "/skills/tailwind.png",
         specialties: [
           "Custom Design Systems",
           "Animation Classes",
