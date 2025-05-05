@@ -1,13 +1,13 @@
 import { Inter, Manrope } from 'next/font/google';
 import { Metadata } from 'next';
-import './globals.css';
-import { Providers } from './providers';
-import Navigation from '@/components/Navigation';
-import MouseEffect from '@/components/effects/MouseEffect';
+import '@/app/globals.css';
+import { Providers } from '@/app/providers';
+import Navigation from '@/shared/components/Navigation';
+import MouseEffect from '@/shared/effects/MouseEffect';
 import dynamic from 'next/dynamic';
 
 // Dynamically import Waves with lazy loading and no SSR
-const ClientWaves = dynamic(() => import('@/components/ClientWaves'), {
+const ClientWaves = dynamic(() => import('@/shared/effects/ClientWaves'), {
   ssr: false,
   loading: () => null // Don't show anything during loading
 });
