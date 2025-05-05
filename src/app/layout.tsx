@@ -134,6 +134,18 @@ export default function RootLayout({
           strategy="afterInteractive"
         >
           {`
+            // Set zoom level to 80% by default with fallback
+            if ('zoom' in document.body.style) {
+              // For browsers that support zoom
+              document.body.style.zoom = "80%";
+            } else {
+              // Fallback for Firefox and others
+              document.body.style.transform = "scale(0.8)";
+              document.body.style.transformOrigin = "top center";
+              document.body.style.height = "calc(100vh / 0.8)";
+              document.body.style.overflow = "auto";
+            }
+            
             // Optimize rendering by deferring non-critical operations
             window.addEventListener('load', () => {
               // Execute after the page is fully loaded
