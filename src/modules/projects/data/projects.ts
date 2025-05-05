@@ -229,9 +229,9 @@ export const projects: IProjectItem[] = [
       "Conference",
       "Event Website"
     ],
-    image: "/projects/hllc-2025/HLLC2024-Banner.png",
+    image: "/projects/hllc-2025/HLLC-Banner.png",
     screenshots: [
-      "/projects/hllc-2025/HLLC2024-Banner.png",
+      "/projects/hllc-2025/HLLC-Banner.png",
       "/projects/hllc-2025/1.png",
       "/projects/hllc-2025/2.png"
     ],

@@ -1,5 +1,5 @@
-import Row from "../core/Row";
-import Column from "../core/Column";
+import Row from "@/shared/core/Row";
+import Column from "@/shared/core/Column";
 
 const ScreenshotGallery = ({ imageList }: { imageList: string[] }) => {
   return (
