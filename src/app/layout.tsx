@@ -46,6 +46,10 @@ export const metadata: Metadata = {
   description: 'Full-Stack Developer specializing in modern web applications with a focus on user experience and clean code.',
   keywords: ['Full-Stack Developer', 'Web Development', 'React', 'Next.js', 'TypeScript'],
   authors: [{ name: 'Bengi' }],
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
