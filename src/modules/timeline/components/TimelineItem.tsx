@@ -33,7 +33,7 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
         className="rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all hover:bg-white/[0.07]"
       >
         {/* Header with date badge */}
-        <motion.div 
+        <motion.div
           layout
           className="p-4 border-b border-white/5 bg-white/[0.03] cursor-pointer"
           onClick={() => setExpanded(!expanded)}
@@ -41,16 +41,16 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
             <div className="flex items-center gap-4">
               <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
-                {isEducation ? (
-                  <GraduationCap className="w-5 h-5 text-purple-400" />
-                ) : (
-                  <Building2 className="w-5 h-5 text-blue-400" />
-                )}
+              {isEducation ? (
+                <GraduationCap className="w-5 h-5 text-purple-400" />
+              ) : (
+                <Building2 className="w-5 h-5 text-blue-400" />
+              )}
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-400 hover:to-purple-400">
-                  {name}
-                </h3>
+                {name}
+              </h3>
                 <p className="text-white/60 text-sm mt-1">{title}</p>
               </div>
             </div>
@@ -83,7 +83,7 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           </div>
         </motion.div>
 
-        {/* Description List */}
+          {/* Description List */}
         <motion.div 
           layout
           initial={{ opacity: 0, height: 0 }}
@@ -97,47 +97,47 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           {description && (
             <div className="p-5">
               <ul className="space-y-3">
-                {description.map((desc, i) => (
-                  <motion.li 
-                    key={i} 
+              {description.map((desc, i) => (
+                <motion.li
+                  key={i}
                     initial={{ opacity: 0, x: -5 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
                     className="flex items-start gap-3 text-sm"
-                  >
+                >
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex-shrink-0" />
                     <span className="text-white/70">{desc}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                </motion.li>
+              ))}
+            </ul>
 
-              {/* Links Section */}
-              {links && links.length > 0 && (
+          {/* Links Section */}
+          {links && links.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-5">
-                  {links.map((link, idx) => {
+              {links.map((link, idx) => {
                     const Icon = link.icon.toLowerCase() === 'globe' ? Globe : 
                               link.icon.toLowerCase() === 'github' ? Github : ExternalLink;
-                    
-                    return (
-                      <motion.a
-                        key={idx}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                
+                return (
+                  <motion.a
+                    key={idx}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                         className="transition-transform hover:scale-105"
                         whileHover={{ y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Badge 
-                          variant="secondary" 
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Badge 
+                      variant="secondary" 
                           className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10"
-                        >
-                          <Icon className="h-3.5 w-3.5" />
+                    >
+                      <Icon className="h-3.5 w-3.5" />
                           <span className="text-xs">{link.name}</span>
-                        </Badge>
-                      </motion.a>
-                    );
-                  })}
+                    </Badge>
+                  </motion.a>
+                );
+              })}
                 </div>
               )}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, CSSProperties } from "react";
-import "./Waves.css";
+import "@/shared/effects/Waves.css";
 
 class Grad {
   x: number;

@@ -35,7 +35,7 @@ const SkillItem = ({ data }: { data: SkillCategory }) => {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                  className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
                 >
                   <img 
                     src={skill.icon} 
@@ -47,7 +47,8 @@ const SkillItem = ({ data }: { data: SkillCategory }) => {
               <TooltipContent 
                 side="top" 
                 sideOffset={5}
-                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg z-[99999]"
+                className="bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg z-[9999]"
+                style={{ zIndex: 9999 }}
               >
                 <p className="text-sm font-medium text-gray-800">{skill.name}</p>
               </TooltipContent>

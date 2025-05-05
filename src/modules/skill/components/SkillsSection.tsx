@@ -15,7 +15,13 @@ interface TooltipPosition {
 const SkillsSection = () => {
   // State to track all tooltip positions
   const [tooltipPositions, setTooltipPositions] = useState<Record<string, TooltipPosition>>({});
+  const [isMounted, setIsMounted] = useState(false);
   const skillRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
   
   // Update tooltip positions when hovering
   const updateTooltipPosition = (skillId: string, visible: boolean = true) => {
@@ -142,18 +148,22 @@ const SkillsSection = () => {
       </div>
 
       {/* Portal for skill specialty tooltips */}
-      {typeof window !== "undefined" && 
+      {isMounted && typeof window !== "undefined" && 
         Object.values(tooltipPositions).map(pos => (
           pos.visible && createPortal(
             <div
               key={pos.id}
-              className="fixed z-[2147483647] pointer-events-none w-48 opacity-0 animate-in fade-in-0 group-hover/skill:opacity-100 transition-all duration-300 transform"
               style={{
+                position: 'fixed',
                 top: `${pos.top}px`,
                 left: `${pos.left}px`,
                 transform: 'translate(-50%, -100%)',
                 opacity: pos.visible ? 1 : 0,
+                zIndex: 9999,
+                pointerEvents: 'none',
+                width: '12rem',
               }}
+              className="animate-in fade-in-0 group-hover/skill:opacity-100 transition-all duration-300"
             >
               <div className="relative bg-[#1a1b1e]/95 backdrop-blur-md rounded-lg p-3 border border-white/10 shadow-xl">
                 <div className="text-[11px] font-medium text-white mb-2">Specialized in:</div>

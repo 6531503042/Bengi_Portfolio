@@ -1,15 +1,21 @@
 import { Inter, Manrope } from 'next/font/google';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
 import { Providers } from '@/app/providers';
 import Navigation from '@/shared/components/Navigation';
-import MouseEffect from '@/shared/effects/MouseEffect';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
+
+// Lazy load non-critical components
+const MouseEffect = dynamic(() => import('@/shared/effects/MouseEffect'), { 
+  ssr: false, 
+  loading: () => null 
+});
 
 // Dynamically import Waves with lazy loading and no SSR
 const ClientWaves = dynamic(() => import('@/shared/effects/ClientWaves'), {
   ssr: false,
-  loading: () => null // Don't show anything during loading
+  loading: () => <div className="absolute inset-0 bg-[#1a1b1e]/50" /> // Placeholder during loading
 });
 
 const inter = Inter({ 
@@ -24,18 +30,22 @@ const manrope = Manrope({
   display: 'swap',
 });
 
+// Viewport configuration
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#0a0b0c',
+};
+
+// Metadata
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-domain.com'),
   title: 'Bengi Portfolio | Full-Stack Developer',
   description: 'Full-Stack Developer specializing in modern web applications with a focus on user experience and clean code.',
   keywords: ['Full-Stack Developer', 'Web Development', 'React', 'Next.js', 'TypeScript'],
   authors: [{ name: 'Bengi' }],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -52,11 +62,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    creator: '@yourusername',
-    site: '@yourusername',
-    card: 'summary_large_image',
-  },
 };
 
 export default function RootLayout({
@@ -67,33 +72,45 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        {/* Preload critical resources */}
+        <link rel="preload" href="/placeholder.svg" as="image" />
+        
+        {/* Add resource hints for performance */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        
+        {/* Add preconnect for external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} ${manrope.variable} font-sans antialiased bg-[#0a0b0c] text-base`}>
         <Providers>
+          {/* Progressive enhancement - simple background first */}
+          <div className="fixed inset-0 bg-[#0a0b0c] z-0" /> 
+          
           <div className="relative min-h-screen overflow-x-hidden">
-            {/* Base gradient */}
+            {/* Base gradient - simplified for better initial load */}
             <div className="fixed inset-0 bg-gradient-to-b from-[#0a0b0c] via-[#1a1b1e] to-[#0a0b0c] z-0" />
 
-            {/* Ambient background effects */}
+            {/* Ambient background effects - loaded after critical content */}
             <div className="fixed inset-0 overflow-hidden z-0">
-              {/* Radial gradient overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
+              {/* Radial gradient overlay - simplified */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
               
-              {/* Wave effects - Wrapped in client component with reduced values */}
+              {/* Wave effects - loaded lazily after critical content */}
               <div className="absolute inset-0">
                 <ClientWaves
                   lineColor="rgba(255, 255, 255, 0.15)"
                   backgroundColor="transparent"
-                  waveSpeedX={0.01} 
-                  waveSpeedY={0.005}
-                  waveAmpX={30}
-                  waveAmpY={15} 
-                  friction={0.95}
-                  tension={0.008}
-                  maxCursorMove={90}
-                  xGap={18}
-                  yGap={48}
+                  waveSpeedX={0.008} 
+                  waveSpeedY={0.004}
+                  waveAmpX={20}
+                  waveAmpY={10} 
+                  friction={0.96}
+                  tension={0.007}
+                  maxCursorMove={60}
+                  xGap={25}
+                  yGap={60}
                 />
               </div>
             </div>
@@ -101,7 +118,7 @@ export default function RootLayout({
             {/* Navigation */}
             <Navigation />
             
-            {/* Mouse Effect */}
+            {/* Mouse Effect - load after critical content */}
             <MouseEffect />
 
             {/* Main Content */}
@@ -110,6 +127,27 @@ export default function RootLayout({
             </main>
           </div>
         </Providers>
+        
+        {/* Add only essential scripts that improve performance */}
+        <Script
+          id="performance-improvements"
+          strategy="afterInteractive"
+        >
+          {`
+            // Optimize rendering by deferring non-critical operations
+            window.addEventListener('load', () => {
+              // Execute after the page is fully loaded
+              setTimeout(() => {
+                // Remove any remaining loading placeholders
+                const placeholders = document.querySelectorAll('.loading-placeholder');
+                placeholders.forEach(el => el.classList.add('opacity-0'));
+                
+                // Mark page as fully loaded
+                document.documentElement.classList.add('page-loaded');
+              }, 200);
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

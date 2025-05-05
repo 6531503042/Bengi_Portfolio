@@ -65,8 +65,9 @@ export const projects: IProjectItem[] = [
       "Management",
       "Real-time Booking"
     ],
-    image: "/projects/sport-complex/booking-gym.png",
+    image: "/projects/sport-complex/Sport-Complex-Banner.png",
     screenshots: [
+      "/projects/sport-complex/Sport-Complex-Banner.png",
       "/projects/sport-complex/booking-gym.png",
       "/projects/sport-complex/confirm-booking.png",
       "/projects/sport-complex/payment-client.png",
@@ -166,7 +167,7 @@ export const projects: IProjectItem[] = [
       { name: "Firebase", icon: "/skills/firebase.svg" },
       { name: "Dart", icon: "/skills/dart.svg" }
     ],
-    featured: true,
+    featured: false,
     demoUrl: "https://github.com/6531503042/Deap-Mobile-Application/releases/tag/v1.0.0",
     sourceUrl: "https://github.com/6531503042/Deap-Mobile-Application"
   },
@@ -207,6 +208,7 @@ export const projects: IProjectItem[] = [
       { name: "Node.js", icon: "/skills/nodejs.svg" },
       { name: "MongoDB", icon: "/skills/mongodb.svg" }
     ],
+    featured: false,
     sourceUrl: "https://github.com/6531503042/FC-Online"
   },
   {
@@ -227,16 +229,19 @@ export const projects: IProjectItem[] = [
       "Conference",
       "Event Website"
     ],
+    image: "/projects/hllc-2025/HLLC2024-Banner.png",
     screenshots: [
+      "/projects/hllc-2025/HLLC2024-Banner.png",
       "/projects/hllc-2025/1.png",
       "/projects/hllc-2025/2.png"
     ],
-    image: "/projects/hllc-2025/1.png",
     technologies: [
       { name: "Next.js", icon: "/skills/nextjs.svg" },
       { name: "TypeScript", icon: "/skills/typescript.svg" },
       { name: "TailwindCSS", icon: "/skills/tailwind.svg" }
-    ]
+    ],
+    featured: true,
+    sourceUrl: "https://github.com/6531503042/HLLC-2025"
   },
   {
     id: "iot-sensor",
@@ -259,7 +264,9 @@ export const projects: IProjectItem[] = [
       "Real-time Data",
       "Dashboard"
     ],
+    image: "/projects/iot-sensor/IoT-Banner.png",
     screenshots: [
+      "/projects/iot-sensor/IoT-Banner.png",
       "/projects/iot-sensor/1.png",
       "/projects/iot-sensor/2.png",
       "/projects/iot-sensor/3.png",
@@ -268,12 +275,12 @@ export const projects: IProjectItem[] = [
       "/projects/iot-sensor/6.png",
       "/projects/iot-sensor/7.png"
     ],
-    image: "/projects/iot-sensor/1.png",
     technologies: [
       { name: "React", icon: "/skills/react.svg" },
       { name: "Node.js", icon: "/skills/nodejs.svg" },
       { name: "MongoDB", icon: "/skills/mongodb.svg" }
-    ]
+    ],
+    featured: true
   },
   {
     id: "readrealm",
@@ -294,7 +301,9 @@ export const projects: IProjectItem[] = [
       "Publishing",
       "Community"
     ],
+    image: "/projects/readrealm/ReadRealm-Banner.png",
     screenshots: [
+      "/projects/readrealm/ReadRealm-Banner.png",
       "/projects/readrealm/1.png",
       "/projects/readrealm/2.png",
       "/projects/readrealm/3.png",
@@ -305,12 +314,13 @@ export const projects: IProjectItem[] = [
       "/projects/readrealm/8.png",
       "/projects/readrealm/9.png"
     ],
-    image: "/projects/readrealm/1.png",
     technologies: [
       { name: "Next.js", icon: "/skills/nextjs.svg" },
       { name: "TypeScript", icon: "/skills/typescript.svg" },
       { name: "PostgreSQL", icon: "/skills/postgresql.svg" }
-    ]
+    ],
+    featured: true,
+    sourceUrl: "https://github.com/6531503042/ReadRealm"
   },
   {
     id: "portfolio",
@@ -333,19 +343,67 @@ export const projects: IProjectItem[] = [
       "Portfolio"
     ],
     screenshots: [
-      "/projects/portfolio/home.png",
-      "/projects/portfolio/projects.png",
-      "/projects/portfolio/skills.png",
-      "/projects/portfolio/contact.png"
+      "/placeholder.svg", 
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg"
     ],
-    image: "/projects/portfolio/main.png",
+    image: "/placeholder.svg",
     technologies: [
       { name: "Next.js", icon: "/skills/nextjs.svg" },
       { name: "TypeScript", icon: "/skills/typescript.svg" },
-      { name: "TailwindCSS", icon: "/skills/tailwind.svg" }
+      { name: "TailwindCSS", icon: "/placeholder.svg" }
     ],
-    featured: true,
+    featured: false,
     demoUrl: "https://bengi-portfolio.vercel.app",
     sourceUrl: "https://github.com/6531503042/Bengi_Portfolio"
+  },
+  {
+    id: "devwithme",
+    title: "DevWithMe",
+    description: "A social platform for developers to collaborate on projects, share knowledge, and build their professional network with real-time chat, project management tools, and resource sharing.",
+    icons: [
+      "/skills/nextjs.svg",
+      "/skills/typescript.svg",
+      "/skills/tailwind.svg",
+      "/skills/firebase.svg"
+    ],
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/6531503042/devwithme",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "Firebase",
+      "Real-time",
+      "Collaboration",
+      "Developer Community"
+    ],
+    image: "/projects/devWithMe/devWithMe-Banner.png",
+    screenshots: [
+      "/projects/devWithMe/devWithMe-Banner.png",
+      "/projects/devWithMe/landing-page.png",
+      "/projects/devWithMe/login.png",
+      "/projects/devWithMe/dashboard-tumbnail.png",
+      "/projects/devWithMe/kanban.png",
+      "/projects/devWithMe/kanban-column.png",
+      "/projects/devWithMe/kanban-newcard.png",
+      "/projects/devWithMe/task-create-tumbnail.png",
+      "/projects/devWithMe/pomodoro-page.png",
+      "/projects/devWithMe/finance-overall.png",
+      "/projects/devWithMe/finance-weekly.png",
+      "/projects/devWithMe/fiance-monthly.png",
+      "/projects/devWithMe/finance-yearly.png"
+    ],
+    technologies: [
+      { name: "Next.js", icon: "/skills/nextjs.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "TailwindCSS", icon: "/skills/tailwind.svg" },
+      { name: "Firebase", icon: "/skills/firebase.svg" }
+    ],
+    featured: true,
+    demoUrl: "https://devwithme.vercel.app",
+    sourceUrl: "https://github.com/6531503042/devwithme"
   }
 ];
