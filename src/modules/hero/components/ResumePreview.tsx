@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { X, ZoomIn, ZoomOut, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +12,7 @@ interface ResumePreviewProps {
 
 const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
   const [scale, setScale] = useState(1);
-  
+
   // Hide navigation when preview is open
   useEffect(() => {
     const nav = document.querySelector('nav');
@@ -18,8 +20,7 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
       nav.style.opacity = isOpen ? '0' : '1';
       nav.style.pointerEvents = isOpen ? 'none' : 'auto';
     }
-    
-    // Cleanup
+
     return () => {
       if (nav) {
         nav.style.opacity = '1';
@@ -37,10 +38,9 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
   };
 
   const handleDownload = () => {
-    // Create a direct link to download instead of just opening in new tab
     const link = document.createElement('a');
-    link.href = '/Resume.pdf';
-    link.download = 'Resume.pdf'; // This will force download instead of opening in new tab
+    link.href = '/Resume/Resume.pdf';
+    link.download = 'Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -65,7 +65,7 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
             onClick={e => e.stopPropagation()}
           >
             {/* Controls Bar */}
-            <motion.div 
+            <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -92,7 +92,7 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
                   {Math.round(scale * 100)}%
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"
@@ -113,26 +113,26 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
               </div>
             </motion.div>
 
-            {/* Resume Preview */}
-            <motion.div 
+            {/* Resume Preview Images */}
+            <motion.div
               className="w-full h-full overflow-auto p-16 pt-24 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <motion.div
-                animate={{ scale }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                style={{ transformOrigin: 'top center' }}
-                className="relative"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-lg blur-xl" />
-                <img
-                  src="/Resume.png"
-                  alt="Resume Preview"
-                  className="relative w-full h-auto object-contain rounded-lg shadow-2xl ring-1 ring-white/20"
-                />
-              </motion.div>
+              <div className="flex flex-col gap-12 items-center">
+                {["/Resume/Resume-1.png", "/Resume/Resume-2.png"].map((src, index) => (
+                  <motion.img
+                    key={src}
+                    src={src}
+                    alt={`Resume Page ${index + 1}`}
+                    animate={{ scale }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    style={{ transformOrigin: 'top center' }}
+                    className="w-full h-auto max-w-4xl object-contain rounded-xl shadow-2xl ring-1 ring-white/20"
+                  />
+                ))}
+              </div>
             </motion.div>
 
             {/* Bottom gradient fade */}
@@ -144,4 +144,4 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
   );
 };
 
-export default ResumePreview; 
+export default ResumePreview;
