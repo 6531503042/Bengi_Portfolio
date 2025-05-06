@@ -44,10 +44,10 @@ export const projects: IProjectItem[] = [
     id: "Sport-Complex",
     title: "Sport Complex Management",
     description: "A redesigned scalable sport complex system built with Go, gRPC, Kafka, Redis, and Next.js. It manages facility booking, payment, and notifications using microservices and Kubernetes-ready architecture.",
-  icons: [
-    "/skills/go.svg", "/skills/grpc.svg", "/skills/mongodb.svg", "/skills/docker.svg", "/skills/nextjs.svg",
-    "/skills/kafka.svg", "/skills/tailwind.png", "/skills/typescript.svg", "/skills/redis.svg"
-  ],
+    icons: [
+      "/skills/go.svg", "/skills/grpc.svg", "/skills/mongodb.svg", "/skills/docker.svg", "/skills/nextjs.svg",
+      "/skills/kafka.svg", "/skills/tailwind.png", "/skills/typescript.svg", "/skills/redis.svg"
+    ],
     repoType: RepoType.Public,
     projectType: ProjectType.College,
     githubUrl: "https://github.com/6531503042/Sport-Complex",
@@ -67,7 +67,6 @@ export const projects: IProjectItem[] = [
     ],
     image: "/projects/sport-complex/Sport-Complex-Banner.png",
     screenshots: [
-      "/projects/sport-complex/Sport-Complex-Banner.png",
       "/projects/sport-complex/booking-gym.png",
       "/projects/sport-complex/confirm-booking.png",
       "/projects/sport-complex/payment-client.png",
@@ -152,7 +151,7 @@ export const projects: IProjectItem[] = [
   {
     id: "fc-online",
     title: "FC Online Platform",
-    description: "A full-stack website for Garena’s Football Game Fan Meet, built in 3 days for user team voting, prize claim, CSV import/export, and admin dashboards. Scales for over 1,000+ users.",
+    description: "A full-stack website for Garena's Football Game Fan Meet, built in 3 days for user team voting, prize claim, CSV import/export, and admin dashboards. Scales for over 1,000+ users.",
     icons: [
       "/skills/nextjs.svg",
       "/skills/go.svg",
@@ -207,7 +206,6 @@ export const projects: IProjectItem[] = [
     ],
     image: "/projects/hllc-2025/HLLC-Banner.png",
     screenshots: [
-      "/projects/hllc-2025/HLLC-Banner.png",
       "/projects/hllc-2025/1.png",
       "/projects/hllc-2025/2.png"
     ],
@@ -239,7 +237,6 @@ export const projects: IProjectItem[] = [
     tags: ["React", "Radix", "Leaflet", "Hero UI", "Shadcn", "IoT", "Dashboard", "UX/UI"],
     image: "/projects/iot-sensor/IoT-Banner.png",
     screenshots: [
-      "/projects/iot-sensor/IoT-Banner.png",
       "/projects/iot-sensor/1.png",
       "/projects/iot-sensor/2.png",
       "/projects/iot-sensor/3.png",
@@ -268,7 +265,6 @@ export const projects: IProjectItem[] = [
     tags: ["Next.js", "Golang", "MongoDB", "Book", "CMS", "Coin System", "Payment"],
     image: "/projects/readrealm/ReadRealm-Banner.png",
     screenshots: [
-      "/projects/readrealm/ReadRealm-Banner.png",
       "/projects/readrealm/1.png",
       "/projects/readrealm/2.png",
       "/projects/readrealm/3.png",
@@ -306,7 +302,6 @@ export const projects: IProjectItem[] = [
     ],
     image: "/projects/devWithMe/devWithMe-Banner.png",
     screenshots: [
-      "/projects/devWithMe/devWithMe-Banner.png",
       "/projects/devWithMe/landing-page.png",
       "/projects/devWithMe/login.png",
       "/projects/devWithMe/dashboard-tumbnail.png",

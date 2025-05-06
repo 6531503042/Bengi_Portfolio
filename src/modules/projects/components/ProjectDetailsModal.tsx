@@ -18,16 +18,31 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
   const [showImagePreview, setShowImagePreview] = React.useState(false);
   const [mainImageError, setMainImageError] = React.useState(false);
   
-  const allImages = [
-    ...(project.image ? [project.image] : []),
-    ...(project.screenshots || [])
-  ].filter(url => url && url.trim() !== '');
+  // Deduplicate images: only show the banner once
+  const allImages = React.useMemo(() => {
+    const images = [
+      ...(project.image ? [project.image] : []),
+      ...(project.screenshots || [])
+    ].filter(url => url && url.trim() !== '');
+    // Remove duplicates (keep first occurrence)
+    return images.filter((url, idx) => images.indexOf(url) === idx);
+  }, [project.image, project.screenshots]);
+
+  // Preload all images when modal opens
+  React.useEffect(() => {
+    if (isOpen && allImages.length > 0) {
+      allImages.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    }
+  }, [isOpen, allImages]);
 
   const handleImageError = () => {
     setMainImageError(true);
   };
 
-  const mainImage = project.image || project.screenshots?.[0];
+  const mainImage = allImages[0];
   const showImagePreviewIndicator = allImages.length > 0 && !mainImageError;
 
   return (
