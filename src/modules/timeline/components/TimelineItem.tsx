@@ -116,36 +116,6 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
                 </motion.li>
               ))}
             </ul>
-
-          {/* Links Section */}
-          {links && links.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-5">
-              {links.map((link, idx) => {
-                    const Icon = link.icon.toLowerCase() === 'globe' ? Globe : 
-                              link.icon.toLowerCase() === 'github' ? Github : ExternalLink;
-                
-                return (
-                  <motion.a
-                    key={idx}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                        className="transition-transform hover:scale-105"
-                        whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Badge 
-                      variant="secondary" 
-                          className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10"
-                    >
-                      <Icon className="h-3.5 w-3.5" />
-                          <span className="text-xs">{link.name}</span>
-                    </Badge>
-                  </motion.a>
-                );
-              })}
-                </div>
-              )}
             </div>
           )}
         </motion.div>
