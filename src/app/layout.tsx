@@ -102,21 +102,8 @@ export default function RootLayout({
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
               
               {/* Wave effects - loaded lazily after critical content */}
-              <div className="absolute inset-0">
-                <ClientWaves
-                  lineColor="rgba(255, 255, 255, 0.15)"
-                  backgroundColor="transparent"
-                  waveSpeedX={0.008} 
-                  waveSpeedY={0.004}
-                  waveAmpX={20}
-                  waveAmpY={10} 
-                  friction={0.96}
-                  tension={0.007}
-                  maxCursorMove={60}
-                  xGap={25}
-                  yGap={60}
-                />
-              </div>
+                <ClientWaves/>
+
             </div>
 
             {/* Navigation */}
