@@ -128,12 +128,12 @@ export default function RootLayout({
             // Set zoom level to 80% by default with fallback
             if ('zoom' in document.body.style) {
               // For browsers that support zoom
-              document.body.style.zoom = "80%";
+              document.body.style.zoom = "90%";
             } else {
               // Fallback for Firefox and others
-              document.body.style.transform = "scale(0.8)";
+              document.body.style.transform = "scale(0.9)";
               document.body.style.transformOrigin = "top center";
-              document.body.style.height = "calc(100vh / 0.8)";
+              document.body.style.height = "calc(100vh / 0.9)";
               document.body.style.overflow = "auto";
             }
             
