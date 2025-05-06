@@ -38,10 +38,16 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           className="p-4 border-b border-white/5 bg-white/[0.03] cursor-pointer"
           onClick={() => setExpanded(!expanded)}
         >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
-              {isEducation ? (
+              <div className="p-1 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
+              {logo ? (
+                <img
+                  src={logo}
+                  alt={name}
+                  className="w-10 h-10 rounded-md object-contain bg-white/10"
+                />
+              ) : isEducation ? (
                 <GraduationCap className="w-5 h-5 text-purple-400" />
               ) : (
                 <Building2 className="w-5 h-5 text-blue-400" />

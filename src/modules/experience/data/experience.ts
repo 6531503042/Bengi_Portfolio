@@ -16,46 +16,42 @@ export interface Link {
 }
 
 export const data: Experience[] = [
-    {
-        name: "SEEZ Dev",
-        href: "#",
-        title: "Fullstack Developer",
-        logo: "public/projects/logo.svg",
-        start: "Mar 2025",
-        end: "Present",
-        description: [
-          "พัฒนาและดูแลระบบ Web Application ทั้งฝั่ง Frontend และ Backend",
-          "ใช้เทคโนโลยี Go, React, Next.js, และ MongoDB",
-          "ออกแบบระบบ Chat, Notification, และ Dashboard สำหรับการใช้งานแบบ Real-time",
-          "วางโครงสร้างโปรเจกต์ตามหลัก Clean Architecture พร้อมด้วยระบบ CI/CD และ Containerized Deployment"
-        ],
-        links: [
-          {
-            name: "Company Website",
-            href: "https://seezdev.com",
-            icon: "globe"
-          }
-        ]
-      },
+  {
+    name: "Garena Online Management",
+    href: "#",
+    title: "Freelance Backend Developer",
+    logo: "https://play-lh.googleusercontent.com/oDC8LSrQbPhq9VEf84fnoDx1UPtIRf7wUnaKQPRk3Z_kXXgivcHx_uZ3rF1bubrTg5c",
+    start: "May 2025",
+    end: "May 2025",
+    description: [
+      "Delivered an urgent football vote and prize distribution system within 3 days using Go, Next.js, and MongoDB.",
+      "Supported 1,000+ users with import/export CSV tools and a real-time admin dashboard."
+    ],
+    links: [
       {
-        name: "HLLC-2025",
-        href: "#",
-        title: "Backend Architecture Designer",
-        logo: "/company-logos/hllc2025.png",
-        start: "May 2025",
-        end: "Jul 2025",
-        description: [
-          "ออกแบบสถาปัตยกรรม Backend โดยใช้ Clean Architecture และ Modular Design",
-          "ตั้งค่าและจัดการระบบ Microservices ด้วย Go และ MongoDB",
-          "วางระบบ gRPC และ REST API ให้สามารถทำงานร่วมกันได้อย่างยืดหยุ่น",
-          "ปรับใช้ระบบ Logging, Error Handling, และ Middleware ให้สามารถขยายได้ในระยะยาว"
-        ],
-        links: [
-          {
-            name: "Project Repository",
-            href: "https://github.com/HLLC-MFU/HLLC-2025",
-            icon: "globe"
-          }
-        ]
+        name: "Project Repository",
+        href: "https://github.com/6531503042/fifa-management-system",
+        icon: "github"
       }
-]
+    ]
+  },
+  {
+    name: "HLLC-2025",
+    href: "#",
+    title: "Fullstack Developer",
+    logo: "https://archives.mfu.ac.th/wp-content/uploads/2019/06/Mae-Fah-Luang-University-2.png",
+    start: "May 2025",
+    end: "Jul 2025",
+    description: [
+      "Designed and developed a campus activity application serving 3,000–4,000 students.",
+      "Built real-time check-ins, CMS, gamified scoring, and interactive 3D visual modules using NestJS, Expo, Golang, and Kafka."
+    ],
+    links: [
+      {
+        name: "Project Repository",
+        href: "https://github.com/6531503042/hllc-2025",
+        icon: "github"
+      }
+    ]
+  }
+];
