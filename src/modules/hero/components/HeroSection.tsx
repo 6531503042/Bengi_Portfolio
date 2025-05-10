@@ -165,10 +165,11 @@ const HeroSection = () => {
             variant="outline" 
             size="lg" 
             onClick={handleDownloadResume}
-            className="border-2 border-purple-500/30 hover:border-purple-500/50 backdrop-blur-sm transition-all duration-300"
+            className="border-2 border-white bg-white text-black hover:bg-gray-100 hover:border-gray-300 transition-all duration-300 shadow-lg"
           >
-            <Download className="w-4 h-4 mr-2" /> Download Resume
+            <Download className="w-4 h-4 mr-2 text-black" /> Download Resume
           </Button>
+
         </motion.div>
 
         <motion.div 
