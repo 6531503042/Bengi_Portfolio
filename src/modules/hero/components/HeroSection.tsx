@@ -80,7 +80,7 @@ const HeroSection = () => {
             />
           )}
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 relative">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 relative text-white">
             Hello there, I&apos;m{' '}
             <motion.span
               className="inline-block relative"
@@ -96,18 +96,22 @@ const HeroSection = () => {
             </motion.span>{' '}
             <motion.span
               className="wave-emoji inline-block"
-              animate={prefersReducedMotion ? {} : {
-                rotate: [0, 12, -12, 12, 0],
-                transition: {
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                }
-              }}
+              animate={
+                prefersReducedMotion
+                  ? {}
+                  : {
+                      rotate: [0, 12, -12, 12, 0],
+                      transition: {
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 2,
+                      },
+                    }
+              }
             >
               👋
             </motion.span>
-          </h1>
+</h1>
         </motion.div>
 
         <motion.div 
