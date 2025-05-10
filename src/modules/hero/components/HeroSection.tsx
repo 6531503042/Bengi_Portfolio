@@ -14,8 +14,8 @@ const HeroSection = () => {
   const handleDownloadResume = () => {
     // Create a link element
     const link = document.createElement('a');
-    link.href = '/Resume.pdf';
-    link.download = 'Bengi_Resume.pdf'; // This will be the downloaded file name
+    link.href = '/Resume/Resume.pdf';
+    link.download = 'Resume.pdf'; // This will be the downloaded file name
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
