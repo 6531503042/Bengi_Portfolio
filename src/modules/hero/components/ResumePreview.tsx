@@ -40,7 +40,7 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = '/Resume/Resume.pdf';
-    link.download = 'Resume.pdf';
+    link.download = '/Resume/Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
