@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { skillCategories, SkillCategory, Skill } from "@/modules/skill/data/skills";
+import {
+  skillCategories,
+  SkillCategory,
+  Skill,
+} from "@/modules/skill/data/skills";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -14,39 +18,41 @@ interface TooltipPosition {
 
 const SkillsSection = () => {
   // State to track all tooltip positions
-  const [tooltipPositions, setTooltipPositions] = useState<Record<string, TooltipPosition>>({});
+  const [tooltipPositions, setTooltipPositions] = useState<
+    Record<string, TooltipPosition>
+  >({});
   const [isMounted, setIsMounted] = useState(false);
   const skillRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  
+
   useEffect(() => {
     setIsMounted(true);
     return () => setIsMounted(false);
   }, []);
-  
+
   // Update tooltip positions when hovering
   const updateTooltipPosition = (skillId: string, visible: boolean = true) => {
     const ref = skillRefs.current[skillId];
     if (!ref) return;
-    
+
     const rect = ref.getBoundingClientRect();
     const zoomLevel = 0.8; // Match the 80% zoom from layout.tsx
-    
-    setTooltipPositions(prev => ({
+
+    setTooltipPositions((prev) => ({
       ...prev,
       [skillId]: {
         id: skillId,
         top: rect.top / zoomLevel,
-        left: rect.left / zoomLevel + (rect.width / zoomLevel) / 2,
-        visible
-      }
+        left: rect.left / zoomLevel + rect.width / zoomLevel / 2,
+        visible,
+      },
     }));
   };
 
   // Reset tooltip visibility when mouse leaves
   const hideTooltip = (skillId: string) => {
-    setTooltipPositions(prev => ({
+    setTooltipPositions((prev) => ({
       ...prev,
-      [skillId]: { ...prev[skillId], visible: false }
+      [skillId]: { ...prev[skillId], visible: false },
     }));
   };
 
@@ -57,7 +63,7 @@ const SkillsSection = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -75,7 +81,7 @@ const SkillsSection = () => {
           >
             {/* Background Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-            
+
             {/* Content */}
             <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-white/20 transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
@@ -86,7 +92,9 @@ const SkillsSection = () => {
                   <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
                     {category.title}
                   </h3>
-                  <p className="text-xs text-gray-400">{category.description}</p>
+                  <p className="text-xs text-gray-400">
+                    {category.description}
+                  </p>
                 </div>
               </div>
 
@@ -94,27 +102,33 @@ const SkillsSection = () => {
               <div className="grid grid-cols-4 sm:grid-cols-4 gap-3 mb-4">
                 {category.skills.map((skill: Skill) => {
                   const skillId = `${category.title}-${skill.name}`;
-                  
+
                   return (
                     <motion.div
                       key={skill.name}
                       className="group/skill relative"
                       whileHover={{ scale: 1.05 }}
-                      onMouseEnter={() => skill.specialties && updateTooltipPosition(skillId)}
-                      onMouseLeave={() => skill.specialties && hideTooltip(skillId)}
+                      onMouseEnter={() =>
+                        skill.specialties && updateTooltipPosition(skillId)
+                      }
+                      onMouseLeave={() =>
+                        skill.specialties && hideTooltip(skillId)
+                      }
                     >
-                      <div 
+                      <div
                         className="relative flex flex-col items-center gap-2"
                         ref={(el) => setSkillRef(el, skillId)}
                       >
                         <div className="p-2 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300">
-                          <img 
-                            src={skill.icon} 
+                          <img
+                            src={skill.icon}
                             alt={skill.name}
                             className="w-6 h-6 object-contain"
                           />
                         </div>
-                        <span className="text-[10px] text-gray-400 text-center">{skill.name}</span>
+                        <span className="text-[10px] text-gray-400 text-center">
+                          {skill.name}
+                        </span>
                       </div>
 
                       {/* Tooltip for specialized skills */}
@@ -133,14 +147,21 @@ const SkillsSection = () => {
               {/* Category-specific specialties */}
               {category.specialties && (
                 <div className="mt-3 p-3 rounded-lg bg-white/5 border border-white/10">
-                  <h4 className="text-xs font-medium text-blue-400 mb-2">Advanced Capabilities:</h4>
+                  <h4 className="text-xs font-medium text-blue-400 mb-2">
+                    Advanced Capabilities:
+                  </h4>
                   <ul className="grid grid-cols-2 gap-2">
-                    {category.specialties.map((specialty: string, idx: number) => (
-                      <li key={idx} className="text-[10px] text-gray-300 flex items-center gap-1.5">
-                        <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                        {specialty}
-                      </li>
-                    ))}
+                    {category.specialties.map(
+                      (specialty: string, idx: number) => (
+                        <li
+                          key={idx}
+                          className="text-[10px] text-gray-300 flex items-center gap-1.5"
+                        >
+                          <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
+                          {specialty}
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               )}
@@ -150,46 +171,60 @@ const SkillsSection = () => {
       </div>
 
       {/* Portal for skill specialty tooltips */}
-      {isMounted && typeof window !== "undefined" && 
-        Object.values(tooltipPositions).map(pos => (
-          pos.visible && createPortal(
-            <div
-              key={pos.id}
-              style={{
-                position: 'fixed',
-                top: `${pos.top}px`,
-                left: `${pos.left}px`,
-                transform: 'translate(-50%, -100%) scale(1.25)', // Scale up to counteract page zoom
-                opacity: pos.visible ? 1 : 0,
-                zIndex: 9999,
-                pointerEvents: 'none',
-                width: '12rem',
-              }}
-              className="animate-in fade-in-0 group-hover/skill:opacity-100 transition-all duration-300"
-            >
-              <div className="relative bg-[#1a1b1e]/95 backdrop-blur-md rounded-lg p-3 border border-white/10 shadow-xl">
-                <div className="text-[11px] font-medium text-white mb-2">Specialized in:</div>
-                <ul className="space-y-1.5">
-                  {skillCategories.flatMap(category => 
-                    category.skills
-                      .filter(skill => `${category.title}-${skill.name}` === pos.id && skill.specialties)
-                      .flatMap(skill => 
-                        skill.specialties?.map((specialty: string, idx: number) => (
-                          <li key={idx} className="text-[11px] text-gray-300 flex items-center gap-2">
-                            <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                            {specialty}
-                          </li>
-                        )) || []
-                      )
-                  )}
-                </ul>
-                <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-[#1a1b1e] border-r border-b border-white/10 rotate-45"></div>
-              </div>
-            </div>,
-            document.body
-          )
-        ))
-      }
+      {isMounted &&
+        typeof window !== "undefined" &&
+        Object.values(tooltipPositions).map(
+          (pos) =>
+            pos.visible &&
+            createPortal(
+              <div
+                key={pos.id}
+                style={{
+                  position: "fixed",
+                  top: `${pos.top}px`,
+                  left: `${pos.left}px`,
+                  transform: "translate(-50%, -100%) scale(1.25)", // Scale up to counteract page zoom
+                  opacity: pos.visible ? 1 : 0,
+                  zIndex: 9999,
+                  pointerEvents: "none",
+                  width: "12rem",
+                }}
+                className="animate-in fade-in-0 group-hover/skill:opacity-100 transition-all duration-300"
+              >
+                <div className="relative bg-[#1a1b1e]/95 backdrop-blur-md rounded-lg p-3 border border-white/10 shadow-xl">
+                  <div className="text-[11px] font-medium text-white mb-2">
+                    Specialized in:
+                  </div>
+                  <ul className="space-y-1.5">
+                    {skillCategories.flatMap((category) =>
+                      category.skills
+                        .filter(
+                          (skill) =>
+                            `${category.title}-${skill.name}` === pos.id &&
+                            skill.specialties,
+                        )
+                        .flatMap(
+                          (skill) =>
+                            skill.specialties?.map(
+                              (specialty: string, idx: number) => (
+                                <li
+                                  key={idx}
+                                  className="text-[11px] text-gray-300 flex items-center gap-2"
+                                >
+                                  <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
+                                  {specialty}
+                                </li>
+                              ),
+                            ) || [],
+                        ),
+                    )}
+                  </ul>
+                  <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-[#1a1b1e] border-r border-b border-white/10 rotate-45"></div>
+                </div>
+              </div>,
+              document.body,
+            ),
+        )}
     </motion.div>
   );
 };

@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
-import { skillCategories, Skill, SkillCategory } from "@/modules/skill/data/skills";
+import {
+  skillCategories,
+  Skill,
+  SkillCategory,
+} from "@/modules/skill/data/skills";
 import { Box, CardBox } from "@/shared/core";
 
 const Skills = () => {
@@ -20,9 +24,11 @@ const Skills = () => {
             noHoverEffect
             classNames="backdrop-blur-sm transition-all duration-300"
           >
-            <h3 className="text-2xl font-bold text-white mb-4">{category.title}</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              {category.title}
+            </h3>
             <p className="text-gray-400 mb-6">{category.description}</p>
-            
+
             <Box display="grid" className="grid-cols-4 sm:grid-cols-6 gap-4">
               {category.skills.map((skill: Skill) => (
                 <motion.div
@@ -31,15 +37,15 @@ const Skills = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Box 
-                    display="flex" 
-                    align="center" 
-                    justify="center" 
+                  <Box
+                    display="flex"
+                    align="center"
+                    justify="center"
                     className="relative w-12 h-12 bg-[#2a2b2e] rounded-xl p-2 transition-all duration-300 group-hover:bg-[#3a3b3e]"
                   >
-                    <img 
-                      src={skill.icon} 
-                      alt={skill.name} 
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
                       className="w-8 h-8 object-contain"
                     />
                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -1,18 +1,18 @@
 export interface Experience {
-    name: string;
-    href: string;
-    title: string;
-    logo: string;
-    start: string;
-    end?: string;
-    description: string[];
-    links?: Link[];
+  name: string;
+  href: string;
+  title: string;
+  logo: string;
+  start: string;
+  end?: string;
+  description: string[];
+  links?: Link[];
 }
-  
+
 export interface Link {
-    name: string;
-    href: string;
-    icon: string;
+  name: string;
+  href: string;
+  icon: string;
 }
 
 export const data: Experience[] = [
@@ -25,15 +25,15 @@ export const data: Experience[] = [
     end: "May 2025",
     description: [
       "Delivered an urgent football vote and prize distribution system within 3 days using Go, Next.js, and MongoDB.",
-      "Supported 1,000+ users with import/export CSV tools and a real-time admin dashboard."
+      "Supported 1,000+ users with import/export CSV tools and a real-time admin dashboard.",
     ],
     links: [
       {
         name: "Project Repository",
         href: "https://github.com/6531503042/fifa-management-system",
-        icon: "github"
-      }
-    ]
+        icon: "github",
+      },
+    ],
   },
   {
     name: "HLLC-2025",
@@ -43,15 +43,16 @@ export const data: Experience[] = [
     start: "May 2025",
     end: "Jul 2025",
     description: [
-      "Designed and developed a campus activity application serving 3,000–4,000 students.",
-      "Built real-time check-ins, CMS, gamified scoring, and interactive 3D visual modules using NestJS, Expo, Golang, and Kafka."
+      "Designed and developed a campus activity application serving 3,000–4,000 students with multi-platform support.",
+      "Implemented real-time check-ins, CMS, gamified scoring, and interactive 3D visual modules using NestJS, Expo, Golang, and Kafka.",
+      "Integrated coin-collecting minigame, e-voucher reward system, and feature-rich chat with replies, reactions, and stickers.",
     ],
     links: [
       {
         name: "Project Repository",
-        href: "https://github.com/6531503042/hllc-2025",
-        icon: "github"
-      }
-    ]
-  }
+        href: "https://github.com/6531503042/HLLC-2025",
+        icon: "github",
+      },
+    ],
+  },
 ];

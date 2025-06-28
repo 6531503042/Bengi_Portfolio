@@ -1,8 +1,16 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Github, ExternalLink, Calendar, Tag, Wrench, ImageIcon } from 'lucide-react';
-import { IProjectItem } from '@/modules/projects/data/projects';
-import ImagePreview from '@/shared/components/ImagePreview';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Github,
+  ExternalLink,
+  Calendar,
+  Tag,
+  Wrench,
+  ImageIcon,
+} from "lucide-react";
+import { IProjectItem } from "@/modules/projects/data/projects";
+import ImagePreview from "@/shared/components/ImagePreview";
 
 interface ProjectDetailsModalProps {
   project: IProjectItem;
@@ -17,13 +25,13 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 }) => {
   const [showImagePreview, setShowImagePreview] = React.useState(false);
   const [mainImageError, setMainImageError] = React.useState(false);
-  
+
   // Deduplicate images: only show the banner once
   const allImages = React.useMemo(() => {
     const images = [
       ...(project.image ? [project.image] : []),
-      ...(project.screenshots || [])
-    ].filter(url => url && url.trim() !== '');
+      ...(project.screenshots || []),
+    ].filter((url) => url && url.trim() !== "");
     // Remove duplicates (keep first occurrence)
     return images.filter((url, idx) => images.indexOf(url) === idx);
   }, [project.image, project.screenshots]);
@@ -73,18 +81,22 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
             <div className="h-full overflow-y-auto">
               {/* Project Image/Screenshots */}
-              <div 
+              <div
                 className="relative h-64 md:h-96 cursor-pointer bg-gradient-to-br from-[#151538] to-[#1F1155]"
-                onClick={() => showImagePreviewIndicator && setShowImagePreview(true)}
+                onClick={() =>
+                  showImagePreviewIndicator && setShowImagePreview(true)
+                }
               >
-                {(!mainImage || mainImageError) ? (
+                {!mainImage || mainImageError ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <div className="relative">
                       <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full" />
                       <ImageIcon className="w-24 h-24 text-white/20 relative z-10" />
                     </div>
                     <div className="mt-6 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-                      <span className="text-sm text-white/40">Project Screenshots Coming Soon</span>
+                      <span className="text-sm text-white/40">
+                        Project Screenshots Coming Soon
+                      </span>
                     </div>
                   </div>
                 ) : (
@@ -103,7 +115,10 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 {showImagePreviewIndicator && (
                   <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/80 flex items-center gap-2 hover:bg-white/20 transition-colors">
                     <ImageIcon className="w-4 h-4" />
-                    <span>{allImages.length} {allImages.length === 1 ? 'image' : 'images'}</span>
+                    <span>
+                      {allImages.length}{" "}
+                      {allImages.length === 1 ? "image" : "images"}
+                    </span>
                   </div>
                 )}
               </div>
@@ -112,14 +127,14 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
               <div className="relative -mt-20 p-8 space-y-8">
                 {/* Header */}
                 <div className="space-y-4">
-                  <motion.h2 
+                  <motion.h2
                     className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
                     {project.title}
                   </motion.h2>
-                  <motion.p 
+                  <motion.p
                     className="text-lg text-gray-300"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -130,7 +145,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 </div>
 
                 {/* Project Type & Status */}
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -147,7 +162,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 </motion.div>
 
                 {/* Technologies */}
-                <motion.div 
+                <motion.div
                   className="space-y-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -166,7 +181,11 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 * index }}
                       >
-                        <img src={tech.icon} alt={tech.name} className="w-5 h-5" />
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="w-5 h-5"
+                        />
                         <span className="text-white">{tech.name}</span>
                       </motion.div>
                     ))}
@@ -174,7 +193,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 </motion.div>
 
                 {/* Tags */}
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -194,7 +213,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 </motion.div>
 
                 {/* Links */}
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-4 pt-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -243,4 +262,4 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
   );
 };
 
-export default ProjectDetailsModal; 
+export default ProjectDetailsModal;

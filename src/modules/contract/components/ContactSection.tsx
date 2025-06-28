@@ -10,18 +10,18 @@ const ContactSection = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   const contactMethods = [
@@ -30,42 +30,40 @@ const ContactSection = () => {
       title: "Email",
       description: "Drop me an email",
       href: "mailto:nimittanbooutor@gmail.com",
-      gradient: "from-blue-500/20 via-blue-400/20 to-blue-600/20"
+      gradient: "from-blue-500/20 via-blue-400/20 to-blue-600/20",
     },
     {
       icon: Calendar,
       title: "Schedule",
       description: "Book a meeting",
       href: "https://calendly.com/nimittanbooutor/interview-scheduling",
-      gradient: "from-purple-500/20 via-purple-400/20 to-purple-600/20"
+      gradient: "from-purple-500/20 via-purple-400/20 to-purple-600/20",
     },
     {
       icon: MessageCircle,
       title: "Chat",
       description: "Let's discuss",
       href: "https://t.me/BenGii",
-      gradient: "from-pink-500/20 via-pink-400/20 to-pink-600/20"
-    }
+      gradient: "from-pink-500/20 via-pink-400/20 to-pink-600/20",
+    },
   ];
 
   return (
     <section id="contact" className="py-20">
-      <motion.div 
+      <motion.div
         className="max-w-6xl mx-auto px-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.div 
-          variants={itemVariants}
-          className="text-center mb-12"
-        >
+        <motion.div variants={itemVariants} className="text-center mb-12">
           <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-4">
             Get in Touch
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Feel free to reach out through any of these channels. I&apos;m always open to discussing new opportunities and ideas!
+            Feel free to reach out through any of these channels. I&apos;m
+            always open to discussing new opportunities and ideas!
           </p>
         </motion.div>
 
@@ -81,8 +79,10 @@ const ContactSection = () => {
               whileHover={{ scale: 1.02 }}
             >
               {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              />
+
               {/* Content */}
               <div className="relative z-10">
                 <div className="inline-flex rounded-xl bg-white/10 p-3 mb-6 ring-1 ring-white/20 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">

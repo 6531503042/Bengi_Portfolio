@@ -6,7 +6,13 @@ interface GridBoxProps {
   elementRef?: React.RefObject<HTMLDivElement>;
 }
 
-const GridBox = ({ children, classNames = "", onClick, id, elementRef }: GridBoxProps) => {
+const GridBox = ({
+  children,
+  classNames = "",
+  onClick,
+  id,
+  elementRef,
+}: GridBoxProps) => {
   return (
     <div
       className={`relative w-full grid gap-6 transition duration-300 ease-in-out ${classNames}`}
@@ -19,4 +25,4 @@ const GridBox = ({ children, classNames = "", onClick, id, elementRef }: GridBox
   );
 };
 
-export default GridBox; 
+export default GridBox;

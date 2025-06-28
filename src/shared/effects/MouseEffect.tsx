@@ -9,12 +9,12 @@ const MouseEffect = () => {
   const [isMobile, setIsMobile] = useState(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
   const prefersReducedMotion = useReducedMotion();
-  
-  const springConfig = { 
+
+  const springConfig = {
     stiffness: 300,
     damping: 30,
     mass: 0.7,
-    restDelta: 0.001
+    restDelta: 0.001,
   };
 
   const springX = useSpring(0, springConfig);
@@ -24,10 +24,10 @@ const MouseEffect = () => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkIfMobile();
     window.addEventListener("resize", checkIfMobile);
-    
+
     return () => {
       window.removeEventListener("resize", checkIfMobile);
     };
@@ -35,7 +35,7 @@ const MouseEffect = () => {
 
   useEffect(() => {
     if (isMobile || prefersReducedMotion) return;
-    
+
     let lastTime = 0;
     let timeoutId: number;
 
@@ -43,7 +43,7 @@ const MouseEffect = () => {
       const now = performance.now();
       if (now - lastTime < 16) return;
       lastTime = now;
-      
+
       const targetX = e.clientX + 30;
       const targetY = e.clientY + 20;
 
@@ -73,7 +73,7 @@ const MouseEffect = () => {
       style={{
         x: springX,
         y: springY,
-        transform: 'translate(-50%, -50%)'
+        transform: "translate(-50%, -50%)",
       }}
     >
       <motion.div
@@ -81,9 +81,9 @@ const MouseEffect = () => {
           scale: isMoving ? 1.03 : 1,
         }}
         transition={{
-          scale: { 
+          scale: {
             duration: 0.2,
-            ease: "easeOut"
+            ease: "easeOut",
           },
         }}
         className="relative w-16 h-16"
@@ -92,18 +92,18 @@ const MouseEffect = () => {
           className="relative w-full h-full"
           animate={{
             y: [0, -2, 0],
-            rotate: isMoving ? [-1, 1] : 0
+            rotate: isMoving ? [-1, 1] : 0,
           }}
           transition={{
             y: {
               duration: 2.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             },
             rotate: {
               duration: 0.2,
-              ease: "easeOut"
-            }
+              ease: "easeOut",
+            },
           }}
         >
           <div className="w-full h-full relative">
@@ -116,7 +116,7 @@ const MouseEffect = () => {
                 willChange: "transform",
                 imageRendering: "crisp-edges",
                 transform: `scale(${isMoving ? 1.01 : 1})`,
-                transition: "transform 0.2s ease-out"
+                transition: "transform 0.2s ease-out",
               }}
             />
           </div>
@@ -125,17 +125,18 @@ const MouseEffect = () => {
             className="absolute inset-0 rounded-full filter blur-md"
             animate={{
               scale: [1, 1.03, 1],
-              opacity: [0.12, 0.15, 0.12]
+              opacity: [0.12, 0.15, 0.12],
             }}
             transition={{
               duration: 2.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             style={{
-              background: "radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%)",
               transformOrigin: "center",
-              zIndex: 0
+              zIndex: 0,
             }}
           />
         </motion.div>

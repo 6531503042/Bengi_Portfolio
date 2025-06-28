@@ -44,33 +44,39 @@ const Box = ({
   ref,
 }: BoxProps) => {
   // Process display
-  const displayClass = display === "flex" ? "flex" : display === "grid" ? "grid" : display;
-  
+  const displayClass =
+    display === "flex" ? "flex" : display === "grid" ? "grid" : display;
+
   // Process direction (only applies to flex)
   const directionClass = display === "flex" ? `flex-${direction}` : "";
-  
+
   // Process width
-  const widthClass = 
-    width === "full" ? "w-full" : 
-    width === "screen" ? "w-screen" : 
-    width === "constrained" ? "w-full max-w-5xl mx-auto" : 
-    width === "auto" ? "w-auto" : "";
-  
+  const widthClass =
+    width === "full"
+      ? "w-full"
+      : width === "screen"
+        ? "w-screen"
+        : width === "constrained"
+          ? "w-full max-w-5xl mx-auto"
+          : width === "auto"
+            ? "w-auto"
+            : "";
+
   // Process alignment (for flex)
   const alignClass = display === "flex" ? `items-${align}` : "";
-  
+
   // Process justification (for flex)
   const justifyClass = display === "flex" ? `justify-${justify}` : "";
-  
+
   // Height
   const heightClass = height === "auto" ? "h-auto" : height;
-  
+
   // Overflow
   const overflowClass = overflow === "visible" ? "" : `overflow-${overflow}`;
-  
+
   // Transition
   const transitionClass = "transition duration-300 ease-in-out";
-  
+
   return (
     <div
       id={id}
@@ -83,4 +89,4 @@ const Box = ({
   );
 };
 
-export default Box; 
+export default Box;

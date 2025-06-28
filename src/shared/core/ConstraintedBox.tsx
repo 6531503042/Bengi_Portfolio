@@ -17,4 +17,4 @@ const ConstraintedBox = (props: Readonly<CoreComponentsProps>) => {
   );
 };
 
-export default ConstraintedBox; 
+export default ConstraintedBox;

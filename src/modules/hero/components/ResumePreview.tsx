@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { X, ZoomIn, ZoomOut, Download } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/shared/ui/button';
+import React, { useState, useEffect } from "react";
+import { X, ZoomIn, ZoomOut, Download } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/shared/ui/button";
 
 interface ResumePreviewProps {
   isOpen: boolean;
@@ -15,36 +15,36 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
 
   // Hide navigation when preview is open
   useEffect(() => {
-    const nav = document.querySelector('nav');
+    const nav = document.querySelector("nav");
     if (nav) {
-      nav.style.opacity = isOpen ? '0' : '1';
-      nav.style.pointerEvents = isOpen ? 'none' : 'auto';
+      nav.style.opacity = isOpen ? "0" : "1";
+      nav.style.pointerEvents = isOpen ? "none" : "auto";
     }
 
     return () => {
       if (nav) {
-        nav.style.opacity = '1';
-        nav.style.pointerEvents = 'auto';
+        nav.style.opacity = "1";
+        nav.style.pointerEvents = "auto";
       }
     };
   }, [isOpen]);
 
   const handleZoomIn = () => {
-    setScale(prev => Math.min(prev + 0.25, 2));
+    setScale((prev) => Math.min(prev + 0.25, 2));
   };
 
   const handleZoomOut = () => {
-    setScale(prev => Math.max(prev - 0.25, 0.5));
+    setScale((prev) => Math.max(prev - 0.25, 0.5));
   };
 
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/Resume/Resume.pdf';
-    link.download = 'Resume.pdf';
+    const link = document.createElement("a");
+    link.href = "/Resume/Resume.pdf";
+    link.download = "Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };  
+  };
 
   return (
     <AnimatePresence>
@@ -62,7 +62,7 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ type: "spring", duration: 0.5 }}
             className="relative w-[95%] max-w-6xl h-[90vh] m-4 bg-[#0B0B1E]/90 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm overflow-hidden"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Controls Bar */}
             <motion.div
@@ -121,17 +121,23 @@ const ResumePreview = ({ isOpen, onClose }: ResumePreviewProps) => {
               transition={{ delay: 0.3 }}
             >
               <div className="flex flex-col gap-12 items-center">
-                {["/Resume/Resume-1.png", "/Resume/Resume-2.png"].map((src, index) => (
-                  <motion.img
-                    key={src}
-                    src={src}
-                    alt={`Resume Page ${index + 1}`}
-                    animate={{ scale }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    style={{ transformOrigin: 'top center' }}
-                    className="w-full h-auto max-w-4xl object-contain rounded-xl shadow-2xl ring-1 ring-white/20"
-                  />
-                ))}
+                {["/Resume/Resume-1.png", "/Resume/Resume-2.png"].map(
+                  (src, index) => (
+                    <motion.img
+                      key={src}
+                      src={src}
+                      alt={`Resume Page ${index + 1}`}
+                      animate={{ scale }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                      style={{ transformOrigin: "top center" }}
+                      className="w-full h-auto max-w-4xl object-contain rounded-xl shadow-2xl ring-1 ring-white/20"
+                    />
+                  ),
+                )}
               </div>
             </motion.div>
 

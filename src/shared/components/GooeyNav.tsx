@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -41,7 +41,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const getXY = (
     distance: number,
     pointIndex: number,
-    totalPoints: number
+    totalPoints: number,
   ): [number, number] => {
     const angle =
       ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
@@ -52,7 +52,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     i: number,
     t: number,
     d: [number, number],
-    r: number
+    r: number,
   ) => {
     const rotate = noise(r / 10);
     return {
@@ -67,7 +67,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 
   const makeParticles = (element: HTMLElement) => {
     // Clear existing particles
-    particlesRef.current.forEach(particle => {
+    particlesRef.current.forEach((particle) => {
       if (particle.parentNode === element) {
         element.removeChild(particle);
       }
@@ -135,11 +135,11 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     if (activeIndex === index) return;
     setActiveIndex(index);
     updateEffectPosition(liEl);
-    
+
     if (filterRef.current) {
       makeParticles(filterRef.current);
     }
-    
+
     if (textRef.current) {
       textRef.current.classList.remove("active");
       void textRef.current.offsetWidth;
@@ -149,7 +149,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLAnchorElement>,
-    index: number
+    index: number,
   ) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -157,7 +157,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       if (liEl) {
         handleClick(
           { currentTarget: liEl } as React.MouseEvent<HTMLLIElement>,
-          index
+          index,
         );
       }
     }
@@ -187,7 +187,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       resizeObserver.disconnect();
       // Clean up any remaining particles
       if (filterRef.current) {
-        particlesRef.current.forEach(particle => {
+        particlesRef.current.forEach((particle) => {
           if (particle.parentNode === filterRef.current) {
             filterRef.current?.removeChild(particle);
           }
@@ -200,10 +200,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   return (
     <div className="relative" ref={containerRef}>
       <nav className="relative z-20">
-        <ul
-          ref={navRef}
-          className="flex gap-8 list-none p-0 px-4 m-0 relative"
-        >
+        <ul ref={navRef} className="flex gap-8 list-none p-0 px-4 m-0 relative">
           {items.map((item, index) => (
             <motion.li
               key={index}
@@ -233,7 +230,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         animate={{ scale: [0.9, 1] }}
         transition={{ duration: 0.3 }}
       >
-        <span 
+        <span
           ref={filterRef}
           className="absolute rounded-full bg-white/10 backdrop-blur-sm transition-all duration-300"
         />
@@ -248,4 +245,4 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   );
 };
 
-export default GooeyNav; 
+export default GooeyNav;

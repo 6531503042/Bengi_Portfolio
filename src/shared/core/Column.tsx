@@ -6,7 +6,13 @@ interface ColumnProps {
   elementRef?: React.RefObject<HTMLDivElement>;
 }
 
-const Column = ({ children, classNames = "", onClick, id, elementRef }: ColumnProps) => {
+const Column = ({
+  children,
+  classNames = "",
+  onClick,
+  id,
+  elementRef,
+}: ColumnProps) => {
   return (
     <div
       className={`relative flex flex-col justify-start items-start transition duration-300 ease-in-out ${classNames}`}
@@ -19,4 +25,4 @@ const Column = ({ children, classNames = "", onClick, id, elementRef }: ColumnPr
   );
 };
 
-export default Column; 
+export default Column;

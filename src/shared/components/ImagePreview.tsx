@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, X, Image as ImageIcon } from "lucide-react";
 
 interface ImagePreviewProps {
   isOpen: boolean;
@@ -10,35 +10,41 @@ interface ImagePreviewProps {
   subtitle?: string;
 }
 
-const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreviewProps) => {
+const ImagePreview = ({
+  isOpen,
+  onClose,
+  images,
+  title,
+  subtitle,
+}: ImagePreviewProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowLeft') handlePrevious();
-      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") handlePrevious();
+      if (e.key === "ArrowRight") handleNext();
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentIndex]);
 
   const handleNext = () => {
     if (currentIndex < images.length - 1) {
-      setCurrentIndex(prev => prev + 1);
+      setCurrentIndex((prev) => prev + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
+      setCurrentIndex((prev) => prev - 1);
     }
   };
 
   const handleImageError = (index: number) => {
-    setImageError(prev => ({ ...prev, [index]: true }));
+    setImageError((prev) => ({ ...prev, [index]: true }));
   };
 
   return (
@@ -66,7 +72,7 @@ const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreview
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ type: "spring", duration: 0.5 }}
             className="relative w-full max-w-7xl mx-auto px-4"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Navigation buttons */}
             {currentIndex > 0 && (
@@ -96,7 +102,9 @@ const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreview
                       <ImageIcon className="w-12 h-12 text-white/40" />
                     </div>
                   </div>
-                  <span className="mt-4 text-sm text-white/60 font-medium">Image failed to load</span>
+                  <span className="mt-4 text-sm text-white/60 font-medium">
+                    Image failed to load
+                  </span>
                 </div>
               ) : (
                 <img
@@ -111,11 +119,11 @@ const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreview
             {/* Image info */}
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
               {title && (
-                <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {title}
+                </h3>
               )}
-              {subtitle && (
-                <p className="text-sm text-white/70">{subtitle}</p>
-              )}
+              {subtitle && <p className="text-sm text-white/70">{subtitle}</p>}
               <div className="flex items-center gap-2 mt-4">
                 {images.map((_, idx) => (
                   <button
@@ -123,8 +131,8 @@ const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreview
                     onClick={() => setCurrentIndex(idx)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       idx === currentIndex
-                        ? 'bg-white scale-125'
-                        : 'bg-white/40 hover:bg-white/60'
+                        ? "bg-white scale-125"
+                        : "bg-white/40 hover:bg-white/60"
                     }`}
                   />
                 ))}
@@ -137,4 +145,4 @@ const ImagePreview = ({ isOpen, onClose, images, title, subtitle }: ImagePreview
   );
 };
 
-export default ImagePreview; 
+export default ImagePreview;

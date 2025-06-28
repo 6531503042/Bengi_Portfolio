@@ -17,11 +17,11 @@ interface ProjectListProps {
 const ProjectList = ({ projects }: ProjectListProps) => {
   const projectVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
@@ -40,7 +40,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-          
+
           <div className="p-6 space-y-4">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
               {project.title}
@@ -48,7 +48,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
             <p className="text-gray-600 dark:text-gray-300 text-sm">
               {project.description}
             </p>
-            
+
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, tagIndex) => (
                 <span
@@ -59,7 +59,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                 </span>
               ))}
             </div>
-            
+
             <div className="flex gap-4 pt-2">
               {project.github && (
                 <a
@@ -91,4 +91,4 @@ const ProjectList = ({ projects }: ProjectListProps) => {
   );
 };
 
-export default ProjectList; 
+export default ProjectList;

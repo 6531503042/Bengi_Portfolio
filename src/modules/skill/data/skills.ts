@@ -65,12 +65,7 @@ export const skillCategories: SkillCategory[] = [
       {
         name: "Python",
         icon: "/skills/python.svg",
-        specialties: [
-          "FastAPI",
-          "Django",
-          "Data Processing",
-          "ML Integration",
-        ],
+        specialties: ["FastAPI", "Django", "Data Processing", "ML Integration"],
       },
       {
         name: "TypeScript",

@@ -8,9 +8,15 @@ interface WorkExperienceProps {
   logo: string;
 }
 
-const WorkExperience = ({ company, role, period, description, logo }: WorkExperienceProps) => {
+const WorkExperience = ({
+  company,
+  role,
+  period,
+  description,
+  logo,
+}: WorkExperienceProps) => {
   return (
-    <motion.div 
+    <motion.div
       className="grid grid-cols-[auto,1fr] gap-6 p-6 rounded-xl hover:bg-gray-50 transition-colors"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +32,9 @@ const WorkExperience = ({ company, role, period, description, logo }: WorkExperi
         <p className="text-gray-600 mb-4">{role}</p>
         <ul className="list-disc list-inside space-y-2">
           {description.map((item, index) => (
-            <li key={index} className="text-gray-600">{item}</li>
+            <li key={index} className="text-gray-600">
+              {item}
+            </li>
           ))}
         </ul>
       </div>

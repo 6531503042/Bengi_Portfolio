@@ -16,17 +16,17 @@ interface CardBoxProps {
   radius?: string;
 }
 
-const CardBox = ({ 
-  children, 
-  classNames = "", 
-  onClick, 
-  id, 
+const CardBox = ({
+  children,
+  classNames = "",
+  onClick,
+  id,
   elementRef,
   noHoverEffect = false,
   noBorder = false,
   bgColor = "hover:bg-zinc-800/10",
   padding = "",
-  radius = "rounded-xl"
+  radius = "rounded-xl",
 }: CardBoxProps) => {
   const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
   const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
@@ -41,7 +41,9 @@ const CardBox = ({
   const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
   const style = { maskImage, WebkitMaskImage: maskImage };
 
-  const borderClass = noBorder ? "" : "border border-zinc-600 hover:border-zinc-400/50";
+  const borderClass = noBorder
+    ? ""
+    : "border border-zinc-600 hover:border-zinc-400/50";
 
   return (
     <div

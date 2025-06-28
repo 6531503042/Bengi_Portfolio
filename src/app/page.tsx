@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { Briefcase, ChevronRight, GraduationCap, Cpu } from "lucide-react";
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection />
-      
+
       <section id="experience" className="py-16 max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -32,7 +32,7 @@ export default function Home() {
           >
             Experience & Background
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -53,22 +53,22 @@ export default function Home() {
             <div className="relative">
               <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
               <TabsList className="w-full grid grid-cols-3 bg-transparent backdrop-blur-md h-auto p-2">
-                <TabsTrigger 
-                  value="experience" 
+                <TabsTrigger
+                  value="experience"
                   className="flex items-center justify-center gap-3 text-white/70 data-[state=active]:text-white rounded-lg transition-all py-3 data-[state=active]:bg-white/5 data-[state=active]:border-t-2 data-[state=active]:border-blue-500"
                 >
                   <Briefcase className="w-4 h-4" />
                   <span>Experience</span>
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="education" 
+                <TabsTrigger
+                  value="education"
                   className="flex items-center justify-center gap-3 text-white/70 data-[state=active]:text-white rounded-lg transition-all py-3 data-[state=active]:bg-white/5 data-[state=active]:border-t-2 data-[state=active]:border-purple-500"
                 >
                   <GraduationCap className="w-4 h-4" />
                   <span>Education</span>
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="skills" 
+                <TabsTrigger
+                  value="skills"
                   className="flex items-center justify-center gap-3 text-white/70 data-[state=active]:text-white rounded-lg transition-all py-3 data-[state=active]:bg-white/5 data-[state=active]:border-t-2 data-[state=active]:border-pink-500"
                 >
                   <Cpu className="w-4 h-4" />
@@ -76,9 +76,9 @@ export default function Home() {
                 </TabsTrigger>
               </TabsList>
             </div>
-            
+
             <TabsContent value="experience" className="p-6 sm:p-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-6 flex items-start gap-5 bg-white/5 p-5 rounded-xl border border-white/10"
@@ -93,14 +93,16 @@ export default function Home() {
                   <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
                     Professional Experience
                   </h3>
-                  <p className="text-gray-400 text-sm mt-1">Full Stack Developer since 2023</p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    Full Stack Developer since 2023
+                  </p>
                 </div>
               </motion.div>
               <TimelineSection items={experienceData} />
             </TabsContent>
-            
+
             <TabsContent value="education" className="p-6 sm:p-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-6 flex items-start gap-5 bg-white/5 p-5 rounded-xl border border-white/10"
@@ -115,14 +117,16 @@ export default function Home() {
                   <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
                     Academic Background
                   </h3>
-                  <p className="text-gray-400 text-sm mt-1">Bachelor of Engineering in Software Engineering</p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    Bachelor of Engineering in Software Engineering
+                  </p>
                 </div>
               </motion.div>
               <TimelineSection items={timelineData.education} />
             </TabsContent>
-            
+
             <TabsContent value="skills" className="p-6 sm:p-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-6 flex items-start gap-5 bg-white/5 p-5 rounded-xl border border-white/10"
@@ -137,7 +141,9 @@ export default function Home() {
                   <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-purple-400">
                     Technical Skillset
                   </h3>
-                  <p className="text-gray-400 text-sm mt-1">Languages, frameworks, and tools I specialize in</p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    Languages, frameworks, and tools I specialize in
+                  </p>
                 </div>
               </motion.div>
               <SkillsSection />
@@ -150,4 +156,4 @@ export default function Home() {
       <ContactSection />
     </main>
   );
-} 
+}

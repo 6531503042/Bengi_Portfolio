@@ -5,22 +5,22 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    esmExternals: true
+    esmExternals: true,
   },
   images: {
     domains: [
-      'github.com',
-      'raw.githubusercontent.com',
-      'res.cloudinary.com',
-      'agroindustry.mfu.ac.th'
+      "github.com",
+      "raw.githubusercontent.com",
+      "res.cloudinary.com",
+      "agroindustry.mfu.ac.th",
     ],
-    unoptimized: true
+    unoptimized: true,
   },
   // Ensure proper handling of Three.js
   webpack: (config) => {
-    config.externals = [...(config.externals || []), { canvas: 'canvas' }];
+    config.externals = [...(config.externals || []), { canvas: "canvas" }];
     return config;
   },
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

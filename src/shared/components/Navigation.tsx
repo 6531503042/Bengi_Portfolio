@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback, memo } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import GooeyNav from './GooeyNav';
+import React, { useState, useEffect, useCallback, memo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import GooeyNav from "./GooeyNav";
 
 const navigationItems = [
   { label: "Home", href: "#hero" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" }
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navigation = () => {
@@ -20,7 +20,7 @@ const Navigation = () => {
   // Throttle function
   const throttle = useCallback((callback: Function, limit: number) => {
     let waiting = false;
-    return function(this: any, ...args: any[]) {
+    return function (this: any, ...args: any[]) {
       if (!waiting) {
         callback.apply(this, args);
         waiting = true;
@@ -35,10 +35,11 @@ const Navigation = () => {
   const handleNavigation = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: offsetTop - 100, // Offset for the fixed header
-        behavior: 'smooth'
+        behavior: "smooth",
       });
       setIsOpen(false);
     }
@@ -52,30 +53,31 @@ const Navigation = () => {
       }
     }, 100);
 
-    window.addEventListener('resize', handleResize as any);
-    return () => window.removeEventListener('resize', handleResize as any);
+    window.addEventListener("resize", handleResize as any);
+    return () => window.removeEventListener("resize", handleResize as any);
   }, [throttle]);
 
   return (
-    <motion.header 
+    <motion.header
       className="fixed top-0 left-0 right-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* Glass background */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 backdrop-blur-md"
-        style={{ 
+        style={{
           opacity,
-          background: 'linear-gradient(to bottom, rgba(10, 11, 12, 0.8), rgba(10, 11, 12, 0.7))'
+          background:
+            "linear-gradient(to bottom, rgba(10, 11, 12, 0.8), rgba(10, 11, 12, 0.7))",
         }}
       />
-      
+
       {/* Subtle borders */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-      
+
       {/* Content */}
       <div className="container relative mx-auto px-4 py-4">
         {/* Mobile menu button */}
@@ -112,11 +114,11 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         <motion.div
           initial={false}
-          animate={{ 
+          animate={{
             opacity: isOpen ? 1 : 0,
-            x: isOpen ? 0 : 100
+            x: isOpen ? 0 : 100,
           }}
-          className={`${isOpen ? 'fixed' : 'hidden'} inset-0 bg-[#0B0B1E]/95 backdrop-blur-lg md:hidden`}
+          className={`${isOpen ? "fixed" : "hidden"} inset-0 bg-[#0B0B1E]/95 backdrop-blur-lg md:hidden`}
         >
           <div className="flex flex-col items-center justify-center h-full space-y-8">
             {navigationItems.map((item) => (

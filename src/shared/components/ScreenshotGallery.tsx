@@ -25,4 +25,4 @@ const ScreenshotGallery = ({ imageList }: { imageList: string[] }) => {
   );
 };
 
-export default ScreenshotGallery; 
+export default ScreenshotGallery;

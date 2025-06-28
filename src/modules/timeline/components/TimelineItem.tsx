@@ -5,18 +5,28 @@ import { Experience } from "@/modules/experience/data/experience";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import { Badge } from "@/shared/ui/badge";
-import { Globe, Github, ExternalLink, GraduationCap, Calendar, Building2, ChevronRight } from "lucide-react";
+import {
+  Globe,
+  Github,
+  ExternalLink,
+  GraduationCap,
+  Calendar,
+  Building2,
+  ChevronRight,
+} from "lucide-react";
 
 interface TimelineItemProps {
   experience: Experience;
 }
 
 const TimelineItem = ({ experience }: TimelineItemProps) => {
-  const { name, href, title, logo, start, end, description, links } = experience;
+  const { name, href, title, logo, start, end, description, links } =
+    experience;
   const [expanded, setExpanded] = React.useState(true);
-  const isEducation = title.toLowerCase().includes('bachelor') || 
-                      title.toLowerCase().includes('master') || 
-                      title.toLowerCase().includes('phd');
+  const isEducation =
+    title.toLowerCase().includes("bachelor") ||
+    title.toLowerCase().includes("master") ||
+    title.toLowerCase().includes("phd");
 
   return (
     <motion.div
@@ -41,26 +51,26 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="p-1 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
-              {logo ? (
-                <img
-                  src={logo}
-                  alt={name}
-                  className="w-10 h-10 rounded-md object-contain bg-white/10"
-                />
-              ) : isEducation ? (
-                <GraduationCap className="w-5 h-5 text-purple-400" />
-              ) : (
-                <Building2 className="w-5 h-5 text-blue-400" />
-              )}
+                {logo ? (
+                  <img
+                    src={logo}
+                    alt={name}
+                    className="w-10 h-10 rounded-md object-contain bg-white/10"
+                  />
+                ) : isEducation ? (
+                  <GraduationCap className="w-5 h-5 text-purple-400" />
+                ) : (
+                  <Building2 className="w-5 h-5 text-blue-400" />
+                )}
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-400 hover:to-purple-400">
-                {name}
-              </h3>
+                  {name}
+                </h3>
                 <p className="text-white/60 text-sm mt-1">{title}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-xs text-blue-400/90 border border-white/5">
               <Calendar className="w-3.5 h-3.5 mr-1" />
               <span>{start}</span>
@@ -71,15 +81,18 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
                 </>
               )}
               {!end && (
-                <Badge variant="secondary" className="ml-2 py-0 h-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+                <Badge
+                  variant="secondary"
+                  className="ml-2 py-0 h-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                >
                   Present
                 </Badge>
               )}
             </div>
           </div>
-          
+
           <div className="flex items-center justify-end">
-            <motion.div 
+            <motion.div
               animate={{ rotate: expanded ? 90 : 0 }}
               transition={{ duration: 0.2 }}
               className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10"
@@ -89,13 +102,13 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           </div>
         </motion.div>
 
-          {/* Description List */}
-        <motion.div 
+        {/* Description List */}
+        <motion.div
           layout
           initial={{ opacity: 0, height: 0 }}
-          animate={{ 
+          animate={{
             opacity: expanded ? 1 : 0,
-            height: expanded ? "auto" : 0
+            height: expanded ? "auto" : 0,
           }}
           transition={{ duration: 0.3 }}
           className="overflow-hidden"
@@ -103,19 +116,19 @@ const TimelineItem = ({ experience }: TimelineItemProps) => {
           {description && (
             <div className="p-5">
               <ul className="space-y-3">
-              {description.map((desc, i) => (
-                <motion.li
-                  key={i}
+                {description.map((desc, i) => (
+                  <motion.li
+                    key={i}
                     initial={{ opacity: 0, x: -5 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
                     className="flex items-start gap-3 text-sm"
-                >
+                  >
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex-shrink-0" />
                     <span className="text-white/70">{desc}</span>
-                </motion.li>
-              ))}
-            </ul>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           )}
         </motion.div>

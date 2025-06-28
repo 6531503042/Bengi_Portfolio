@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { CoreComponentsProps } from "@/shared/types";
@@ -18,4 +17,4 @@ const ResponsiveBox = (props: Readonly<CoreComponentsProps>) => {
   );
 };
 
-export default ResponsiveBox; 
+export default ResponsiveBox;

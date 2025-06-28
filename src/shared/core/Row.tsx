@@ -8,7 +8,13 @@ interface RowProps {
   elementRef?: React.RefObject<HTMLDivElement>;
 }
 
-const Row = ({ children, classNames = "", onClick, id, elementRef }: RowProps) => {
+const Row = ({
+  children,
+  classNames = "",
+  onClick,
+  id,
+  elementRef,
+}: RowProps) => {
   return (
     <div
       className={`relative flex flex-row justify-start items-start transition duration-300 ease-in-out ${classNames}`}
@@ -21,4 +27,4 @@ const Row = ({ children, classNames = "", onClick, id, elementRef }: RowProps) =
   );
 };
 
-export default Row; 
+export default Row;
