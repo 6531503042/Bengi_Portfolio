@@ -49,6 +49,7 @@ export const projects: IProjectItem[] = [
       "/skills/go.svg",
       "/skills/tailwind.png",
       "/skills/kafka.svg",
+      "/skills/websocket.svg",
       "/skills/blender.png",
       "/skills/redis.svg",
     ],
@@ -68,6 +69,7 @@ export const projects: IProjectItem[] = [
       "TailwindCSS",
       "3D",
       "Blender",
+      "WebSocket",
     ],
     image: "/projects/hllc-2025/HLLC2025-Banner.png",
     screenshots: [
@@ -101,6 +103,7 @@ export const projects: IProjectItem[] = [
       { name: "Blender", icon: "/skills/blender.png" },
       { name: "Redis", icon: "/skills/redis.svg" },
       { name: "Kafka", icon: "/skills/kafka.svg" },
+      { name: "WebSocket", icon: "/skills/websocket.svg" },
     ],
     featured: true,
   },

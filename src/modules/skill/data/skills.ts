@@ -52,6 +52,17 @@ export const skillCategories: SkillCategory[] = [
         ],
       },
       {
+        name: "Nest.js",
+        icon: "/skills/nestjs.png",
+        specialties: [
+          "Decorators & Metadata",
+          "Dependency Injection",
+          "Guards & Interceptors",
+          "Microservices",
+          "GraphQL Integration",
+        ],
+      },
+      {
         name: "Node.js",
         icon: "/skills/nodejs.svg",
         specialties: [
@@ -238,6 +249,16 @@ export const skillCategories: SkillCategory[] = [
           "Pub/Sub",
           "Data Structures",
           "Clustering",
+        ],
+      },
+      {
+        name: "WebSocket",
+        icon: "/skills/websocket.svg",
+        specialties: [
+          "Real-time Communication",
+          "Connection Management",
+          "Event Handling",
+          "Scalable Architecture",
         ],
       },
       {
