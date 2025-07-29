@@ -25,6 +25,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 }) => {
   const [showImagePreview, setShowImagePreview] = React.useState(false);
   const [mainImageError, setMainImageError] = React.useState(false);
+  const [mainImageLoading, setMainImageLoading] = React.useState(true);
 
   // Deduplicate images: only show the banner once
   const allImages = React.useMemo(() => {
@@ -35,6 +36,21 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
     // Remove duplicates (keep first occurrence)
     return images.filter((url, idx) => images.indexOf(url) === idx);
   }, [project.image, project.screenshots]);
+
+  const mainImage = allImages[0];
+
+  // Add timeout to prevent infinite loading
+  React.useEffect(() => {
+    if (isOpen && mainImage) {
+      const timeoutId = setTimeout(() => {
+        setMainImageLoading(false);
+      }, 2000); // 2 second timeout
+
+      return () => clearTimeout(timeoutId);
+    } else if (isOpen) {
+      setMainImageLoading(false);
+    }
+  }, [isOpen, mainImage]);
 
   // Preload all images when modal opens
   React.useEffect(() => {
@@ -48,9 +64,13 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
   const handleImageError = () => {
     setMainImageError(true);
+    setMainImageLoading(false);
   };
 
-  const mainImage = allImages[0];
+  const handleImageLoad = () => {
+    setMainImageLoading(false);
+  };
+
   const showImagePreviewIndicator = allImages.length > 0 && !mainImageError;
 
   return (
@@ -63,6 +83,14 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md"
           onClick={onClose}
         >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -71,14 +99,6 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
             className="relative w-[95%] max-w-6xl max-h-[90vh] m-4 bg-[#0B0B1E]/90 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-            >
-              <X className="w-6 h-6 text-white" />
-            </button>
-
             <div className="h-full overflow-y-auto">
               {/* Project Image/Screenshots */}
               <div
@@ -87,7 +107,18 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                   showImagePreviewIndicator && setShowImagePreview(true)
                 }
               >
-                {!mainImage || mainImageError ? (
+                {/* Skeleton Loading */}
+                {mainImageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex flex-col items-center space-y-4">
+                      <div className="w-20 h-20 bg-gray-700 rounded-full animate-pulse" />
+                      <div className="w-48 h-4 bg-gray-700 rounded animate-pulse" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Error State */}
+                {(!mainImage || mainImageError) && !mainImageLoading ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <div className="relative">
                       <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full" />
@@ -106,6 +137,8 @@ const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                       alt={project.title}
                       className="w-full h-full object-cover"
                       onError={handleImageError}
+                      onLoad={handleImageLoad}
+                      style={{ display: mainImageLoading ? 'none' : 'block' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0B0B1E]/90" />
                   </div>

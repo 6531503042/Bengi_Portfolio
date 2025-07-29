@@ -6,7 +6,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImagePreview from "@/shared/components/ImagePreview";
 import ProjectDetailsModal from "@/modules/projects/components/ProjectDetailsModal";
 
@@ -72,19 +72,39 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [showProjectDetails, setShowProjectDetails] = useState(false);
   const [mainImageError, setMainImageError] = useState(false);
+  const [mainImageLoading, setMainImageLoading] = useState(true);
   const [imageLoadStatus, setImageLoadStatus] = useState<
     Record<string, boolean>
   >({});
+
+  const mainImage = project.image || project.screenshots?.[0];
+
+  // Add timeout to prevent infinite loading
+  useEffect(() => {
+    if (mainImage) {
+      const timeoutId = setTimeout(() => {
+        setMainImageLoading(false);
+      }, 2000); // 2 second timeout
+
+      return () => clearTimeout(timeoutId);
+    } else {
+      setMainImageLoading(false);
+    }
+  }, [mainImage]);
 
   const handleImageError = (imageUrl: string) => {
     setImageLoadStatus((prev) => ({ ...prev, [imageUrl]: false }));
     if (imageUrl === mainImage) {
       setMainImageError(true);
+      setMainImageLoading(false);
     }
   };
 
   const handleImageLoad = (imageUrl: string) => {
     setImageLoadStatus((prev) => ({ ...prev, [imageUrl]: true }));
+    if (imageUrl === mainImage) {
+      setMainImageLoading(false);
+    }
   };
 
   // Filter out any empty or invalid image URLs and already failed images
@@ -104,7 +124,6 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
     setShowProjectDetails(true);
   };
 
-  const mainImage = project.image || project.screenshots?.[0];
   const showImagePreviewIndicator = allImages.length > 0 && !mainImageError;
 
   return (
@@ -121,7 +140,20 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
 
         {/* Image Section */}
         <div className="relative h-48 overflow-hidden">
-          {!mainImage || mainImageError ? (
+          {/* Skeleton Loading */}
+          {mainImageLoading && (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 animate-pulse">
+              <div className="flex items-center justify-center h-full">
+                <div className="flex flex-col items-center space-y-3">
+                  <div className="w-12 h-12 bg-gray-600 rounded-full animate-pulse" />
+                  <div className="w-24 h-3 bg-gray-600 rounded animate-pulse" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Error State */}
+          {(!mainImage || mainImageError) && !mainImageLoading ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#151538]/80 to-[#1F1155]/80 backdrop-blur-sm">
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full" />
@@ -139,8 +171,9 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
                 src={mainImage}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                onError={() => handleImageError(mainImage)}
-                onLoad={() => handleImageLoad(mainImage)}
+                onError={() => mainImage && handleImageError(mainImage)}
+                onLoad={() => mainImage && handleImageLoad(mainImage)}
+                style={{ display: mainImageLoading ? 'none' : 'block' }}
               />
               <div
                 className="absolute inset-0 cursor-pointer bg-gradient-to-t from-[#0B0B1E]/90 via-[#0B0B1E]/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"

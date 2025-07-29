@@ -19,13 +19,28 @@ const ImagePreview = ({
 }: ImagePreviewProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageError, setImageError] = useState<Record<number, boolean>>({});
+  const [imageLoading, setImageLoading] = useState<Record<number, boolean>>({});
 
   // Reset current index when modal opens
   useEffect(() => {
     if (isOpen) {
       setCurrentIndex(0);
+      // Reset loading states
+      setImageLoading({});
+      setImageError({});
     }
   }, [isOpen]);
+
+  // Add timeout to prevent infinite loading
+  useEffect(() => {
+    if (isOpen && images.length > 0) {
+      const timeoutId = setTimeout(() => {
+        setImageLoading((prev) => ({ ...prev, [currentIndex]: false }));
+      }, 3000); // 3 second timeout
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isOpen, currentIndex, images.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -52,6 +67,15 @@ const ImagePreview = ({
 
   const handleImageError = (index: number) => {
     setImageError((prev) => ({ ...prev, [index]: true }));
+    setImageLoading((prev) => ({ ...prev, [index]: false }));
+  };
+
+  const handleImageLoad = (index: number) => {
+    setImageLoading((prev) => ({ ...prev, [index]: false }));
+  };
+
+  const handleImageStartLoad = (index: number) => {
+    setImageLoading((prev) => ({ ...prev, [index]: true }));
   };
 
   const goToImage = (index: number) => {
@@ -62,6 +86,9 @@ const ImagePreview = ({
   if (!images || images.length === 0) {
     return null;
   }
+
+  const currentImageLoading = imageLoading[currentIndex];
+  const currentImageError = imageError[currentIndex];
 
   return (
     <AnimatePresence>
@@ -121,7 +148,22 @@ const ImagePreview = ({
                   transition={{ duration: 0.15 }}
                   className="w-full h-full"
                 >
-                  {imageError[currentIndex] ? (
+                  {/* Skeleton Loading */}
+                  {currentImageLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full h-full bg-gray-800 animate-pulse">
+                        <div className="flex items-center justify-center h-full">
+                          <div className="flex flex-col items-center space-y-4">
+                            <div className="w-16 h-16 bg-gray-700 rounded-full animate-pulse" />
+                            <div className="w-32 h-4 bg-gray-700 rounded animate-pulse" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error State */}
+                  {currentImageError && !currentImageLoading && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <div className="bg-gray-800 p-4 rounded-lg">
                         <ImageIcon className="w-12 h-12 text-gray-400" />
@@ -130,12 +172,17 @@ const ImagePreview = ({
                         Image failed to load
                       </span>
                     </div>
-                  ) : (
+                  )}
+
+                  {/* Actual Image */}
+                  {!currentImageError && !currentImageLoading && (
                     <img
                       src={images[currentIndex]}
                       alt={`${title || 'Preview'} ${currentIndex + 1}`}
                       className="w-full h-full object-contain"
                       onError={() => handleImageError(currentIndex)}
+                      onLoad={() => handleImageLoad(currentIndex)}
+                      onLoadStart={() => handleImageStartLoad(currentIndex)}
                     />
                   )}
                 </motion.div>
