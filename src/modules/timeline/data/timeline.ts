@@ -8,7 +8,7 @@ export const data = {
       start: "2022",
       end: "2026",
       description: [
-        "Currently in 3rd Year",
+        "Currently in 4rd Year",
         "Focus on Backend Development and System Architecture",
         "Relevant Coursework: Distributed Systems, Database Management, Software Architecture",
         "GPA: 3.XX/4.00",
