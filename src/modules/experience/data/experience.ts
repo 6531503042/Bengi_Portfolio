@@ -17,6 +17,20 @@ export interface Link {
 
 export const data: Experience[] = [
   {
+    name: "Rise Consulting",
+    href: "#",
+    title: "Application Developer – Rise Consulting Fullstack (Frontend, Backend, Mobile)",
+    logo: "/rise_consulting_icon.png",
+    start: "January 2026",
+    end: "May 2026",
+    description: [
+      "Leading the ”Wisework” scaling project, architecting a multi-tenant database structure to support service.",
+      "Streamlined feature delivery by consolidating legacy databases into a unified package system, reducing deployment overhead for new clients.",
+      "Diagnosed and resolved critical production bugs in Flutter and NestJS environments, maintaining 99.9% system uptime.",
+      "Tech: Flutter, React, NestJS, PostgreSQL, Docker, Cloud Infrastructure",
+    ],
+  },
+  {
     name: "Garena Online Management",
     href: "#",
     title: "Freelance Backend Developer",
